@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/layout.tsx", "app/untils/helpers.js", "app/components/price.js", "app/components/context/store.js", "app/components/Mozayede.tsx", "app/page.tsx", "app/pages/Mozadeh.tsx", "app/components/ProductCard.js", "app/components/Homepage.tsx", "app/components/Footer.tsx", "app/components/HeaderMain.tsx", "app/components/Navbar.tsx", "app/components/HederTop.tsx", "app/components/NewProducts.tsx", "app/pages/login", "app/pages/tools", "app/pages/drill", "app/pages/EEE", "app/pages/f767", "app/components/Sidebar.tsx", "app/pages/article/component/Aticle.tsx", "app/pages/engineer/Lading.tsx", "app/pages/map.gis/services/test.jsx", "app/pages/map.gis/services/EditFeature.jsx", "app/pages/map.gis/components/DrawTools.jsx", "app/pages/map.gis/components/Map.tsx", "app/pages/Services/component/data.tsx"],
+  "exclude": ["node_modules"]
+}
