@@ -27,15 +27,14 @@ import icon12 from '../../public/images/icon 12.png';
 import Background from "../../public/images/background.jpg"
 const Homepage = () => {
   return (
+<main>
+    <div className='bg-cyan-50 'style={{ backgroundImage: `url(${Background.src})`, backgroundSize: 'cover' }}>
 
-    <div className='bg-cyan-50 'style={{ position: 'fixed', width: '100%', height: '100vh' }}>
-
-     
       <div className='container py-8  '>
         <div className="p-5 sm:p-8">
           <div className="columns-1 gap-5 sm:columns-2 sm:gap-8 md:columns-3 lg:columns-3 [&>img:not(:first-child)]:mt-8">
 
-            <div className="	 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300  " style={{ backgroundImage: `url(${bg8.src})`, backgroundSize: 'cover', }}>
+            <div className="	bg-rose-300	 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300  " >
               <div className=" text-center p-8 sm:pb-0 text-slate-200 flex justify-center" >
                 <Link href="/pages/Education" >
                   <span className=' text-6xl '>
@@ -51,7 +50,7 @@ const Homepage = () => {
                  className= 'justify-center ml-28 max-w-screen-md mt-4'
               />
             </div>
-            <div className=" h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 " style={{ backgroundImage: `url(${bg1.src})`, backgroundSize: 'cover' }}>
+            <div className="bg-rose-300	 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 " >
               <div className=" text-7xl text-center p-8 sm:pb-0 text-slate-200	flex justify-center" >
                 <Link href="/pages/map.gis">
                   Web Gis
@@ -68,7 +67,7 @@ const Homepage = () => {
 
             </div>
 
-            <div className="bg-rose-300	 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 " style={{ backgroundImage: `url(${bg11.src})`, backgroundSize: 'cover' }}>
+            <div className="bg-rose-300	 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 " >
               <div className="  text-center p-8 mr-4  sm:pb-0 text-slate-200 flex justify-center	" >
                 <a className=' ' >
                   <Link href="/pages/engineer">
@@ -88,7 +87,7 @@ const Homepage = () => {
                 className='justify-center ml-28 '
               />
             </div>
-            <div className="bg-rose-300	 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 col-span-2 " style={{ backgroundImage: `url(${bg3.src})`, backgroundSize: 'cover' }}>
+            <div className="bg-rose-300	 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 col-span-2 " >
               <div className=" text-4xl text-center  pe-8  sm:pb-0 text-slate-200 flex justify-center	 "  >
                 <Link href="/pages/mozayede">
                   <span className='text-4xl text-center '>
@@ -105,7 +104,7 @@ const Homepage = () => {
               />
 
             </div>
-            <div className="bg-rose-300	 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300" style={{ backgroundImage: `url(${bg4.src})`, backgroundSize: 'cover' }}>
+            <div className="bg-rose-300	 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300" >
               <div className="text-6xl text-center p-8 sm:pb-0 text-slate-200 flex justify-center" >
                 <Link href="/pages/dorsanji" >
                   دور سنجی
@@ -118,7 +117,7 @@ const Homepage = () => {
                   alt='پیمانکاران '
                 />
               </div></div>
-            <div className="bg-rose-300	 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300" style={{ backgroundImage: `url(${bg12.src})`, backgroundSize: 'cover' }}>
+            <div className="bg-rose-300	 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300" >
               <div className=" text-6xl text-center p-8 sm:pb-0 text-slate-200 flex justify-center	" >
                 <Link href="/pages/contractors"
                 >پیمانکاران
@@ -130,7 +129,7 @@ const Homepage = () => {
                   alt='پیمانکاران '
                 />
               </div></div>
-            <div className="bg-rose-300	 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 col-span-2" style={{ backgroundImage: `url(${bg6.src})`, backgroundSize: 'cover' }}>
+            <div className="bg-rose-300	 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 col-span-2">
               <div className=" text-4xl  p-8 flex flex-col sm:pb-0 text-slate-200  justify-center" >
                 <Link href="/pages/Services" >
                   <span className='text-center ml-10 mt-0'>
@@ -149,7 +148,7 @@ const Homepage = () => {
               </div>
             </div>
 
-            <div className="bg-rose-300	 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300" style={{ backgroundImage: `url(${bg9.src})`, backgroundSize: 'cover' }}>
+            <div className="bg-rose-300	 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300" >
               <div className=" text-4xl text-center p-8 sm:pb-0 text-slate-200 flex justify-center" >
                 <Link href="/">خدمات معدن
 
@@ -163,7 +162,7 @@ const Homepage = () => {
                 />
               </div>
             </div>
-            <div className="bg-rose-300	 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300col-span-2" style={{ backgroundImage: `url(${bg10.src})`, backgroundSize: 'cover' }}>
+            <div className="bg-rose-300	 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300col-span-2">
               <div className=" text-6xl text-center p-8 sm:pb-0  text-slate-200 flex justify-center" >
                 <Link href="/pages/article">
                   مقالات </Link>
@@ -175,7 +174,7 @@ const Homepage = () => {
                 />
               </div>
             </div>
-            <div className="bg-rose-300	 h-48  transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 	" style={{ backgroundImage: `url(${bg8.src})`, backgroundSize: 'cover' }}>
+            <div className="bg-rose-300	 h-48  transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 	" >
               <div className=" text-7xl text-center p-8 sm:pb-0 t text-slate-200 flex justify-center" >
                 <Link href="/">استخدام
                 </Link>
@@ -187,7 +186,7 @@ const Homepage = () => {
                 />
 
               </div></div>
-            <div className="bg-rose-300	 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 col-span-2" style={{ backgroundImage: `url(${bg11.src})`, backgroundSize: 'cover' }}>
+            <div className="bg-rose-300	 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 col-span-2" >
               <div className=" text-4xl text-center p-8 sm:pb-0 text-slate-200 flex justify-center "  >
                 <Link href="/pages/tools">
                   <span>
@@ -201,7 +200,7 @@ const Homepage = () => {
                   alt='ابزارالات حفاری '
                 />
               </div></div>
-            <div className="bg-rose-300	 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300" style={{ backgroundImage: `url(${bg5.src})`, backgroundSize: 'cover' }}>
+            <div className="bg-rose-300	 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300" >
               <div className=" text-center p-8 sm:pb-0 text-slate-200	flex justify-center "  >
                 <Link href="/pages/form">
                   <span className='text-5xl text-center '>
@@ -220,14 +219,8 @@ const Homepage = () => {
           </div>
         </div>
       </div>
-  <Image
-  src={Background}
-  layout="fill" 
-  objectFit="cover" 
-  priority={true} 
-  alt='background'
-/>
-    </div>
+  
+    </div></main>
   );
 };
 

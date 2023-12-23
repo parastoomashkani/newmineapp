@@ -7,13 +7,13 @@ import { FaHome } from "react-icons/fa";
 import Link from 'next/link';
 import Image from 'next/image';
 import Logo from "../../public/images/logoNew (1).png"
-import Background from '../../public/images/header.png'
+import HeadedrImg from '../../public/images/Website-Frontpage-Header-02.jpg'
 const HeaderMain = () => {
 
   
   return (
 
-    <div className=" HeaderMain border-b border-gray-200 py-4 bg-cyan-500		" style={{backgroundImage:`url(${Background})`,backgroundSize: 'auto' }}>
+    <div className=" HeaderMain border-b border-gray-200 py-4 bg-cyan-500		" style={{backgroundImage:`url(${HeadedrImg.src})`,backgroundSize: 'cover' }}>
    
     <div className="container sm:flex justify-between items-center">
       <div className="hidden lg:flex gap-4  text-[30px]  font-bold text-4xl text-center pb-4 sm:pb-0 text-blackish">
@@ -27,7 +27,7 @@ const HeaderMain = () => {
 
       <div className="w-full sm:w-[300px] md:w-[70%] relative">
         <input
-          className="peer h-full w-full border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-blue-gray-700 outline
+          className="peer h-full w-full bg-sky-100 border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-blue-gray-700 outline
            outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-amber-600	 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
           type="text"
           placeholder="Enter any product name..."
