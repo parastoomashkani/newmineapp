@@ -29,10 +29,11 @@ export default async function RootLayout({
     <html lang="en">
    
   
-      <body className={rubik.className}>
- 
+      <body className={rubik.className} >
+   
          <HederTop />
      <HeaderMain />
+
 {/* <Sidebar /> */}
 {/* <Menu /> */}
     {children} 
