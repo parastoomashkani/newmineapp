@@ -10,7 +10,7 @@ const Footer = () => {
         <div
           className="flex items-center justify-center border-b-2 border-neutral-200 p-6 dark:border-neutral-500 lg:justify-between">
           <div className="mr-12 hidden lg:block">
-            <span>پشتیبانی 24 ساعته از کاربران عزیز</span>
+            <span>پشتیبانی 24 ساعته از کاربران </span>
           </div>
 
           <div className="flex justify-center">
