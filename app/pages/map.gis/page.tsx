@@ -1,6 +1,7 @@
 'use client';
 import { FC  } from 'react'   ;
 import dynamic from "next/dynamic";
+import Menu from './services/Menu';
 interface pageProps{}
 
 const DynamicMap = dynamic(() => import('./components/Map'), {
@@ -13,6 +14,7 @@ const DynamicMap = dynamic(() => import('./components/Map'), {
     <main>
     <div id="map"
    >
+    <Menu />
     <DynamicMap />
 
     </div>

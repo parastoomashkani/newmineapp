@@ -8,7 +8,7 @@ import { MdOutlinePhoneEnabled } from "react-icons/md";
 const HederTop = () => {
     return (
 
-        <div className="border-b bg-green-950 hidden sm:block ">
+        <div className="border-b bg-cyan-600	 hidden sm:block ">
             <div className="container py-1">
                 <div className="flex justify-between items-center">
                     <div className="hidden lg:flex gap-1">

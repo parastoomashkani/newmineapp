@@ -45,6 +45,7 @@
     "react-leaflet": "^4.2.1",
     "react-leaflet-draw": "^0.20.4",
     "react-leaflet-fullscreen": "^4.1.1",
+    "react-leaflet-heatmap-layer-v3": "^3.0.3-beta-1",
     "react-simple-tree-menu": "^1.1.18",
     "yarn": "^1.22.21"
   },

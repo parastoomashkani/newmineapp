@@ -5,6 +5,7 @@
 @layer base {
   body {
     overflow-x: hidden;
+   
   }
 }
 
@@ -35,3 +36,4 @@
     scale: 1;
   }
 }
+

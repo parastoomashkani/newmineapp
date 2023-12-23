@@ -7,11 +7,14 @@ import { FaHome } from "react-icons/fa";
 import Link from 'next/link';
 import Image from 'next/image';
 import Logo from "../../public/images/logoNew (1).png"
+import Background from '../../public/images/header.png'
 const HeaderMain = () => {
 
   
   return (
-    <div className="border-b border-gray-200 py-4 bg-yellow-50	">
+
+    <div className=" HeaderMain border-b border-gray-200 py-4 bg-cyan-500		" style={{backgroundImage:`url(${Background})`,backgroundSize: 'auto' }}>
+   
     <div className="container sm:flex justify-between items-center">
       <div className="hidden lg:flex gap-4  text-[30px]  font-bold text-4xl text-center pb-4 sm:pb-0 text-blackish">
    <Image
@@ -46,10 +49,9 @@ const HeaderMain = () => {
           <Link href="/">  <FaHome /></Link>
       
         </div>
-
-        
+      
       </div>
-    
+
     </div>
   </div>
   );

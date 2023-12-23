@@ -17,6 +17,7 @@ const config: Config = {
         accent: "#F6D860",
         blackish: "#1b1b1b",
       },
+    
     },
   },
   plugins: [ require('flowbite/plugin')],

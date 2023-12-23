@@ -24,10 +24,15 @@ import icon9 from '../../public/images/icon 9.png';
 import icon10 from '../../public/images/icon 10.png';
 import icon11 from '../../public/images/icon 11.png';
 import icon12 from '../../public/images/icon 12.png';
-
+import Background from "../../public/images/background.png"
 const Homepage = () => {
   return (
-    <div className='bg-emerald-900 '>
+    <div className='bg-cyan-50  	'  style={{
+      backgroundImage: `url(${Background})`,
+      width: '100%',
+      height: '100%',
+    }}>
+
       <div className='container py-8  '>
         <div className="p-5 sm:p-8">
           <div className="columns-1 gap-5 sm:columns-2 sm:gap-8 md:columns-3 lg:columns-3 [&>img:not(:first-child)]:mt-8">
@@ -217,7 +222,7 @@ const Homepage = () => {
           </div>
         </div>
       </div>
-
+  
     </div>
   );
 };

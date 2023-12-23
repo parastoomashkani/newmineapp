@@ -23,7 +23,7 @@ const Form = () => {
         }
       };
   return (
-    <div className="flex items-center min-h-screen p-4  lg:justify-center bg-emerald-900">
+    <div className="flex items-center min-h-screen p-4  lg:justify-center bg-white">
         <div
           className="flex flex-col overflow-hidden bg-white rounded-md shadow-lg max md:flex-row md:flex-1 lg:max-w-screen-md"
         >
