@@ -1,90 +1,64 @@
 "use client"
-import React from 'react';
-import SelectBox from 'devextreme-react/select-box';
-import TabPanel from 'devextreme-react/tab-panel';
-import TabPanelItem from './TabPanelItem';
-import "./stayle.css"
-import {
-  tabsPositionsSelectBoxLabel,
-  tabsPositions,
-  stylingModesSelectBoxLabel,
-  stylingModes,
-  iconPositionsSelectBoxLabel,
-  iconPositions,
-  dataSource,
-} from './data';
+import React, { useCallback, useState } from 'react';
+import FilterBuilder, { FilterBuilderTypes } from 'devextreme-react/filter-builder';
+import Button from 'devextreme-react/button';
+import DataGrid from 'devextreme-react/data-grid';
+import DataSource from 'devextreme/data/data_source';
+import ODataStore from 'devextreme/data/odata/store';
+import "../../../../node_modules/devextreme/dist/css/dx.greenmist.css"
 
-const Filter = () => {
-  const [tabsPosition, setTabsPosition] = React.useState(tabsPositions[0]);
-  const [stylingMode, setStylingMode] = React.useState(stylingModes[0]);
-  const [iconPosition, setIconPosition] = React.useState(iconPositions[0]);
+import { filter, fields } from './data';
 
-  const onTabsPositionChanged = React.useCallback((args:any) => {
-    setTabsPosition(args.value);
-  }, [setTabsPosition]);
+const dataSource = new DataSource({
+  store: new ODataStore({
+    version: 2,
+    fieldTypes: {
+      Product_Cost: 'Decimal',
+      Product_Sale_Price: 'Decimal',
+      Product_Retail_Price: 'Decimal',
+    },
+    url: 'https://js.devexpress.com/Demos/DevAV/odata/Products',
+  }),
+  select: [
+    'Product_ID',
+    'Product_Name',
+    'Product_Cost',
+    'Product_Sale_Price',
+    'Product_Retail_Price',
+    'Product_Current_Inventory',
+  ],
+});
 
-  const onStylingModeChanged = React.useCallback((args:any) => {
-    setStylingMode(args.value);
-  }, [setStylingMode]);
+const Filter= () => {
+  const [value, setValue] = useState(filter);
+  const [gridFilterValue, setGridFilterValue] = useState(filter);
 
-  const onIconPositionChanged = React.useCallback((args:any) => {
-    setIconPosition(args.value);
-  }, [setIconPosition]);
+  const onValueChanged = useCallback((e: FilterBuilderTypes.ValueChangedEvent) => {
+    setValue(e.value);
+  }, [setValue]);
+
+  const buttonClick = useCallback(() => {
+    setGridFilterValue(value);
+  }, [value, setGridFilterValue]);
 
   return (
-    <div className="tabpanel-demo">
-    <div className="widget-container">
-      <TabPanel
-        className="dx-theme-background-color"
-        width="100%"
-        height={418}
-        animationEnabled={true}
-        swipeEnabled={true}
+    <div className='container py-8'>
+      <div className="filter-container">
+        <FilterBuilder fields={fields} value={value} onValueChanged={onValueChanged} />
+        <br />
+        <Button text="Apply Filter" type="default" onClick={buttonClick} />
+        <br />
+        <div className="dx-clearfix"></div>
+      </div>
+      <br />
+      <DataGrid
         dataSource={dataSource}
-        tabsPosition={tabsPosition}
-        stylingMode={stylingMode}
-        iconPosition={iconPosition}
-        itemComponent={TabPanelItem}
+        filterValue={gridFilterValue}
+        showBorders={true}
+        columns={fields}
+        height={300}
       />
     </div>
-
-    <div className="options">
-      <div className="caption">Options</div>
-
-      <div className="option">
-        <div className="option-label">Tab position</div>
-
-        <SelectBox
-          inputAttr={tabsPositionsSelectBoxLabel}
-          items={tabsPositions}
-          value={tabsPosition}
-          onValueChanged={onTabsPositionChanged}
-        />
-      </div>
-
-      <div className="option">
-        <div className="option-label">Styling mode</div>
-
-        <SelectBox
-          inputAttr={stylingModesSelectBoxLabel}
-          items={stylingModes}
-          value={stylingMode}
-          onValueChanged={onStylingModeChanged}
-        />
-      </div>
-
-      <div className="option">
-        <div className="option-label">Icon position</div>
-
-        <SelectBox
-          inputAttr={iconPositionsSelectBoxLabel}
-          items={iconPositions}
-          value={iconPosition}
-          onValueChanged={onIconPositionChanged}
-        />
-      </div>
-    </div>
-  </div>
   );
 };
 

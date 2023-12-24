@@ -205,12 +205,11 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="bg-neutral-200 p-6 text-center dark:bg-neutral-700">
-          <span>تولید شده در 1402:</span>
-          <a
-            className="font-semibold text-neutral-600 dark:text-neutral-400"
-            href="https://tw-elements.com/"
-          >زکاوپردازش آریا</a >
+        <div className="bg-neutral-200 p-3 text-center dark:bg-neutral-700">
+          <span className='text-sm	'>
+          تابع قوانین جمهوری اسلامی ایران
+          </span>
+      
         </div>
       </footer>
     </div>

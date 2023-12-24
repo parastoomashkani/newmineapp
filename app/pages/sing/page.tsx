@@ -1,12 +1,11 @@
 import React, { FC} from 'react';
-import FormList from './form';
-import './style.css'
+import CreateAcount from './components/form';
 interface pageProps {
 }
 const page: FC<pageProps> = ({ }) => {
     return (
       <main>
-      <FormList />
+      <CreateAcount/>
       </main>
     );
   };
