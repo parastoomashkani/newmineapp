@@ -4,7 +4,7 @@ interface pageProps {
 }
 const page: FC<pageProps> = ({ }) => {
     return (
-      <main>
+      <main	'>
       <CreateAcount/>
       </main>
     );

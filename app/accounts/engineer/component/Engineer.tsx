@@ -1,4 +1,4 @@
-'use client'
+"use client"
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { FaPhone, FaTelegramPlane } from "react-icons/fa";
@@ -23,18 +23,38 @@ import {
 import { MdMarkEmailUnread } from "react-icons/md";
 import { FaInstagram } from "react-icons/fa6";
 
+interface EngineerProps {
+    id: string;
+    picture: {
+        large: string;
+        medium: string;
+    };
+    name: {
+        first: string;
+        last: string;
+        titel: string;
+    };
+    location: {
+        city: string;
+        state: string;
+    };
+    email: string;
+    phone: string;
+    cell: string;
+}
 
-const Engineer = () => {
+const Engineer: React.FC = () => {
+    const [state, setState] = useState<EngineerProps[]>([]);
 
-
-    const [state, setState] = useState([]);
     async function getData() {
         const res = await fetch('https://randomuser.me/api/?results=19');
         const data = await res.json();
         setState(data.results);
         console.log(state);
     }
+
     console.log('i am:', state);
+
     useEffect(() => {
         getData();
     }, [])
@@ -43,24 +63,20 @@ const Engineer = () => {
 
     const toggleOpen = () => setFullscreenXlModal(!fullscreenXlModal);
 
-    const [centredModal, setCentredModal] = useState(false);
+    const [centredModal, setCentredModal] = useState<boolean>(false);
 
     const modalOpen = () => setCentredModal(!centredModal);
-
 
     return (
         <>
             {
-                state.map((item) => (
-
-
-                    <div className="container">
-
-                        <div role="list" aria-label="Behind the scenes People " className="md:flex sm:flex flex-wrap md:justify-around sm:justify-around lg:justify-around " key={item.id} >
+                state.map((item: EngineerProps) => (
+                    <div className="container" key={item.id}>
+                        <div role="list" aria-label="Behind the scenes People " className="md:flex sm:flex flex-wrap md:justify-around sm:justify-around lg:justify-around ">
                             <div role="listitem" className="xl:w-80 sm:w-80 md:w-96 relative mt-16 mb-32 sm:mb-24 xl:max-w-sm lg:w-2/5 ">
                                 <div className="rounded overflow-hidden shadow-md bg-white">
                                     <div className="absolute -mt-20 w-full flex justify-center">
-                                        <MDBModal tabIndex='-1' open={fullscreenXlModal} setOpen={setFullscreenXlModal}>
+                                        <MDBModal tabIndex='-1' open={fullscreenXlModal} setOpen={setFullscreenXlModal} key={item.id}>
                                             <MDBModalDialog size="fullscreen">
                                                 <MDBModalContent>
                                                     <MDBModalHeader>
@@ -72,19 +88,18 @@ const Engineer = () => {
                                                             onClick={toggleOpen}
                                                         ></MDBBtn>
                                                     </MDBModalHeader>
-                                                    <MDBModalBody>
+                                                    <MDBModalBody >
                                                         <div className="bg-gray-100">
                                                             <div className="container mx-auto py-8">
                                                                 <div className="grid grid-cols-4 sm:grid-cols-12 gap-6 px-4">
                                                                     <div className="col-span-4 sm:col-span-3">
                                                                         <div className="bg-white shadow rounded-lg p-6">
                                                                             <div className="flex flex-col items-center">
-
                                                                                 <Image
                                                                                     src={item.picture.large}
                                                                                     className="w-32 h-32 bg-gray-300 rounded-full mb-4 shrink-0"
-                                                                                    height={200}
-                                                                                    width={200}
+                                                                                    height={500}
+                                                                                    width={500}
                                                                                     alt={item.name.first}
                                                                                 />
                                                                                 <h1 className="text-xl font-bold">{item.name.first} {item.name.last}</h1>
@@ -99,7 +114,6 @@ const Engineer = () => {
                                                                                 <span className="text-gray-600 uppercase font-bold tracking-wider mb-2">Skills</span>
                                                                                 <ul>
                                                                                     <li className="mb-2">{item.email} </li>
-
                                                                                 </ul>
                                                                             </div>
                                                                         </div>
@@ -109,7 +123,6 @@ const Engineer = () => {
                                                                             <h2 className="text-xl font-bold mb-4">درباره من </h2>
                                                                             <p className="text-gray-700">{item.location.city}
                                                                             </p>
-
                                                                             <h3 className="font-semibold text-center mt-3 -mb-2">
                                                                                 راه های ارتباطی
                                                                             </h3>
@@ -117,12 +130,10 @@ const Engineer = () => {
                                                                                 <a className="text-gray-700 hover:text-orange-600" aria-label="Visit TrendyMinds LinkedIn" href=""
                                                                                     target="_blank">
                                                                                     <RiLinkedinFill size={30} />
-
                                                                                 </a>
                                                                                 <a className="text-gray-700 hover:text-orange-600" aria-label="Visit TrendyMinds YouTube" href=""
                                                                                     target="_blank">
                                                                                     <FaInstagram size={30} />
-
                                                                                 </a>
                                                                                 <a className="text-gray-700 hover:text-orange-600" aria-label="Visit TrendyMinds Facebook" href=""
                                                                                     target="_blank">
@@ -140,8 +151,6 @@ const Engineer = () => {
                                                                                     </svg>
                                                                                 </a>
                                                                             </div>
-
-
                                                                             <h2 className="text-xl font-bold mt-6 mb-4">تجربه های کاری </h2>
                                                                             <div className="mb-6">
                                                                                 <div className="flex justify-between">
@@ -178,16 +187,16 @@ const Engineer = () => {
                                                     </MDBModalHeader>
                                                     <MDBModalBody>
                                                         <div className='flex justify-between' >
-                                                        <Image
-                                                            src={item.picture.large}
-                                                            className="w-22 h-22 bg-gray-300 rounded-full mb-4 shrink-0"
-                                                            height={100}
-                                                            width={100}
-                                                            alt={item.name.first}
-                                                        />
-                                                    <h4 className="font-bold text-3xl text-center mb-1">
-                                                    {item.name.first} {item.name.last} 
-                                                    </h4>
+                                                            <Image
+                                                                src={item.picture.large}
+                                                                className="w-22 h-22 bg-gray-300 rounded-full mb-4 shrink-0"
+                                                                height={500}
+                                                                width={500}
+                                                                alt={item.name.first}
+                                                            />
+                                                            <h4 className="font-bold text-3xl text-center mb-1">
+                                                                {item.name.first} {item.name.last}
+                                                            </h4>
                                                         </div>
                                                         <ul className='flex flex-col'>
                                                             <i>
@@ -223,8 +232,8 @@ const Engineer = () => {
                                         <div className="h-32 w-32 flex  justify-between ">
                                             <Image
                                                 src={item.picture.medium}
-                                                height={32}
-                                                width={32}
+                                                height={500}
+                                                width={500}
                                                 alt={item.name.first}
                                                 className="rounded-full object-cover h-full w-full shadow-md"
                                             />

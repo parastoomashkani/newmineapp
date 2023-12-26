@@ -18,31 +18,32 @@ export const fields: {
   format?: string,
 }[] = [
   {
-    caption: 'ID',
+    caption: 'جنسیت',
     width: 50,
     dataField: "جعفر",
     dataType: 'number',
   }, {
     dataField: 'Product_Name',
+    caption: 'نقشه برداری ',
     dataType: 'string',
   }, {
-    caption: 'Cost',
+    caption: 'نمونه بردار',
     dataField: 'Product_Cost',
     dataType: 'number',
     format: 'currency',
   }, {
     dataField: 'Product_Sale_Price',
-    caption: 'Sale Price',
+    caption: 'حقوق ',
     dataType: 'number',
     format: 'currency',
   }, {
     dataField: 'Product_Retail_Price',
-    caption: 'Retail Price',
+    caption: 'پی جویی و اکتشاف',
     dataType: 'number',
     format: 'currency',
   }, {
     dataField: 'Product_Current_Inventory',
     dataType: 'number',
-    caption: 'Inventory',
+    caption: 'استخراج',
   },
 ];

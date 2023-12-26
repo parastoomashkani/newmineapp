@@ -13,7 +13,7 @@ const HeaderMain = () => {
   
   return (
 
-    <div className=" HeaderMain border-b border-gray-200 py-4 bg-cyan-500		" style={{backgroundImage:`url(${HeadedrImg.src})`,backgroundSize: 'cover' }}>
+    <div className=" HeaderMain border-b border-gray-200 py-4 bg-cyan-500	text-slate-50		" style={{backgroundImage:`url(${HeadedrImg.src})`,backgroundSize: 'cover' }}>
    
     <div className="container sm:flex justify-between items-center">
       <div className="hidden lg:flex gap-4  text-[30px]  font-bold text-4xl text-center pb-4 sm:pb-0 text-blackish">
@@ -34,7 +34,7 @@ const HeaderMain = () => {
         />
 
         <BsSearch
-          className="absolute right-0 top-0 mr-3 mt-3 text-gray-400"
+          className="absolute right-0 top-0 mr-3 mt-3 text-gray-200"
           size={20}
         /> 
        

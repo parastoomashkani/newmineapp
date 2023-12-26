@@ -28,13 +28,13 @@ import Background from "../../public/images/background.jpg"
 const Homepage = () => {
   return (
 <main>
-    <div className='bg-cyan-50 'style={{ backgroundImage: `url(${Background.src})`, backgroundSize: 'cover' }}>
+    <div className='bg-cyan-50 text-slate-50	 'style={{ backgroundImage: `url(${Background.src})`, backgroundSize: 'cover' }}>
 
       <div className='container py-8  '>
         <div className="p-5 sm:p-8">
-          <div className="columns-1 gap-5 sm:columns-2 sm:gap-8 md:columns-3 lg:columns-3 [&>img:not(:first-child)]:mt-8">
+          <div className="columns-1 gap-5 sm:columns-2 sm:gap-8  md:columns-3 lg:columns-3  [&>img:not(:first-child)]:mt-8">
 
-            <div className="	bg-rose-300	 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300  " >
+            <div className="bg-orange-400	 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300  " >
               <div className=" text-center p-8 sm:pb-0 text-slate-200 flex justify-center" >
                 <Link href="/pages/Education" >
                   <span className=' text-6xl '>
@@ -47,12 +47,12 @@ const Homepage = () => {
                 width={100}
                 height={100}
                 alt='مهندس '
-                 className= 'justify-center ml-28 max-w-screen-md mt-4'
+                 className= 'justify-center ml-24 max-w-screen-md mt-2.5'
               />
             </div>
-            <div className="bg-rose-300	 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 " >
+            <div className="bg-rose-700		 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 " >
               <div className=" text-7xl text-center p-8 sm:pb-0 text-slate-200	flex justify-center" >
-                <Link href="/pages/map.gis">
+                <Link href="/accounts/map.gis">
                   Web Gis
 
                 </Link>
@@ -67,10 +67,10 @@ const Homepage = () => {
 
             </div>
 
-            <div className="bg-rose-300	 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 " >
+            <div className="bg-teal-500		 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 " >
               <div className="  text-center p-8 mr-4  sm:pb-0 text-slate-200 flex justify-center	" >
                 <a className=' ' >
-                  <Link href="/pages/engineer">
+                  <Link href="/accounts/engineer">
                     <span className=' text-4xl text-center '>
                     مهندس
                     معدن
@@ -104,7 +104,7 @@ const Homepage = () => {
               />
 
             </div>
-            <div className="bg-rose-300	 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300" >
+            <div className="bg-cyan-400			 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300" >
               <div className="text-6xl text-center p-8 sm:pb-0 text-slate-200 flex justify-center" >
                 <Link href="/pages/dorsanji" >
                   دور سنجی
@@ -117,9 +117,9 @@ const Homepage = () => {
                   alt='پیمانکاران '
                 />
               </div></div>
-            <div className="bg-rose-300	 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300" >
+            <div className="bg-orange-300	 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300" >
               <div className=" text-6xl text-center p-8 sm:pb-0 text-slate-200 flex justify-center	" >
-                <Link href="/pages/contractors"
+                <Link href="/accounts/contractors"
                 >پیمانکاران
                 </Link>
                 <Image
@@ -129,7 +129,7 @@ const Homepage = () => {
                   alt='پیمانکاران '
                 />
               </div></div>
-            <div className="bg-rose-300	 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 col-span-2">
+            <div className="bg-yellow-500		 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 col-span-2">
               <div className=" text-4xl  p-8 flex flex-col sm:pb-0 text-slate-200  justify-center" >
                 <Link href="/pages/Services" >
                   <span className='text-center ml-10 mt-0'>
@@ -148,7 +148,7 @@ const Homepage = () => {
               </div>
             </div>
 
-            <div className="bg-rose-300	 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300" >
+            <div className="bg-stone-500	 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300" >
               <div className=" text-4xl text-center p-8 sm:pb-0 text-slate-200 flex justify-center" >
                 <Link href="/">خدمات معدن
 
@@ -162,7 +162,7 @@ const Homepage = () => {
                 />
               </div>
             </div>
-            <div className="bg-rose-300	 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300col-span-2">
+            <div className="bg-red-800		 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300col-span-2">
               <div className=" text-6xl text-center p-8 sm:pb-0  text-slate-200 flex justify-center" >
                 <Link href="/pages/article">
                   مقالات </Link>
@@ -174,7 +174,7 @@ const Homepage = () => {
                 />
               </div>
             </div>
-            <div className="bg-rose-300	 h-48  transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 	" >
+            <div className="bg-yellow-300			 h-48  transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 	" >
               <div className=" text-7xl text-center p-8 sm:pb-0 t text-slate-200 flex justify-center" >
                 <Link href="/">استخدام
                 </Link>
@@ -186,7 +186,7 @@ const Homepage = () => {
                 />
 
               </div></div>
-            <div className="bg-rose-300	 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 col-span-2" >
+            <div className="bg-violet-700		 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 col-span-2" >
               <div className=" text-4xl text-center p-8 sm:pb-0 text-slate-200 flex justify-center "  >
                 <Link href="/pages/tools">
                   <span>
@@ -200,7 +200,7 @@ const Homepage = () => {
                   alt='ابزارالات حفاری '
                 />
               </div></div>
-            <div className="bg-rose-300	 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300" >
+            <div className="bg-orange-400 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300" >
               <div className=" text-center p-8 sm:pb-0 text-slate-200	flex justify-center "  >
                 <Link href="/pages/form">
                   <span className='text-5xl text-center '>

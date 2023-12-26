@@ -5,7 +5,8 @@ import Button from 'devextreme-react/button';
 import DataGrid from 'devextreme-react/data-grid';
 import DataSource from 'devextreme/data/data_source';
 import ODataStore from 'devextreme/data/odata/store';
-import "../../../../node_modules/devextreme/dist/css/dx.greenmist.css"
+
+import "../../../../node_modules/devextreme/dist/css/dx.contrast.css"
 
 import { filter, fields } from './data';
 
@@ -42,8 +43,8 @@ const Filter= () => {
   }, [value, setGridFilterValue]);
 
   return (
-    <div className='container py-8'>
-      <div className="filter-container">
+    <div className='container py-8 '>
+      <div className="filter-container  ">
         <FilterBuilder fields={fields} value={value} onValueChanged={onValueChanged} />
         <br />
         <Button text="Apply Filter" type="default" onClick={buttonClick} />
