@@ -150,7 +150,7 @@ const Homepage = () => {
 
             <div className="bg-stone-500	 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300" >
               <div className=" text-4xl text-center p-8 sm:pb-0 text-slate-200 flex justify-center" >
-                <Link href="/">خدمات معدن
+                <Link href="/pages/mineservice">خدمات معدن
 
 
                 </Link>

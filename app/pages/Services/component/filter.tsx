@@ -6,7 +6,7 @@ import DataGrid from 'devextreme-react/data-grid';
 import DataSource from 'devextreme/data/data_source';
 import ODataStore from 'devextreme/data/odata/store';
 
-import "../../../../node_modules/devextreme/dist/css/dx.contrast.css"
+import "../../../../node_modules/devextreme/dist/css/dx.carmine.css"
 
 import { filter, fields } from './data';
 
