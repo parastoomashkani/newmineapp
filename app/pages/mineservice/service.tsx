@@ -25,24 +25,27 @@ titel:string;
   
 
 const Service:React.FC= () => {
-    const [state, setState] = useState< Service[]>([]);
-const menuItems=[...new Set(getData.map( (item) => item.gender.titel))]
-const filterItems=(gen)=>{
-    const newItem = state.filter((newitem)=>newitem.gender.titel=== gen)
-setState(newItems)
-}
-    async function getData() {
+    const [state, setState] = useState([]);
+    const menuItems = [...new Set(getData().map((item) => item.gender.title))];
+  
+    const filterItems = (gen) => {
+      const newItems = state.filter((newitem) => newitem.gender.title === gen);
+      setState(newItems);
+    };
+  
+    async function fetchData() {
       const res = await fetch('https://randomuser.me/api/?results=40');
       const data = await res.json();
       setState(data.results);
       console.log(state);
     }
   
-    console.log('i am:', state);
+    console.log('I am:', state);
   
     useEffect(() => {
-      getData();
+      fetchData();
     }, []);
+  
   
   return (
     <>
@@ -52,9 +55,7 @@ setState(newItems)
       setState={setItems}
     />
     {state.map((item) => (
-    
    <div className='w-full max-w-lg py-8 flex flex-row items-center justify-center mx-auto bg-[#FFFBFB] rounded-lg shadow-xl'>
- 
    <div className='flex flex-col md:flex-row w-3/4 md:w-5/6 space-x-0 md:space-x-8'>
      <div className='w-full md:w-2/5 flex flex-col items-center justify-center'>
        <figure className='w-1/2 md:w-full  rounded-full overflow-hidden'>
