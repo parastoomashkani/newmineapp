@@ -1,20 +1,18 @@
-
+"use client"
 
 import React from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import "../../../../node_modules/leaflet/dist/leaflet.css";
+import "../../../../../node_modules/leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
-import  HeatmapLayer from"react-leaflet-heatmap-layer-v3/lib/HeatmapLayer";
-import { geojson } from "../services/atd";
 import DrawTools from "./DrawTools";
 const Map = () => {
 
   return (
     <MapContainer
       style={{
-        height: "100vh",
-        width: "91.666667%",
+        height:" 20rem",
+    width:"83.333333%"
       }}
       center={[31.983292, 54.262546]}
       zoom={7}
@@ -26,14 +24,7 @@ const Map = () => {
         </Popup>
       </Marker>
       <DrawTools />
-      <HeatmapLayer
-          points={geojson.features}
-          longitudeExtractor={(m) => m.geometry.coordinates[0]}
-          latitudeExtractor={(m) => m.geometry.coordinates[1]}
-          intensityExtractor={(m) => parseFloat(m.geometry.coordinates[1])}
-          max={100}
-          minOpacity={0.2}
-        />
+  
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

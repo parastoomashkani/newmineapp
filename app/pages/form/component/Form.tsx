@@ -1,9 +1,9 @@
 "use client"
 
-import React, { useCallback } from 'react';
+import React, { useCallback,useState } from 'react';
 import 'devextreme-react/text-area';
 import Form, {
-  SimpleItem, GroupItem, TabbedItem, TabPanelOptions, Tab, Item,R
+  SimpleItem, GroupItem, TabbedItem, TabPanelOptions, Tab, Item,
 } from 'devextreme-react/form';
 import RadioGroup from 'devextreme-react/radio-group';
 
@@ -22,23 +22,25 @@ const AdvertisingForm = () => {
       }, []);
       const positionEditorOptions = { items: service.getPositions(), searchEnabled: true, value: '' };
       const notesEditorOptions = { height: 90, maxLength: 200 };
-
+   
+            
   return (
     <div className='p-3'>
-     <React.Fragment>
+     <React.Fragment >
     <br />
     <br />
       <div className="form-container">
         <Form
           colCount={2}
           id="form"
-          formData={employee}>
+          formData={employee}
+          >
           <GroupItem >
             
-            <GroupItem caption="اطلاعات مهم ">
-              <SimpleItem dataField="نام"   />
+            <GroupItem caption="اطلاعات مهم " >
+              <SimpleItem dataField="نام"  />
               <SimpleItem dataField="فامیل" />
-              <Item dataField="گروه بندی " editorType="dxSelectBox" editorOptions={positionEditorOptions}>
+              <Item dataField="گروه بندی " editorType="dxSelectBox" editorOptions={positionEditorOptions} >
         </Item>
               <SimpleItem dataField="قیمت" />
             </GroupItem>

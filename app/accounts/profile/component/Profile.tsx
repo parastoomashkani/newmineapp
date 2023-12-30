@@ -1,20 +1,37 @@
-import React from 'react'
+'use client'
+import React,{useEffect,useState} from 'react'
 import "./style.css"
-
+import Image from 'next/image';
 import "../../../../node_modules/bootstrap/dist/css/bootstrap.min.css"
 
-const Profile = () => {
+
+const Profile = () => {const [state, setState] = useState<Profile[]>([]);
+
+  async function getData() {
+    const res = await fetch('https://randomuser.me/api/?results=40');
+    const data = await res.json();
+    setState(data.results);
+    console.log(state);
+  }
+
+  console.log('i am:', state);
+
+  useEffect(() => {
+    getData();
+  }, []);
   return (
 <div className="container">
+{state.map((item) => (
     <div className="main-body">
           <div className="row gutters-sm">
             <div className="col-md-4 mb-3">
               <div className="card">
                 <div className="card-body">
                   <div className="d-flex flex-column align-items-center text-center">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width="150"/>
+                  <Image src={item.picture.large} height={500} width={500} alt={item.name.first} />
+
                     <div className="mt-3">
-                      <h4>John Doe</h4>
+                      <h4>   {item.name.first} {item.name.last}</h4>
                       <p className="text-secondary mb-1">Full Stack Developer</p>
                       <p className="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
                       <button className="btn btn-primary">Follow</button>
@@ -164,6 +181,7 @@ const Profile = () => {
             </div>
           </div>
         </div>
+           ))}
     </div>
     
   )
