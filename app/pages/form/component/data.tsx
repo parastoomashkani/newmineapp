@@ -1,18 +1,14 @@
 const employee = {
-    ID: 1,
-    FirstName: 'John',
-    LastName: 'Heart',
-    CompanyName: 'Super Mart of the West',
-    Position: 'CEO',
-    OfficeNo: '901',
-   تاریخ: new Date(),
-    Address: '351 S Hill St.',
-    City: 'Los Angeles',
-    State: 'CA',
-    Zipcode: '90013',
-    Phone: '+1(213) 555-9392',
-    Email: 'jheart@dx-email.com',
-    Skype: '@fkfdf34fd',
+  ایمیل : '',
+  Password: '',
+  نام: 'Peter',
+  تاریخ: null,
+  VacationDates: [null, null],
+  Country: '',
+  شهر : null,
+  ادرس : '',
+  تلفن : '',
+  Accepted: false,
   };
   
 const positions = [
