@@ -1,15 +1,4 @@
-const employee = {
-  ایمیل : '',
-  Password: '',
-  نام: 'Peter',
-  تاریخ: null,
-  VacationDates: [null, null],
-  Country: '',
-  شهر : null,
-  ادرس : '',
-  تلفن : '',
-  Accepted: false,
-  };
+
   
 const positions = [
     'HR Manager',
@@ -55,9 +44,7 @@ const positions = [
   ]
   export const priorities = [ 'شرکت/سازمان', 'شخصی '];
   export default {
-    getEmployee() {
-      return employee;
-    },
+ 
     getPositions() {
         return positions;
       },
