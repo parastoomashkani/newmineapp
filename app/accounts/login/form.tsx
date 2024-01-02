@@ -45,7 +45,7 @@ const Form = () => {
             </p>
             <p className="flex flex-col items-center justify-center mt-10 text-center">
               <span>آیا شما کاربر این سایت  هستید ؟</span>
-              <Link href="/pages/sing" className="underline text-amber-400">! ساخت حساب کاربری </Link>
+              <Link href="/accounts/sing" className="underline text-amber-400">! ساخت حساب کاربری </Link>
             </p>
 
           </div>
