@@ -42,7 +42,7 @@ const HeaderMain = () => {
       
 
       <div className="hidden lg:flex gap-4  text-gray-500 text-[30px]">
-        <Link href="/accounts/login" >
+        <Link href="/accounts/sing/auth/sing-in" >
         <BiUser />
 </Link>
         <div className="relative">
