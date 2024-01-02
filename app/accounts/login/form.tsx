@@ -53,10 +53,10 @@ const Form = () => {
             <h3 className="my-4 text-2xl font-semibold text-gray-700">ورود به حساب کاربری</h3>
             <form action="/" className="flex flex-col space-y-5"onSubmit={handleSubmit} >
               <div className="flex flex-col space-y-1">
-                <label htmlFor="email" className="text-sm font-semibold text-gray-500">آدرس ایمیل </label>
+                <label htmlFor="email" className="text-sm font-semibold text-gray-500"> تلفن</label>
                 <input
-                  type="email"
-                  id="email"
+                  type="text"
+                  id="text"
                   autoFocus
                   className="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
                 />
