@@ -8,6 +8,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Logo from "../../public/images/logoNew (1).png"
 import HeadedrImg from '../../public/images/Website-Frontpage-Header-02.jpg'
+import "../accounts/sign/components/LoginForm"
 const HeaderMain = () => {
 
   
@@ -42,7 +43,7 @@ const HeaderMain = () => {
       
 
       <div className="hidden lg:flex gap-4  text-gray-500 text-[30px]">
-        <Link href="/accounts/sing/auth/sing-in" >
+        <Link href="/" >
         <BiUser />
 </Link>
         <div className="relative">
