@@ -2,8 +2,11 @@
 
 
 import React, { useState } from 'react';
-import SelectBox, { SelectBoxTypes } from 'devextreme-react/select-box';
+import dynamic from "next/dynamic";
 
+const DynamicMap = dynamic(() => import('./component/map/map'), {
+  ssr: false
+});
 
 const Form = () => {
 
@@ -158,7 +161,7 @@ const formData = {
 
     <div id="map"  className="mt-20 justify-center">
 
-{/* <DynamicMap /> */}
+<DynamicMap />
 
 </div>
     <div className="border-b border-gray-900/10 pb-12">

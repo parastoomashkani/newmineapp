@@ -1,8 +1,9 @@
-import { connectMongoDB } from "@/lib/mongodb";
-import User from "@/models/user";
+import { connectMongoDB } from "../../../../lib/mongodb";
+import User from "../../../../models/user";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
+import axios from "axios"; // Import Axios or your preferred HTTP client
 
 export const authOptions = {
   providers: [
@@ -11,11 +12,11 @@ export const authOptions = {
       credentials: {},
 
       async authorize(credentials) {
-        const { email, password } = credentials;
+        const { phone, password } = credentials;
 
         try {
           await connectMongoDB();
-          const user = await User.findOne({ email });
+          const user = await User.findOne({ phone });
 
           if (!user) {
             return null;
@@ -27,9 +28,21 @@ export const authOptions = {
             return null;
           }
 
-          return user;
+          // Additional API call example (replace with your own logic)
+          const apiResponse = await axios.post("https://your-api-endpoint", {
+          phone: user.phone,
+            // Include any other data you need
+          });
+
+          // Check the API response and decide whether to allow authentication
+          if (apiResponse.data.success) {
+            return user;
+          } else {
+            return null;
+          }
         } catch (error) {
-          console.log("Error: ", error);
+          console.error("Error: ", error);
+          return null;
         }
       },
     }),
@@ -46,3 +59,5 @@ export const authOptions = {
 const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };
+
+

@@ -4,25 +4,24 @@ import Link from "next/link";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-
 export default function LoginForm() {
-  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
   const router = useRouter();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e:any) => {
     e.preventDefault();
 
     try {
       const res = await signIn("credentials", {
-        email,
+        phone,
         password,
         redirect: false,
       });
 
-      if (res.error) {
+      if (res && res.error) { // Check if 'res' exists and has a value
         setError("Invalid Credentials");
         return;
       }
@@ -40,9 +39,9 @@ export default function LoginForm() {
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-3">
           <input
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setPhone(e.target.value)}
             type="text"
-            placeholder="Email"
+            placeholder="Phone"
           />
           <input
             onChange={(e) => setPassword(e.target.value)}
@@ -58,7 +57,7 @@ export default function LoginForm() {
             </div>
           )}
 
-          <Link className="text-sm mt-3 text-right" href={"/register"}>
+          <Link className="text-sm mt-3 text-right" href={"/accounts/sing/app/register"}>
             Don't have an account? <span className="underline">Register</span>
           </Link>
         </form>

@@ -1,112 +1,121 @@
-"use client"
 import React, { useState } from "react";
 import L from "leaflet";
 import {
-	Map,
-	TileLayer,
-	Marker,
-	Popup,
-	FeatureGroup,
-	Circle
+  Map,
+  TileLayer,
+  Marker,
+  Popup,
+  FeatureGroup,
+  Circle
 } from "react-leaflet";
 import { EditControl } from "react-leaflet-draw";
-import "../../../../node_modules/leaflet-draw/dist/leaflet.draw.css"
+import "../../../../node_modules/leaflet-draw/dist/leaflet.draw.css";
 import "leaflet-defaulticon-compatibility";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
+
 const DrawTools = () => {
-	const _onEdited = e => {
-		let numEdited = 0;
-		e.layers.eachLayer(layer => {
-			numEdited += 1;
-		});
-		console.log(`_onEdited: edited ${numEdited} layers`, e);
+  const [drawnShapes, setDrawnShapes] = useState([]);
 
-		this._onChange();
-	};
+  const _onEdited = e => {
+    let numEdited = 0;
+    e.layers.eachLayer(layer => {
+      numEdited += 1;
+    });
+    console.log(`_onEdited: edited ${numEdited} layers`, e);
 
-	const _onCreated = e => {
-		let type = e.layerType;
-		let layer = e.layer;
-		if (type === "marker") {
-			// Do marker specific actions
-			console.log("_onCreated: marker created", e);
-		} else {
-			console.log("_onCreated: something else created:", type, e);
-		}
+    _onChange();
+  };
 
-		console.log("Geojson", layer.toGeoJSON());
-		console.log("coords", layer.getLatLngs());
-		// Do whatever else you need to. (save to db; etc)
+  const _onCreated = e => {
+    let type = e.layerType;
+    let layer = e.layer;
+    if (type === "marker") {
+      // Do marker specific actions
+      console.log("_onCreated: marker created", e);
+    } else {
+      console.log("_onCreated: something else created:", type, e);
+    }
 
-		this._onChange();
-	};
+    const newShape = {
+      type: type,
+      geoJSON: layer.toGeoJSON(),
+      coords: layer.getLatLngs()
+    };
 
-	const _onDeleted = e => {
-		let numDeleted = 0;
-		e.layers.eachLayer(layer => {
-			numDeleted += 1;
-		});
-		console.log(`onDeleted: removed ${numDeleted} layers`, e);
+    setDrawnShapes(prevShapes => [...prevShapes, newShape]);
 
-		this._onChange();
-	};
+    _onChange();
+  };
 
-	const _onMounted = drawControl => {
-		console.log("_onMounted", drawControl);
-	};
+  const _onDeleted = e => {
+    let numDeleted = 0;
+    e.layers.eachLayer(layer => {
+      numDeleted += 1;
+    });
+    console.log(`onDeleted: removed ${numDeleted} layers`, e);
 
-	const _onEditStart = e => {
-		console.log("_onEditStart", e);
-	};
+    _onChange();
+  };
 
-	const _onEditStop = e => {
-		console.log("_onEditStop", e);
-	};
+  const _onChange = () => {
+    // Perform any other actions needed when the shapes change
+  };
 
-	const _onDeleteStart = e => {
-		console.log("_onDeleteStart", e);
-	};
+  const _onMounted = drawControl => {
+    console.log("_onMounted", drawControl);
+  };
 
-	const _onDeleteStop = e => {
-		console.log("_onDeleteStop", e);
-	};
+  const _onEditStart = e => {
+    console.log("_onEditStart", e);
+  };
 
-	const _onDrawStart = e => {
-		console.log("_onDrawStart", e);
-	};
+  const _onEditStop = e => {
+    console.log("_onEditStop", e);
+  };
 
+  const _onDeleteStart = e => {
+    console.log("_onDeleteStart", e);
+  };
+
+  const _onDeleteStop = e => {
+    console.log("_onDeleteStop", e);
+  };
+
+  const _onDrawStart = e => {
+    console.log("_onDrawStart", e);
+  };
+
+  const convertShapesToJson = () => {
+    const shapesJson = JSON.stringify(drawnShapes);
+    console.log("Drawn Shapes JSON:", shapesJson);
+    // You can use shapesJson as needed, e.g., send it to the server.
+  };
+
+  return (
+
+    <FeatureGroup>
+      <EditControl
+        onDrawStart={_onDrawStart}
+        position="topright"
+        onEdited={_onEdited}
+        onCreated={_onCreated}
+        onDeleted={_onDeleted}
+        draw={{
+          polyline: {
+            // ... (same as before)
+          },
+          rectangle: true,
+          circlemarker: true,
+          circle: true,
+          polygon: true
+        }}
+      />
+	  
+    </FeatureGroup>
 	
-	return (
-		<FeatureGroup>
-			<EditControl
-				onDrawStart={_onDrawStart}
-				position="topright"
-				onEdited={_onEdited}
-				onCreated={_onCreated}
-				onDeleted={_onDeleted}
-				draw={{
-					polyline: {
-						icon: new L.DivIcon({
-							iconSize: new L.Point(8, 8),
-							className: "leaflet-div-icon leaflet-editing-icon"
-						}),
-						shapeOptions: {
-							guidelineDistance: 10,
-							color: "navy",
-							weight: 3
-							
-						}
-					},
-					rectangle: true,
-					circlemarker: true,
-					circle: true,
-					polygon: true
-				}}
-			/>
-		
-		
-		</FeatureGroup>
-	);
+
+
+  );
 };
 
 export default DrawTools;

@@ -26,6 +26,7 @@
     "@zeit/next-css": "^1.0.1",
     "axios": "^1.6.2",
     "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
     "bootstrap": "^5.0.1",
     "class-variance-authority": "^0.7.0",
     "css-loader": "^6.8.1",
@@ -39,6 +40,7 @@
     "leaflet-defaulticon-compatibility": "^0.1.2",
     "leaflet-draw": "^1.0.4",
     "mdb-react-ui-kit": "^7.0.0",
+    "mongoose": "^8.0.3",
     "next": "14.0.2",
     "next-auth": "^4.24.5",
     "react": "^18.2.0",
@@ -56,6 +58,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
     "@types/jquery": "^3.5.29",
     "@types/leaflet": "^1.9.8",
     "@types/node": "^20",

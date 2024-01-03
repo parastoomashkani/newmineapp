@@ -43,11 +43,11 @@ const HeaderMain = () => {
       
 
       <div className="hidden lg:flex gap-4  text-gray-500 text-[30px]">
-        <Link href="/" >
+        <Link href="/accounts/sing" >
         <BiUser />
 </Link>
         <div className="relative">
-          <Link href="/">  <FaHome /></Link>
+          <Link href="/accounts/sing">  <FaHome /></Link>
       
         </div>
       

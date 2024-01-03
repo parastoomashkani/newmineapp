@@ -6,16 +6,16 @@ import { useRouter } from "next/navigation";
 
 export default function RegisterForm() {
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
   const router = useRouter();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e:any) => {
     e.preventDefault();
 
-    if (!name || !email || !password) {
+    if (!name || !phone || !password) {
       setError("All fields are necessary.");
       return;
     }
@@ -26,7 +26,7 @@ export default function RegisterForm() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ phone }),
       });
 
       const { user } = await resUserExists.json();
@@ -43,7 +43,7 @@ export default function RegisterForm() {
         },
         body: JSON.stringify({
           name,
-          email,
+          phone,
           password,
         }),
       });
@@ -72,9 +72,9 @@ export default function RegisterForm() {
             placeholder="Full Name"
           />
           <input
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setPhone(e.target.value)}
             type="text"
-            placeholder="Email"
+            placeholder="phone"
           />
           <input
             onChange={(e) => setPassword(e.target.value)}
