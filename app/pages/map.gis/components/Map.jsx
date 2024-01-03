@@ -14,7 +14,7 @@ const Map = () => {
     <MapContainer
       style={{
         height: "100vh",
-        width: "91.666667%",
+        width: "98%",
       }}
       center={[31.983292, 54.262546]}
       zoom={7}

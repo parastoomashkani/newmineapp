@@ -8,7 +8,7 @@ import Footer from './components/Footer'
 
 import { getServerSession } from 'next-auth';
 // import Sidebar from './components/Sidebar'
-import Menu from './components/Menu'
+// import Menu from './components/Menu'
 
 
 
@@ -33,7 +33,7 @@ export default async function RootLayout({
          <HederTop />
      <HeaderMain />
 {/* <Sidebar /> */}
-<Menu />
+{/* <Menu /> */}
     {children} 
 
      <Footer />

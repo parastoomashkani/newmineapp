@@ -2,7 +2,7 @@
 import React, { useState, useMemo } from "react";
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button } from "@nextui-org/react";
 import TreeMenu, { ItemComponent } from "react-simple-tree-menu";
-import "react-simple-tree-menu/dist/main.css";
+import "../../../../node_modules/react-simple-tree-menu/dist/main.css"
 import { RxHamburgerMenu } from "react-icons/rx";
 interface Node {
     key: string;
@@ -126,7 +126,7 @@ export default function Menu() {
       <DropdownTrigger>
         <Button
           variant="bordered"
-          className="capitalize bg-yellow-50  border border-slate-100	  rounded-b-lg  "
+          className="capitalize  border	  rounded-b-lg  "
           
         >
           <RxHamburgerMenu size={28}  onClick={selectedValue} />
@@ -140,10 +140,10 @@ export default function Menu() {
         disallowEmptySelection
         selectionMode="multiple"
         selectedKeys={selectedKeys}
-        onSelectionChange={setSelectedKeys}
+        // onSelectionChange={setSelectedKeys}
         className=" mr-2 flex justify-end  "
       >
-        <DropdownItem key="text" className=" bg-yellow-50 mr-1  w-48 ">  
+        <DropdownItem key="text" className=" bg-white	 mr-1  w-48 ">  
           <TreeMenu
           data={data}
           resetOpenNodesOnDataUpdate

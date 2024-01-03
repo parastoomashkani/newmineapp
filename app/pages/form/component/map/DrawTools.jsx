@@ -108,7 +108,9 @@ const DrawTools = () => {
 	};
   
   return (
-    <FeatureGroup>
+
+    <FeatureGroup >   
+
       <EditControl
         onDrawStart={_onDrawStart}
         position="topright"
@@ -125,8 +127,9 @@ const DrawTools = () => {
           polygon: true
         }}
       />
-      <button onClick={convertShapesToJson}>Convert to JSON</button>
+	   <button onClick={convertShapesToJson}>Convert to JSON</button>
     </FeatureGroup>
+
   );
 };
 
