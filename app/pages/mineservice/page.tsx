@@ -1,17 +1,52 @@
-// import React from 'react'
-// import Service from './service'
+"use client"
 
-// function page() {
-//   return (
-//     <div className=' min-h-screen from-sky-50 via-purple-300 to-sky-50 bg-gradient-to-br '>
-//     <div className='flex items-center justify-center  '>
-//         <div className="grid grid-cols-1 gap-2 place-items-center sm:place-items-start sm:grid-cols-2 lg:grid-col-3  lg:grid-col-3 xl:grid-cols-3  xl:gap-x-20 xl:gap-y-10 pt-6">
+import React from 'react';
+import {
+  TreeList, HeaderFilter, Search, Selection, Column,
+} from 'devextreme-react/tree-list';
+import { employees } from './data';
+import "../../../node_modules/devextreme/dist/css/dx.carmine.css"
 
-//         <Service />
-//         </div>
-//         </div>
-//     </div>
-//   )
-// }
+const expandedRowKeys = [1];
 
-// // export default pag
+const searchFields = ['City', 'State'];
+const searchEditorOptions = { placeholder: 'Search city or state' };
+
+const page = () => {
+  return (
+    <TreeList
+    id="employees"
+    dataSource={employees}
+    columnAutoWidth={true}
+    showRowLines={true}
+    showBorders={true}
+    defaultExpandedRowKeys={expandedRowKeys}
+    keyExpr="ID"
+    parentIdExpr="Head_ID"
+  >
+    <HeaderFilter visible={true} />
+    <Selection mode="single" />
+    <Column dataField="Full_Name" caption="نام و نام خانوادگی"  />
+    <Column dataField="Title" caption="موقعیت">
+      <HeaderFilter allowSelectAll={false}>
+        <Search
+          enabled={true}
+        />
+      </HeaderFilter>
+    </Column>
+    <Column dataField="City" caption="شهر ">
+      <HeaderFilter>
+        <Search
+          enabled={true}
+          searchExpr={searchFields}
+          editorOptions={searchEditorOptions} />
+      </HeaderFilter>
+    </Column>
+    <Column dataField="State" caption="استان" />
+    <Column dataField="Mobile_Phone" />
+    <Column dataField="Hire_Date" dataType="date"  caption="تاریخ"/>
+  </TreeList>
+  )
+}
+
+export default page
