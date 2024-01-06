@@ -35,7 +35,12 @@ const Register = () => {
       // Assuming you have an API endpoint for code submission
       const response = await axios.post('http://127.0.0.1:8000/api/submit-code', {
         code,
-      });
+      },{
+        headers: {
+          'Content-Type': 'application/json', 
+          'Accept': 'application/json', 
+          'Authorization':localStorage.getItem('token')
+    }});
   
       // Handle the response as needed
       console.log('Code submission successful:', response.data);
