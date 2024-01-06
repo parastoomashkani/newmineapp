@@ -29,13 +29,13 @@ export const authOptions = {
           }
 
           // Additional API call example (replace with your own logic)
-          const apiResponse = await axios.post("https://your-api-endpoint", {
+          const apiResponse = await axios.post("http://127.0.0.1:8000/api", {
           phone: user.phone,
             // Include any other data you need
           });
 
           // Check the API response and decide whether to allow authentication
-          if (apiResponse.data.success) {
+          if (apiResponse.data.success){
             return user;
           } else {
             return null;

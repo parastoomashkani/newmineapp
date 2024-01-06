@@ -7,7 +7,7 @@ export async function POST(req: Request) {
 
   try {
     const { name, phone, password } = await req.json();
-    const customApiResponse = await axios.post("https://your-custom-api-endpoint", {
+    const customApiResponse = await axios.post("http://127.0.0.1:8000/api", {
       name,
       phone,
       // Include any other data you need
