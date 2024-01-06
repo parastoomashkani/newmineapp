@@ -18,7 +18,7 @@ const Login = () => {
       const token = response.data.token;
 
   
-      localStorage.setItem('authToken', token);
+      localStorage.setItem('token', token);
 
   
       console.log('Login successful. Token:', token);

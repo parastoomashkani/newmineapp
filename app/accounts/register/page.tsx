@@ -17,9 +17,9 @@ const Register = () => {
       });
 
       const token = response.data.token;
-      localStorage.setItem('authToken', token);
+      localStorage.setItem('Token',"Bearer "+token);
 
-      console.log('Registration successful. Token:', token);
+      console.log('Registration successful. Token:',"Bearer "+token);
     } catch (err) {
       setError('Registration failed. Please try again.');
       console.error('Registration failed:', err);
