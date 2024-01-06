@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const Register = () => {
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  const [mobile, setMobile] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
@@ -12,7 +12,7 @@ const Register = () => {
     try {
       const response = await axios.post('http://127.0.0.1:8000/api/register', {
         name,
-        email,
+        mobile,
         password,
       });
 
@@ -33,8 +33,8 @@ const Register = () => {
         <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
       </div>
       <div>
-        <label>Email:</label>
-        <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <label>Mobile:</label>
+        <input type="text" value={mobile} onChange={(e) => setMobile(e.target.value)} />
       </div>
       <div>
         <label>Password:</label>
