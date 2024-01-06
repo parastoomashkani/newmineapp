@@ -32,15 +32,22 @@ const Register = () => {
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/registerVerify', {
+      // Assuming you have an API endpoint for code submission
+      const response = await axios.post('http://127.0.0.1:8000/api/submit-code', {
         code,
       });
+  
+      // Handle the response as needed
       console.log('Code submission successful:', response.data);
+  
+      // Save the token to localStorage after successful code submission
+      const token = response.data.token;
+      localStorage.setItem('token', 'Bearer ' + token);
+      console.log('Token saved to localStorage:', 'Bearer ' + token);
     } catch (err) {
       console.error('Code submission failed:', err);
     }
   };
-
   return (
     <div>
       <h1>Registration Page</h1>
