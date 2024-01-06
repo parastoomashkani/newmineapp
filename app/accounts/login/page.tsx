@@ -15,10 +15,15 @@ const Login = () => {
         password,
       });
 
-      // Check the response from your API and handle accordingly
-      console.log('Login successful:', response.data);
+      const token = response.data.token;
+
+  
+      localStorage.setItem('authToken', token);
+
+  
+      console.log('Login successful. Token:', token);
     } catch (err) {
-      // Handle login error
+
       setError('Invalid credentials. Please try again.');
       console.error('Login failed:', err);
     }
