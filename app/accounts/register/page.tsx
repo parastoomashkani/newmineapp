@@ -9,6 +9,7 @@ const Register = () => {
   const [error, setError] = useState('');
   const [isRegistered, setIsRegistered] = useState(false);
   const [code, setCode] = useState('');
+
   const handleRegister = async () => {
     try {
       const response = await axios.post('http://127.0.0.1:8000/api/register', {
@@ -28,17 +29,20 @@ const Register = () => {
   const handleCodeChange = (event:any) => {
     setCode(event.target.value);
   };
+
+  const handleSubmit = async () => {
+    try {
+      const response = await axios.post('http://127.0.0.1:8000/api/registerVerify', {
+        code,
+      });
+      console.log('Code submission successful:', response.data);
+    } catch (err) {
+      console.error('Code submission failed:', err);
+    }
+  };
+
   return (
     <div>
-       <div>
-  
-      {isRegistered && (
-        <div>
-          <input type="text" value={code} onChange={handleCodeChange} placeholder="Enter your code" />
-          <button>Submit</button>
-        </div>
-      )}
-    </div>
       <h1>Registration Page</h1>
       <div>
         <label>Name:</label>
@@ -54,9 +58,17 @@ const Register = () => {
       </div>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <button onClick={handleRegister}>Register</button>
- 
+
+      {isRegistered && (
+        <div>
+          <input type="text" value={code} onChange={handleCodeChange} placeholder="Enter your code" />
+          <button onClick={handleSubmit}>Submit</button>
+        </div>
+      )}
     </div>
   );
 };
 
 export default Register;
+
+
