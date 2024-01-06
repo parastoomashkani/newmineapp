@@ -16,15 +16,15 @@ const Register = () => {
         password,
       });
 
-      // Check the response from your API and handle accordingly
-      console.log('Registration successful:', response.data);
+      const token = response.data.token;
+      localStorage.setItem('authToken', token);
+
+      console.log('Registration successful. Token:', token);
     } catch (err) {
-      // Handle registration error
       setError('Registration failed. Please try again.');
       console.error('Registration failed:', err);
     }
   };
-
   return (
     <div>
       <h1>Registration Page</h1>
