@@ -176,7 +176,7 @@ const Homepage = () => {
             </div>
             <div className="bg-yellow-300			 h-48  transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 	" >
               <div className=" text-7xl text-center p-8 sm:pb-0 t text-slate-200 flex justify-center" >
-                <Link href="/">استخدام
+                <Link href="/pages/recruitment">استخدام
                 </Link>
                 <Image
                   src={icon12}
