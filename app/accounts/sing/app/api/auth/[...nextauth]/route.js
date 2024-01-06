@@ -29,7 +29,7 @@ export const authOptions = {
           }
 
           // Additional API call example (replace with your own logic)
-          const apiResponse = await axios.post("https://your-api-endpoint", {
+          const apiResponse = await axios.post("http://127.0.0.1:8000/api/login", {
           phone: user.phone,
             // Include any other data you need
           });
