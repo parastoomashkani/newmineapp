@@ -33,7 +33,7 @@ const Register = () => {
   const handleSubmit = async () => {
     try {
       // Assuming you have an API endpoint for code submission
-      const response = await axios.post('http://127.0.0.1:8000/api/submit-code', {
+      const response = await axios.post('http://127.0.0.1:8000/api/registerVerify', {
         code,
       },{
         headers: {
