@@ -18,10 +18,10 @@ const Login = () => {
       const token = response.data.token;
 
   
-      localStorage.setItem('token', token);
+      localStorage.setItem('Token',"Bearer "+token);
 
   
-      console.log('Login successful. Token:', token);
+      console.log('Login successful. Token:','Token',"Bearer "+token);
     } catch (err) {
 
       setError('Invalid credentials. Please try again.');
