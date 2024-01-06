@@ -18,8 +18,6 @@ const Register = () => {
 
       const token = response.data.token;
       localStorage.setItem('token',"Bearer "+token);
-  
-      
       console.log( response.data.token. status);
     } catch (err) {
       setError('Registration failed. Please try again.');

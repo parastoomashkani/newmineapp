@@ -21,7 +21,7 @@ const Login = () => {
       localStorage.setItem('Token',"Bearer "+token);
 
   
-      console.log('Login successful. Token:','Token',"Bearer "+token);
+      console.log( response.data.token. status);
     } catch (err) {
 
       setError('Invalid credentials. Please try again.');
