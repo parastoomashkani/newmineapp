@@ -11,7 +11,9 @@ const page = () => {
       const handleChangeEmail =(e:any)=>{
         setEmail(e.target.value);
       }
-
+      const handleChangetext =(e:any)=>{
+        setText(e.target.value);
+      }
 
 
   return (

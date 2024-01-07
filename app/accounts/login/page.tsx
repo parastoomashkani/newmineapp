@@ -4,7 +4,10 @@ import axios from 'axios';
 import Link from 'next/link';
 import Logo from "../../../public/images/logoNew (1).png";
 import Image from 'next/image';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation'
+
+
+
 const Login = () => {
   const [mobile, setMobile] = useState('');
   const [password, setPassword] = useState('');
