@@ -4,9 +4,7 @@ import axios from 'axios';
 import Link from 'next/link';
 import Logo from "../../../public/images/logoNew (1).png";
 import Image from 'next/image';
-import { useRouter } from 'next/navigation'
-
-
+import { useRouter } from 'next/navigation';
 
 const Login = () => {
   const [mobile, setMobile] = useState('');
@@ -24,25 +22,29 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/check-account', {
+      const loginResponse = await axios.post(process.env.BaseUrl +'/login', {
         mobile,
+        password,
       });
 
-      const accountStatus = response.data.status;
+      const accountStatus = loginResponse.data.status;
 
       if (accountStatus === 200) {
         await sendVerificationCode();
       } else if (accountStatus === 220) {
-        const loginResponse = await axios.post('http://127.0.0.1:8000/api/login', {
+        const loginResponse = await axios.post(process.env.BaseUrl +'/login', {
           mobile,
           password,
-        });
+        }); 
 
         const token = loginResponse.data.token;
 
         localStorage.setItem('Token', 'Bearer ' + token);
 
         console.log(loginResponse.data.token.status);
+
+        // Redirect to the dashboard after successful login
+        router.push('/dashboard');
       } else {
         router.push('/accounts/register');
       }

@@ -1,10 +1,32 @@
-"use client  "
+"use client"
+
 import React, { useState } from 'react'
+import { useRouter } from 'next/navigation';
 
 const page = () => {
     const [fullname,setFullname]=useState("");
     const [email, setEmail]=useState("");
     const [text,setText]=useState("");
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const router = useRouter();
+
+    // const checkAuthenticationStatus = () => {
+    //     const isAuthenticated = /* Your authentication check logic */;
+    //     setIsLoggedIn(isAuthenticated);
+    //     return isAuthenticated;
+    //   };
+    
+    //   // Redirect to login page if the user is not logged in
+    //   if (!checkAuthenticationStatus()) {
+    //     router.push('/login'); // Replace '/login' with your actual login page path
+    //     return null; // Render nothing while redirecting
+    //   }
+    
+
+
+
+
+
     const handleChangeName =(e:any)=>{
         setFullname(e.target.value);
       }
@@ -16,8 +38,24 @@ const page = () => {
       }
 
 
+      const handelsubmit=( e:any)=>{
+        e.preventDefault();
+      const formData = {
+fullname,
+email,
+text,
+      }
+      const jsonData = JSON.stringify(formData);
+
+ console.log("Form Data (JSON):", jsonData);
+
+ setText("");
+ setFullname("");
+ setEmail("");
+}
   return (
-    <div><section className="bg-blue-50 dark:bg-slate-800" id="contact">
+    <div>
+        <section className="bg-blue-50 dark:bg-slate-800" id="contact" onSubmit={handelsubmit}>
     <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <div className="mb-4">
             <div className="mb-6 max-w-3xl text-center sm:text-center md:mx-auto md:mb-12">
@@ -33,9 +71,9 @@ const page = () => {
             <div className="grid md:grid-cols-2">
                 <div className="h-full pr-6">
                     <p className="mt-3 mb-12 text-right text-lg text-gray-600 dark:text-slate-400">
-                     تیم زرکاوپردازش آریا با از نظرات و درخواست های شما 
+                     تیم زرکاوپردازش آریا  از نظرات و درخواست های شما 
                      <br />
-                     <br />
+                    
                      پشتیبانی میکند 
                     </p>
                     <ul className="mb-6 md:mb-0">
@@ -150,7 +188,8 @@ const page = () => {
             </div>
         </div>
     </div>
-</section></div>
+</section>
+</div>
   )
 }
 
