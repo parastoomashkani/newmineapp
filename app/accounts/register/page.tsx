@@ -58,7 +58,7 @@ const Register = () => {
       localStorage.setItem('token', 'Bearer ' + token);
       console.log('Token saved to localStorage:', 'Bearer ' + token);
 
-      router.push('/pages/dashbord');
+      router.push('/pages/dashboard');
     } catch (err) {
       setError('کد درست نیست ');
       console.error('Code submission failed:', err);

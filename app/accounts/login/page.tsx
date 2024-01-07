@@ -12,40 +12,31 @@ const Login = () => {
   const [error, setError] = useState('');
   const router = useRouter();
 
-  const sendVerificationCode = async () => {
-    try {
-      console.log('Sending verification code...');
-    } catch (err) {
-      console.error('Failed to send verification code:', err);
-    }
-  };
+
 
   const handleLogin = async () => {
     try {
+   
       const loginResponse = await axios.post(process.env.BaseUrl +'/login', {
         mobile,
         password,
-      });
+      }
+      
+      );
 
+      const token = loginResponse.data.token;
+      const username= loginResponse.data.username;
+      
+      localStorage.setItem('token', 'Bearer ' + token);
+      localStorage.setItem('name', username);
+console.log(localStorage.getItem('name'));
+      console.log(loginResponse.data.token.status);
       const accountStatus = loginResponse.data.status;
 
       if (accountStatus === 200) {
-        await sendVerificationCode();
+         router.push('/accounts/register'); 
       } else if (accountStatus === 220) {
-        const loginResponse = await axios.post(process.env.BaseUrl +'/login', {
-          mobile,
-          password,
-        }); 
-
-        const token = loginResponse.data.token;
-
-        localStorage.setItem('Token', 'Bearer ' + token);
-
-        console.log(loginResponse.data.token.status);
-
-        router.push('/dashboard');
-      } else {
-        router.push('/accounts/register');
+        router.push('/pages/dashboard');
       }
     } catch (err) {
       setError('Invalid credentials. Please try again.');
