@@ -43,7 +43,6 @@ const Login = () => {
 
         console.log(loginResponse.data.token.status);
 
-        // Redirect to the dashboard after successful login
         router.push('/dashboard');
       } else {
         router.push('/accounts/register');
