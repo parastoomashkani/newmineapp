@@ -4,14 +4,15 @@ import axios from 'axios';
 import Link from 'next/link';
 import Logo from "../../../public/images/logoNew (1).png";
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 const Login = () => {
   const [mobile, setMobile] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const router = useRouter();
 
   const sendVerificationCode = async () => {
     try {
-      // Implement the logic to send the verification code
       console.log('Sending verification code...');
     } catch (err) {
       console.error('Failed to send verification code:', err);
@@ -20,7 +21,6 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      // Check if the user has an account
       const response = await axios.post('http://127.0.0.1:8000/api/check-account', {
         mobile,
       });
@@ -28,10 +28,8 @@ const Login = () => {
       const accountStatus = response.data.status;
 
       if (accountStatus === 200) {
-        // User has an account, check for further verification
         await sendVerificationCode();
       } else if (accountStatus === 220) {
-        // User has an account, no additional verification needed
         const loginResponse = await axios.post('http://127.0.0.1:8000/api/login', {
           mobile,
           password,
@@ -43,7 +41,7 @@ const Login = () => {
 
         console.log(loginResponse.data.token.status);
       } else {
-        // router.push('/accounts/register');
+        router.push('/accounts/register');
       }
     } catch (err) {
       setError('Invalid credentials. Please try again.');
