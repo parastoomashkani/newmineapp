@@ -12,7 +12,7 @@ const page = () => {
                   {/* <Image src={item.picture.large} height={500} width={500} alt={item.name.first} /> */}
 
                     <div className="mt-3">
-                    <input type="text" value={title} onChange={handleChange} name="username" id="titel" autoComplete="titel" className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="  معدن طلا "/>
+                    {/* <input type="text" value={title} onChange={handleChange} name="username" id="titel" autoComplete="titel" className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="  معدن طلا "/> */}
 
                       <p className="text-secondary mb-1">Full Stack Developer</p>
                       <p className="text-muted font-size-sm">Bay Area, San Francisco, CA</p>

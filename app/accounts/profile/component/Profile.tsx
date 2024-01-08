@@ -8,7 +8,7 @@ import "../../../../node_modules/bootstrap/dist/css/bootstrap.min.css"
 const Profile = () => {const [state, setState] = useState<Profile[]>([]);
 
   async function getData() {
-    const res = await fetch('https://randomuser.me/api/?results=40');
+    const res = await fetch('https://randomuser.me/api/?results=0');
     const data = await res.json();
     setState(data.results);
     console.log(state);

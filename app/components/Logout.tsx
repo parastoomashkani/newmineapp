@@ -15,8 +15,14 @@ const [mobile, setMobile] = useState('');
   const handleLogout = async () => {
     try {
       const logoutResponse = await axios.post(process.env.BaseUrl + '/logout', {
-        mobile,
-        password,
+      
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: localStorage.getItem('token'),
+        },
       }
       );
       const accountStatus = logoutResponse.data.status;
