@@ -115,7 +115,9 @@ const Profile = () => {const [state, setState] = useState<Profile[]>([]);
                   <hr />
                   <div className="row">
                     <div className="col-sm-12">
-                      <a className="btn btn-info " target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Edit</a>
+                      <a className="btn btn-info " target="__blank" href="/accounts/profile/component/form">
+                        Edit
+                        </a>
                     </div>
                   </div>
                 </div>

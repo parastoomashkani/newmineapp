@@ -45,6 +45,7 @@
     "next-auth": "^4.24.5",
     "react": "^18.2.0",
     "react-calendar": "^4.6.1",
+    "react-custom-sidebar": "^1.0.6",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.49.2",
     "react-hooks-global-state": "^2.1.0",
@@ -53,6 +54,7 @@
     "react-leaflet-draw": "^0.20.4",
     "react-leaflet-fullscreen": "^4.1.1",
     "react-leaflet-heatmap-layer-v3": "^3.0.3-beta-1",
+    "react-sidebar-ui": "^1.3.3",
     "react-simple-tree-menu": "^1.1.18",
     "yarn": "^1.22.21",
     "zod": "^3.22.4"
