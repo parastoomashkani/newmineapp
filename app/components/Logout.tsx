@@ -2,35 +2,40 @@
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import axios from 'axios';
+
+
+
+
+
+
 const Logout = () => {
-    const router = useRouter();
-      const [mobile, setMobile] = useState('');
-      const [password, setPassword] = useState('');
-      const handleLogout = async () => {
-      try {
-   
-        const loginResponse = await axios.post(process.env.BaseUrl +'/logout', {
-          mobile,
-          password,
-        }
-        
-        );
-        const token = loginResponse.data.token;
-      const username= loginResponse.data.username;
-      localStorage.removeItem('token');
-      localStorage.removeItem('name');
-      const accountStatus = loginResponse.data.status;
-
+  const router = useRouter();
+const [mobile, setMobile] = useState('');
+    const [password, setPassword] = useState('');
+  const handleLogout = async () => {
+    try {
+      const logoutResponse = await axios.post(process.env.BaseUrl + '/logout', {
+        mobile,
+        password,
+      }
+      );
+      const accountStatus = logoutResponse.data.status;
       if (accountStatus === 200) {
-      
-      router.push('/');
-    };
+        localStorage.removeItem('token');
+        localStorage.removeItem('name');
+        router.push('/');
+      }
 
+
+    }catch (err) {
+      console.error('Logout failed:', err);
+    }
+  }
   return (
-    <button onClick={handleLogout}>
-      خروج
-    </button>
-  );
-};
+      <button onClick={handleLogout}>
+        خروج
+      </button>
+    );
+  };
 
-export default Logout;
+  export default Logout;
