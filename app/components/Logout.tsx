@@ -1,6 +1,5 @@
 "use client"
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useRouter } from "next/navigation";
 import axios from 'axios';
 
 
@@ -10,8 +9,6 @@ import axios from 'axios';
 
 const Logout = () => {
   const router = useRouter();
-const [mobile, setMobile] = useState('');
-    const [password, setPassword] = useState('');
   const handleLogout = async () => {
     try {
       const logoutResponse = await axios.post(process.env.BaseUrl + '/logout', {
@@ -23,14 +20,20 @@ const [mobile, setMobile] = useState('');
           Accept: 'application/json',
           Authorization: localStorage.getItem('token'),
         },
+   
       }
       );
       const accountStatus = logoutResponse.data.status;
       if (accountStatus === 200) {
-        localStorage.removeItem('token');
+         localStorage.removeItem('token');
         localStorage.removeItem('name');
-        router.push('/');
+        
+        alert('شماخارج شدید');
+        router.refresh();
+        router.push('/accounts/login');
       }
+        
+     
 
 
     }catch (err) {

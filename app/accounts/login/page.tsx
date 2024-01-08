@@ -36,7 +36,8 @@ console.log(localStorage.getItem('name'));
       if (accountStatus === 200) {
          router.push('/accounts/register'); 
       } else if (accountStatus === 220) {
-        router.push('/pages/dashboard');
+        router.refresh();
+          router.push('/pages/dashboard');
       }
     } catch (err) {
       setError('Invalid credentials. Please try again.');
