@@ -8,6 +8,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Logo from "../../public/images/logoNew (1).png"
 import HeadedrImg from '../../public/images/Website-Frontpage-Header-02.jpg'
+import { MdOutlineDashboard } from "react-icons/md";
 
 const HeaderMain = () => {
 
@@ -46,11 +47,15 @@ const HeaderMain = () => {
         <Link href="/accounts/login" >
         <BiUser />
 </Link>
-        <div className="relative">
-          <Link href="/accounts/sing">  <FaHome /></Link>
+        
+      <div className="relative">
+          <Link href="/">  <FaHome /></Link>
       
         </div>
-      
+        <div className="relative">
+        <Link href="/pages/dashboard">
+        <MdOutlineDashboard />
+        </Link></div>
       </div>
 
     </div>

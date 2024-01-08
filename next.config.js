@@ -15,4 +15,7 @@ module.exports = {
   images: {
     domains: ['randomuser.me'],
   },
+  env: {
+BaseUrl:'https://nobati24.andromax.ir/api',
+  }
 }
