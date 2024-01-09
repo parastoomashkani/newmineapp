@@ -1,6 +1,7 @@
 
 "use client"
 import React, { useState } from "react";
+import L from "leaflet";
 import {
  
   FeatureGroup,
@@ -22,72 +23,70 @@ const DrawTools = () => {
 	  console.log(`_onEdited: edited ${numEdited} layers`, e);
   
 	  _onChange();
+	  convertAndPostToApi();
 	};
-	const _onCreated = (e) => {
-		let type = e.layerType;
-		let layer = e.layer;
-	  
-		const newShape = {
-		  type: type,
-		  geoJSON: layer.toGeoJSON(),
-		  coords: layer.getLatLngs(),
-		};
-	  
-		setDrawnShapes((prevShapes) => [...prevShapes, newShape]);
-	  
-		_onChange();
-	  
-		sendShapesToApi(drawnShapes);
-	  };
-	  
-	  const _onDeleted = async (e) => {
-		let numDeleted = 0;
-		const deletedShapes = [];
-	  
-		e.layers.eachLayer((layer) => {
-		  numDeleted += 1;
-		  const deletedShape = {
-			type: layer.type,
-			geoJSON: layer.toGeoJSON(),
-			coords: layer.getLatLngs(),
-		  };
-		  deletedShapes.push(deletedShape);
-		});
-	  
-		_onChange();
-	  
-		sendShapesToApi(deletedShapes);
-	  };
-	  
-	  const sendShapesToApi = async (shapes) => {
-		try {
-		  const response = await fetch("your-api-endpoint", {
-			method: "POST",
-			headers: {
-			  "Content-Type": "application/json",
-			},
-			body: JSON.stringify(shapes),
-		  });
-	  
-		  if (response.ok) {
-			console.log("Shapes data successfully sent to the API.");
-		  } else {
-			console.error("Failed to send shapes data to the API.");
-		  }
-		} catch (error) {
-		  console.error("Error:", error);
-		}
-	  };
+  
+	const _onCreated = async (e) => {
+  let type = e.layerType;
+  let layer = e.layer;
+
+  const newShape = {
+    type: type,
+    geoJSON: layer.toGeoJSON(),
+    coords: layer.getLatLngs(),
+  };
+
+  console.log("Geojson", layer.toGeoJSON());
+  console.log("coords", layer.getLatLngs());
+
+  setDrawnShapes((prevShapes) => [...prevShapes, newShape]);
+
+  _onChange();
+
+  await postShapeDataToApi(newShape);
+};
+
+const postShapeDataToApi = async (geoJSON) => {
+  const geoJSONString = JSON.stringify(geoJSON);
+
+  try {
+    const response = await fetch(process.env.BaseUrl + '/registerVerify', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: geoJSONString,
+    });
+
+    if (response.ok) {
+      console.log("GeoJSON data successfully sent to the API.");
+    } else {
+      console.error("Failed to send GeoJSON data to the API.");
+    }
+  } catch (error) {
+    console.error("Error:", error);
+  }
+};
+	const _onDeleted = (e) => {
+	  let numDeleted = 0;
+	  e.layers.eachLayer((layer) => {
+		numDeleted += 1;
+	  });
+	//   console.log(`onDeleted: removed ${numDeleted} layers`, e);
+  
+	  _onChange();
+	  convertAndPostToApi();
+	};
+  
 	const _onChange = () => {
 	  // Perform any other actions needed when the shapes change
 	};
-  
 	const _onMounted = (drawControl) => {
-	  console.log("_onMounted", drawControl);
+	//   console.log("_onMounted", drawControl);
 	};
   
 	const _onEditStart = (e) => {
-	  console.log("_onEditStart", e);
+	//   console.log("_onEditStart", e);
 	};
   
 	const _onEditStop = (e) => {
@@ -95,18 +94,45 @@ const DrawTools = () => {
 	};
   
 	const _onDeleteStart = (e) => {
-	  console.log("_onDeleteStart", e);
+	//   console.log("_onDeleteStart", e);
 	};
   
 	const _onDeleteStop = (e) => {
-	  console.log("_onDeleteStop", e);
+	//   console.log("_onDeleteStop", e);
 	};
   
 	const _onDrawStart = (e) => {
-	  console.log("_onDrawStart", e);
+	//   console.log("_onDrawStart", e);
 	};
-  
+	
 
+	// const convertAndPostToApi = async () => {
+	// 	const shapesJson = JSON.stringify(drawnShapes);
+	// 	console.log("Drawn Shapes JSON:", drawnShapes);
+	
+	// 	try {
+	// 		const response = await axios.post(
+	// 		  process.env.BaseUrl + '/',
+	// 		  {
+	// 			shapesJson,
+	// 		  },
+	// 		  {
+	// 			headers: {
+	// 			  'Content-Type': 'application/json',
+	// 			  Accept: 'application/json',
+	// 			  Authorization: localStorage.getItem('token'),
+	// 			},
+	// 		  }
+	// 		);
+	// 	  if (response.ok) {
+	// 		console.log("Shapes data successfully sent to the API.");
+	// 	  } else {
+	// 		console.error("Failed to send shapes data to the API.");
+	// 	  }
+	// 	} catch (error) {
+	// 	  console.error("Error:", error);
+	// 	}
+	//   };
   
   return (
 

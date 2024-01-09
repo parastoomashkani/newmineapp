@@ -5,7 +5,8 @@ import { useState,useEffect } from 'react';
 import Logo from "../../../public/images/logoNew (1).png"
 import Image from 'next/image';
 import Profile from "../../../public/images/male-worker-with-bulldozer-sand-quarry.jpg"
-
+import axios from 'axios';
+import { useRouter } from "next/navigation";
 
 interface pageProps {
     id: string;
@@ -39,7 +40,38 @@ const page: React.FC = () => {
     useEffect(() => {
         getData();
     }, [])
-
+    const router = useRouter();
+    const handleLogout = async () => {
+      try {
+        const logoutResponse = await axios.post(process.env.BaseUrl + '/logout', {
+        
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+            Authorization: localStorage.getItem('token'),
+          },
+     
+        }
+        );
+        const accountStatus = logoutResponse.data.status;
+        if (accountStatus === 200) {
+           localStorage.removeItem('token');
+          localStorage.removeItem('name');
+          
+          alert('شماخارج شدید');
+          router.refresh();
+          router.push('/accounts/login');
+        }
+          
+       
+  
+  
+      }catch (err) {
+        console.error('Logout failed:', err);
+      }
+    }
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
     const toggleSidebar = () => {
@@ -127,7 +159,7 @@ className=''
     </div>
 
     <div className="px-6 -mx-6 pt-4 flex justify-between items-center border-t">
-        <button className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group">
+        <button className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group" onClick={handleLogout}>
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
             </svg>

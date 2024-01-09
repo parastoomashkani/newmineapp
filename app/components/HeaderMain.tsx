@@ -9,6 +9,7 @@ import Image from 'next/image';
 import Logo from "../../public/images/logoNew (1).png"
 import HeadedrImg from '../../public/images/Website-Frontpage-Header-02.jpg'
 import { MdOutlineDashboard } from "react-icons/md";
+import { SearchBar } from './SearchBar';
 
 const HeaderMain = () => {
 
@@ -28,18 +29,14 @@ const HeaderMain = () => {
       </div>
 
       <div className="w-full sm:w-[300px] md:w-[70%] relative">
-        <input
+        {/* <input
           className="peer h-full w-full bg-sky-100 border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-blue-gray-700 outline
            outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-amber-600	 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
           type="text"
           placeholder="Enter any product name..."
-        />
-
-        <BsSearch
-          className="absolute right-0 top-0 mr-3 mt-3 text-gray-200"
-          size={20}
-        /> 
-       
+        /> */}
+<SearchBar />
+   
       </div>
       
 

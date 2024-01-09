@@ -63,7 +63,7 @@ const handleSubmit = async (e: any) => {
   setMobile('');
 
   try {
-    const response = await  axios.post(process.env.BaseUrl + '/logout', {
+    const response = await  axios.post(process.env.BaseUrl + '/editeUserData', {
       
     },
     {

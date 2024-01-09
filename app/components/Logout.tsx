@@ -1,7 +1,7 @@
 "use client"
 import { useRouter } from "next/navigation";
 import axios from 'axios';
-
+import { FaPowerOff } from "react-icons/fa";
 
 
 
@@ -42,7 +42,7 @@ const Logout = () => {
   }
   return (
       <button onClick={handleLogout}>
-        خروج
+   <FaPowerOff />
       </button>
     );
   };
