@@ -1,7 +1,6 @@
 
 "use client"
 import React, { useState } from "react";
-import L from "leaflet";
 import {
  
   FeatureGroup,
@@ -45,17 +44,43 @@ const DrawTools = () => {
   
 	  _onChange();
 	};
-  
-	const _onDeleted = (e) => {
-	  let numDeleted = 0;
-	  e.layers.eachLayer((layer) => {
-		numDeleted += 1;
-	  });
-	  console.log(`onDeleted: removed ${numDeleted} layers`, e);
-  
-	  _onChange();
-	};
-  
+	const _onDeleted = async (e) => {
+		let numDeleted = 0;
+		const deletedShapes = [];
+	  
+		e.layers.eachLayer((layer) => {
+		  numDeleted += 1;
+		  const deletedShape = {
+			type: layer.type,
+			geoJSON: layer.toGeoJSON(),
+			coords: layer.getLatLngs(),
+		  };
+		  deletedShapes.push(deletedShape);
+		});
+	  
+		// console.log(`onDeleted: removed ${numDeleted} layers`, e);
+	  
+		_onChange();
+	  
+		try {
+		  const response = await fetch("your-delete-api-endpoint", {
+			method: "POST",
+			headers: {
+			  "Content-Type": "application/json",
+			},
+			body: JSON.stringify(deletedShapes),
+		  });
+	  
+		  if (response.ok) {
+			console.log("Deleted shapes data successfully sent to the API.");
+		  } else {
+			console.error("Failed to send deleted shapes data to the API.");
+		  }
+		} catch (error) {
+		  console.error("Error:", error);
+		}
+	  };
+	  
 	const _onChange = () => {
 	  // Perform any other actions needed when the shapes change
 	};
@@ -84,28 +109,7 @@ const DrawTools = () => {
 	  console.log("_onDrawStart", e);
 	};
   
-	const convertShapesToJson = async () => {
-	  const shapesJson = JSON.stringify(drawnShapes);
-	  console.log("Drawn Shapes JSON:", shapesJson);
-  
-	  try {
-		const response = await fetch("your-api-endpoint", {
-		  method: "POST",
-		  headers: {
-			"Content-Type": "application/json",
-		  },
-		  body: shapesJson,
-		});
-  
-		if (response.ok) {
-		  console.log("Shapes data successfully sent to the API.");
-		} else {
-		  console.error("Failed to send shapes data to the API.");
-		}
-	  } catch (error) {
-		console.error("Error:", error);
-	  }
-	};
+
   
   return (
 
@@ -127,7 +131,6 @@ const DrawTools = () => {
           polygon: true
         }}
       />
-	   <button onClick={convertShapesToJson}>Convert to JSON</button>
     </FeatureGroup>
 
   );

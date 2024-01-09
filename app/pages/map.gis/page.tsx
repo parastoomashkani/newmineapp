@@ -2,6 +2,7 @@
 import { FC  } from 'react'   ;
 import dynamic from "next/dynamic";
 import Menu from './services/Menu';
+import Button from './components/Button';
 interface pageProps{}
 
 const DynamicMap = dynamic(() => import('./components/Map'), {
@@ -15,6 +16,7 @@ const DynamicMap = dynamic(() => import('./components/Map'), {
     <div id="map"
    >
     <Menu />
+<Button />
     <DynamicMap />
 
     </div>
