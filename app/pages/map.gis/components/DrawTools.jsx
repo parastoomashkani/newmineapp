@@ -23,28 +23,24 @@ const DrawTools = () => {
   
 	  _onChange();
 	};
-  
 	const _onCreated = (e) => {
-	  let type = e.layerType;
-	  let layer = e.layer;
-	  if (type === "marker") {
-		// Do marker specific actions
-		console.log("_onCreated: marker created", e);
-	  } else {
-		console.log("_onCreated: something else created:", type, e);
-	  }
-  
-	  const newShape = {
-		type: type,
-		geoJSON: layer.toGeoJSON(),
-		coords: layer.getLatLngs(),
+		let type = e.layerType;
+		let layer = e.layer;
+	  
+		const newShape = {
+		  type: type,
+		  geoJSON: layer.toGeoJSON(),
+		  coords: layer.getLatLngs(),
+		};
+	  
+		setDrawnShapes((prevShapes) => [...prevShapes, newShape]);
+	  
+		_onChange();
+	  
+		sendShapesToApi(drawnShapes);
 	  };
-  
-	  setDrawnShapes((prevShapes) => [...prevShapes, newShape]);
-  
-	  _onChange();
-	};
-	const _onDeleted = async (e) => {
+	  
+	  const _onDeleted = async (e) => {
 		let numDeleted = 0;
 		const deletedShapes = [];
 	  
@@ -58,31 +54,30 @@ const DrawTools = () => {
 		  deletedShapes.push(deletedShape);
 		});
 	  
-		// console.log(`onDeleted: removed ${numDeleted} layers`, e);
-	  
 		_onChange();
 	  
+		sendShapesToApi(deletedShapes);
+	  };
+	  
+	  const sendShapesToApi = async (shapes) => {
 		try {
-			const response = await axios.post(process.env.BaseUrl + '/', {
-			
-			} ,{
-				headers: {
-				  'Content-Type': 'application/json',
-				  Accept: 'application/json',
-				  Authorization: localStorage.getItem('token'),
-				},
-			  });
-			
+		  const response = await fetch("your-api-endpoint", {
+			method: "POST",
+			headers: {
+			  "Content-Type": "application/json",
+			},
+			body: JSON.stringify(shapes),
+		  });
+	  
 		  if (response.ok) {
-			console.log("Deleted shapes data successfully sent to the API.");
+			console.log("Shapes data successfully sent to the API.");
 		  } else {
-			console.error("Failed to send deleted shapes data to the API.");
+			console.error("Failed to send shapes data to the API.");
 		  }
 		} catch (error) {
 		  console.error("Error:", error);
 		}
 	  };
-	  
 	const _onChange = () => {
 	  // Perform any other actions needed when the shapes change
 	};
