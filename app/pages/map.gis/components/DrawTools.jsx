@@ -64,9 +64,7 @@ const DrawTools = () => {
 	  
 		try {
 			const response = await axios.post(process.env.BaseUrl + '/', {
-			  name,
-			  mobile,
-			  password,
+			
 			} ,{
 				headers: {
 				  'Content-Type': 'application/json',
