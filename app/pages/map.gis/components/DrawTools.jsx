@@ -63,14 +63,18 @@ const DrawTools = () => {
 		_onChange();
 	  
 		try {
-		  const response = await fetch("your-delete-api-endpoint", {
-			method: "POST",
-			headers: {
-			  "Content-Type": "application/json",
-			},
-			body: JSON.stringify(deletedShapes),
-		  });
-	  
+			const response = await axios.post(process.env.BaseUrl + '/', {
+			  name,
+			  mobile,
+			  password,
+			} ,{
+				headers: {
+				  'Content-Type': 'application/json',
+				  Accept: 'application/json',
+				  Authorization: localStorage.getItem('token'),
+				},
+			  });
+			
 		  if (response.ok) {
 			console.log("Deleted shapes data successfully sent to the API.");
 		  } else {
