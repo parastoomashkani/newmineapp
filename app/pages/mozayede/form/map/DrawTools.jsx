@@ -1,14 +1,13 @@
 
 "use client"
 import React, { useState } from "react";
-import L from "leaflet";
 import {
  
   FeatureGroup,
 
 } from "react-leaflet";
 import { EditControl } from "react-leaflet-draw";
-import "../../../../node_modules/leaflet-draw/dist/leaflet.draw.css";
+import "../../../../../node_modules/leaflet-draw/dist/leaflet.draw.css";
 import "leaflet-defaulticon-compatibility";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 

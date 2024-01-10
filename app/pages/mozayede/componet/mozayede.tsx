@@ -167,7 +167,16 @@ const Mozayede: React.FC<propsType> = ({
       </div>
 
       <div className="space-y-2 ">
-        <h2 className="text-accent font-medium uppercase text-center">{title}</h2>
+        <h2 className="text-accent font-medium uppercase text-center p-2">{title}</h2>
+        <ul className='space-y-4   md:space-y-0 space-x-0 md:space-x-4 flex flex-col md:flex-row text-left justify-center '>
+                <li className='text-sm'>
+                  <i className='iconoir-pin-alt mr-2'>  سبزوار </i>
+                  </li>
+                  <li className='text-sm'>
+                  <i className='iconoir-calendar mr-1'> مشهد  </i>
+                
+                </li>
+                  </ul>
         <p className="text-gray-500  text-center">{desc}</p>
 
        

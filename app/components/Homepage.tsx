@@ -129,39 +129,55 @@ const Homepage = () => {
                   alt='پیمانکاران '
                 />
               </div></div>
-            <div className="bg-yellow-500		 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 col-span-2">
-              <div className=" text-4xl  p-8 flex flex-col sm:pb-0 text-slate-200  justify-center" >
-                <Link href="/pages/Services" >
-                  <span className='text-center ml-10 mt-0'>
+           
+
+            <div className="bg-stone-500	 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300" >
+                   <Link href="/pages/mineservice"> 
+                   <div className=" text-4xl text-center p-8 sm:pb-0 text-slate-200 flex justify-center" >
+          
+  <span className='text-center ml-10 mt-0'>
                     خدمات فنی مهندسی
                   </span>
 
-                </Link>
-
-                <Image
+            
+               <Image
                   src={icon4}
                   width={80}
                   height={80}
                   alt='خدمات فنی مهندسی'
                   className=' text-center justify-center ml-28 '
                 />
-              </div>
+              </div>    </Link>
             </div>
-
-            <div className="bg-stone-500	 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300" >
-              <div className=" text-4xl text-center p-8 sm:pb-0 text-slate-200 flex justify-center" >
-                <Link href="/pages/mineservice">خدمات معدن
-
-
-                </Link>
-                <Image
+             <div className="bg-yellow-500		 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 col-span-2">
+               <Link href="/pages/recruitment" >
+                <div className=" text-4xl  p-8 flex flex-col sm:pb-0 text-slate-200  justify-center" >
+                <span className='text-center ml-10 mt-0'>
+                تماس با ما 
+               </span>
+  <Image
                   src={icon11}
                   width={100}
                   height={100}
                   alt='خدمات معدن '
                 />
-              </div>
-            </div>
+               
+              </div> </Link>
+            </div> 
+              <div className="bg-orange-400 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300" >
+              <div className=" text-center p-8 sm:pb-0 text-slate-200	flex justify-center "  >
+                <Link href="/pages/form">
+                  <span className='text-5xl text-center '>
+                  ثبت آگهی   
+                  </span>
+                </Link>
+                <Image
+                  src={icon5}
+                  width={80}
+                  height={80}
+                  alt='آگهی '
+                />
+              </div></div>
             <div className="bg-red-800		 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300col-span-2">
               <div className=" text-6xl text-center p-8 sm:pb-0  text-slate-200 flex justify-center" >
                 <Link href="/pages/article">
@@ -176,7 +192,9 @@ const Homepage = () => {
             </div>
             <div className="bg-yellow-300			 h-48  transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 	" >
               <div className=" text-7xl text-center p-8 sm:pb-0 t text-slate-200 flex justify-center" >
-                <Link href="/pages/recruitment">استخدام
+                <Link href="/pages/store
+                ">
+                  فروشگاه 
                 </Link>
                 <Image
                   src={icon12}
@@ -200,20 +218,7 @@ const Homepage = () => {
                   alt='ابزارالات حفاری '
                 />
               </div></div>
-            <div className="bg-orange-400 h-48 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300" >
-              <div className=" text-center p-8 sm:pb-0 text-slate-200	flex justify-center "  >
-                <Link href="/pages/form">
-                  <span className='text-5xl text-center '>
-                  ثبت آگهی   
-                  </span>
-                </Link>
-                <Image
-                  src={icon5}
-                  width={80}
-                  height={80}
-                  alt='آگهی '
-                />
-              </div></div>
+         
 
 
           </div>

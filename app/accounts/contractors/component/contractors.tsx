@@ -38,7 +38,7 @@ const Contractors: React.FC = () => {
     <>
       {state.map((item) => (
         <div className='w-full max-w-lg py-8 flex flex-row items-center justify-center mx-auto bg-[#FFFBFB] rounded-lg shadow-xl'>
-          <div className='flex flex-col md:flex-row w-3/4 md:w-5/6 space-x-0 md:space-x-8'>
+          <div className='flex flex-col md:flex-row -5/6 w-3/4 md:wspace-x-0 md:space-x-8'>
             <div className='w-full md:w-2/5 flex flex-col items-center justify-center'>
               <figure className='w-1/2 md:w-full  rounded-full overflow-hidden'>
                 <Image src={item.picture.large} height={500} width={500} alt={item.name.first} />

@@ -1,7 +1,7 @@
+"use client"
 import React from 'react';
-import Image from 'next/image';
-import Icon2 from '../../../public/images/icon 2.png'
-import Mozayede from './componet/mozayede';
+import Mozayede from './componet/Mozayede2';
+import { useRouter } from 'next/navigation';
 
 const productsData = [
     {
@@ -11,6 +11,7 @@ const productsData = [
       desc1:"پیریت: نام پیریت از لغت یونانی پیر به معنی آتش اخذ شده‌ است و بر اثر برخورد آن با سنگ‌های دیگر، جرقه تولید می‌شود. این سنگ آهن رایج‌ترین سولفید آهن می‌باشد.",
       rating: 4,
       price: "450.00",
+      
     },
     {
       img: "/images/rough-surface-stone.jpg",
@@ -102,26 +103,30 @@ const productsData = [
     },
   ];
 const NewProducts = () => {
+  const router = useRouter();
+  const formList=()=>{
+    router.push('/pages/mozayede/form');
+  }
   return (
-    <div className='bg-emerald-900'> 
+    <div className='bg-slate-50'> 
   
     <div >
-    <div className="container p-8 ">
-       <div className='bg-green-950 grid grid-cols-3 gap-4 '> 
-     
-        <Image 
-      src={Icon2}
-      width={100}
-      height={100}
-      alt='مزایده '
+    <div className="container p-8 "> 
+   
+       <div className='  gap-4 space-y-4   md:space-y-0 space-x-0 md:space-x-4 flex flex-col md:flex-row text-left justify-center'> 
+   <h2 className="font-bold text-7xl text-center text-slate-600 ">مزایده ها     </h2> 
     
-      />
-      <h2 className="font-bold text-7xl text-center text-slate-200 ">مزایده ها 
-      </h2> 
+    
+    <div className=' place-items-start'>
+       <button  className="mt-5 w-full rounded-md bg-blue-600 p-2 text-center font-semibold text-slate-600	 "
+       onClick={formList}>
+        ثبت  مزایده
+      </button>
+       </div>
    
 </div>
       <div className="grid grid-cols-1 place-items-center sm:place-items-start sm:grid-cols-2 lg:grid-col-3 xl:grid-cols-4 gap-10 xl:gap-x-20 xl:gap-y-10 pt-6">
-        {productsData.length===0 && <p> صفحه ایی پیدا نشود </p>}
+        {/* {productsData.length===0 && <p> صفحه ایی پیدا نشود </p>}
         {productsData.map((item, index) => (
           <Mozayede
             key={index}
@@ -132,7 +137,8 @@ const NewProducts = () => {
             rating={item.rating}
             price={item.price}
           />
-        ))}
+        ))} */}
+        <Mozayede />
       </div>
     </div>
   </div> </div>

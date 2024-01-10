@@ -1,6 +1,8 @@
 "use Client"
 import {MapContainer,TileLayer,Marker,Popup ,Polygon } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import "leaflet-defaulticon-compatibility";
+import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 const center = [51.505, -0.09]
 
 const polyline = [
