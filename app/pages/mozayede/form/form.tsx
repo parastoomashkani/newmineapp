@@ -1,8 +1,10 @@
 "use client"
 
 
-import React, { useState } from 'react';
+import React, { useState ,useEffect } from 'react';
 import dynamic from "next/dynamic";
+import axios from 'axios';
+import Swal from 'sweetalert2'
 
 const DynamicMap = dynamic(() => import('./map/map'), {
   ssr: false
@@ -19,20 +21,51 @@ const [address,setAddress]=useState("");
 const [city,setCity]=useState("");
 const [state,setState]=useState("");
 const [photo, setPhoto] = useState(null);
-
+const [states, setStates] = useState([]);
+const [cities, setCities] = useState([]);
 const [selectedState, setSelectedState] = useState('');
-const [selectedCity, setSelectedCity] = useState('');
+const [selectedCity, setSelectedCity] = useState('');useEffect(() => {
+  const fetchStates = async () => {
+    try {
+      const response = await fetch(process.env.BaseUrl + '/showStates');
+      const data = await response.json();
+      console.log('API response:', data); // Log the response to the console
+      setStates(data);
+    } catch (error) {
+      console.error('Error fetching states:', error);
+    }
+  };
+
+  fetchStates();
+}, []);
+useEffect(() => {
+  const fetchCities = async () => {
+    if (selectedState) {
+      try {
+        const response = await fetch( process.env.BaseUrl + '/showCitiesOfState?id='+selectedState);
+        const data = await response.json();
+        console.log(data);
+        setCities(data);
+      } catch (error) {
+        console.error('Error fetching cities:', error);
+      }
+    }
+  };
+
+  fetchCities();
+}, [selectedState]);
 
 const handleStateChange = (e:any ) => {
   setSelectedState(e.target.value);
-  const states = [{id: 1, name: 'State 1'}, {id: 2, name: 'State 2'}, ];
-    const cities = [{id: 1, name: 'City 1', stateId: 1}, {id: 2, name: 'City 2', stateId: 1}, ];
-  const filteredCities = cities.filter(city => city.stateId === e.target.value);
+  setSelectedCity('')
+};
 
-}
 const handleCityChange = (e:any) => {
   setSelectedCity(e.target.value);
 };
+
+
+
 
 const handleChange = (e:any) => {
   setTitle(e.target.value);
@@ -65,38 +98,62 @@ const handleFileChange = (e:any) => {
   setPhoto(file);
 };
 
- const handelsubmit=( e:any)=>{
-e.preventDefault();
 
+const handelsubmit = async (e: any) => {
+  e.preventDefault();
 
-const formData = {
-  title,
-  note,
-  fullName,
-  mineral,
-  email,
-  address,
-  city,
-  state,
-  photo,
+  const formData = {
+    title,
+    note,
+    fullName,
+    mineral,
+    email,
+    address,
+    city,
+    state,
+    photo: photo ? new FormData().append('photo', photo) : null,
+  };
 
- }
+  try {
+    const response = await axios.post(process.env.BaseUrl + '/submit_moz', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Accept: 'application/json',
+        Authorization: localStorage.getItem('token'),
+      },
+    });
 
- const jsonData = JSON.stringify(formData);
-
- console.log("Form Data (JSON):", jsonData);
-
- setTitle("");
- setNote("");
- setFullName("");
- setMineral("");
- setEmail("");
- setAddress("");
- setCity("");
- setState("");
- setPhoto(null);
-
+    console.log('API Response:', response.data);
+    setTitle('');
+    setNote('');
+    setFullName('');
+    setMineral('');
+    setEmail('');
+    setAddress('');
+    setCity('');
+    setState('');
+    setPhoto(null);
+    const dataForme=response.data.statuse
+if( dataForme===200){
+Swal.fire({
+    title: "ثبت شد ",
+    text: " فرم شما ثبت شد ",
+    icon: "success"
+  });
+}else {
+  Swal.fire({
+    icon: "error",
+    title: "خطا",
+    text: " ، وارد حساب کاربری خود شودید ثبت نشد !",
+    footer: '<a href="#">Why do I have this issue?</a>'
+  });
 }
+  } catch (error) {
+    console.error('Error posting form data:', error);
+
+  } 
+  
+};
   return (
     <div className='bg-slate-200'>
     <div className='container mx-auto px-4 bg-white  w-full m-8  '>
@@ -221,23 +278,38 @@ const formData = {
         </div>
 
         <div className="sm:col-span-2 sm:col-start-1">
-          <label htmlFor="city"     className="block text-sm font-medium leading-6 text-gray-900">
+          {/* <label htmlFor="city"     className="block text-sm font-medium leading-6 text-gray-900">
             استان 
           
-          </label>
-          <div className="mt-2">
-          <select value={selectedState} onChange={handleStateChange}>
-        </select>       
+          </label> */}
+          <div className="mt-2"> <label htmlFor="state">Select State:</label>
+      <select id="state" value={selectedState} onChange={handleStateChange}>
+        <option value="">Select a state</option>
+        {states.map((state) => (
+          <option key={state.id} value={state.id} className='text-black	'>
+            {state.title}
+          </option>
+        ))}
+      </select>
+          
            </div>
         </div>
 
         <div className="sm:col-span-2">
-          <label htmlFor="region" className="block text-sm font-medium  leading-6 text-gray-900">
+          {/* <label htmlFor="region" className="block text-sm font-medium  leading-6 text-gray-900">
             شهر 
-          </label>
+          </label> */}
           <div className="mt-2">
-          <select value={selectedCity} onChange={handleCityChange}>
-        </select>        
+          <label htmlFor="city">Select City:</label>
+          <select id="city" value={selectedCity} onChange={handleCityChange}>
+  <option value="">Select a city</option>
+  {cities.map((city) => (
+    <option key={city.id} value={city.id} className='text-black'>
+      {city.title}
+    </option>
+  ))}
+</select>
+        
           </div>
           
         </div>

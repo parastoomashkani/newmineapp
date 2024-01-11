@@ -5,7 +5,6 @@ import './globals.css'
 import HederTop from './components/HederTop'
 import HeaderMain from './components/HeaderMain'
 import Footer from './components/Footer'
-
 import { getServerSession } from 'next-auth';
 // import Sidebar from './components/Sidebar'
 // import Menu from './components/Menu'

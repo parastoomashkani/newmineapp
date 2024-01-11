@@ -27,7 +27,7 @@ const name =  localStorage.getItem('name');
       <div className="container py-1">
         <div className="flex justify-between items-center">
           <div className="hidden lg:flex gap-1">
-                 <div className='pr-4'  >
+                 <div className='pr-4 justify-end '   >
               <Logout/>  
              </div>
           <div  className='pr-4'>

@@ -3,9 +3,9 @@ import{useState,useEffect} from 'react';
 import {
   TreeList, FilterRow, Selection, Column,
 } from 'devextreme-react/tree-list';
-import "../../../../node_modules/devextreme/dist/css/dx.carmine.css"
+import "../../../../../node_modules/devextreme/dist/css/dx.carmine.css"
 import axios from 'axios';
-
+import Loading from '@/app/Louding';
 
 const Mozayede = () => {
     const [treeData, setTreeData] = useState([]);
@@ -14,7 +14,7 @@ const Mozayede = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('your-api-endpoint'); 
+        const response = await axios.get(process.env.BaseUrl + '/moz?'); 
         setTreeData(response.data); 
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -23,7 +23,13 @@ const Mozayede = () => {
 
     fetchData();
   }, []); 
-
+  const [loading, setLoading] = useState(true)
+    useEffect(() => {
+        setTimeout(() => setLoading(false), 3300)
+    }, [])
+    if (loading) {
+        return  <Loading />
+      }
     return(
   <TreeList
     id="employees"
@@ -32,17 +38,17 @@ const Mozayede = () => {
     showRowLines={true}
     showBorders={true}
     defaultExpandedRowKeys={expandedRowKeys}
-    keyExpr="ID"
+    keyExpr="id"
     parentIdExpr="Head_ID"
   >
     <FilterRow visible={true} />
     <Selection mode="single"  />
-    <Column dataField="Full_Name" />
-    <Column dataField="Title" caption="Position" />
-    <Column dataField="City" />
-    <Column dataField="State" />
-    <Column dataField="Mobile_Phone" />
-    <Column dataField="Hire_Date" dataType="date" />
+    <Column dataField="title"  caption="عنوان"/>
+    <Column dataField="ore" caption="ماده معدنی " />
+    <Column dataField="city"  caption="شهر "/>
+    <Column dataField="State" caption="استان "/>
+    <Column dataField="body" caption="توضیحات "/>
+    {/* <Column dataField="Hire_Date" dataType="date" /> */}
   </TreeList>
     )
 }

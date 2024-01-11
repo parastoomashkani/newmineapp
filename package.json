@@ -34,6 +34,7 @@
     "devextreme-react": "23.2.3",
     "expo-asset": "^8.10.1",
     "flowbite": "^2.2.0",
+    "framer-motion": "^10.18.0",
     "heroicons": "^2.0.18",
     "jquery": "^3.7.1",
     "leaflet": "^1.9.4",
@@ -54,8 +55,10 @@
     "react-leaflet-draw": "^0.20.4",
     "react-leaflet-fullscreen": "^4.1.1",
     "react-leaflet-heatmap-layer-v3": "^3.0.3-beta-1",
+    "react-pure-loaders": "^3.0.1",
     "react-sidebar-ui": "^1.3.3",
     "react-simple-tree-menu": "^1.1.18",
+    "sweetalert2": "^11.10.2",
     "yarn": "^1.22.21",
     "zod": "^3.22.4"
   },

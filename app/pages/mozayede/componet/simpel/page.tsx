@@ -1,14 +1,15 @@
 'use client';
 import Image from "next/image";
-import React from "react";
+import {useEffect} from "react";
 import Link from "next/link";
 import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react';
 import { CiLocationOn } from "react-icons/ci";
 import dynamic from "next/dynamic";
-import HederTop from "../../../../app/components/HederTop";
+import HederTop from "../../../../components/HederTop";
 import Calendar from 'react-calendar';
-
+import axios from "axios";
+import Loading from "@/app/Louding";
 interface propsType {
   img: string;
   title: string;
@@ -17,29 +18,33 @@ interface propsType {
   rating: number;
   price: string;
 }
-const DynamicMap = dynamic(() => import('../componet/map'), {
+const DynamicMap = dynamic(() => import('../simpel/map'), {
   ssr: false
 });
 type ValuePiece = Date | null;
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 
-const Mozayede: React.FC<propsType> = ({
-  img,
-  title,
-  desc,
-  desc1,
-  rating,
-  price,
-}) => {
-  const [open, setOpen] = useState(false)
-
-  const cancelButtonRef = useRef(null)
-
+const Mozayede: React.FC<propsType> = () => {
+  const [open, setOpen] = useState(false);
+  const cancelButtonRef = useRef(null);
+  const [loading, setLoading] = useState(true);
   const [value, onChange] = useState<Value>(new Date());
-
-  const showProductDetails = () => {
-    setOpen(true);
-  }
+  const [apiData, setApiData] = useState<any>(null); 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(process.env.BaseUrl + '/moz');
+        setApiData(response.data); 
+        setLoading(false); 
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setLoading(false); 
+      }
+    };
+  
+    fetchData();
+  }, []);
+ 
   return (
 
 
@@ -80,7 +85,7 @@ const Mozayede: React.FC<propsType> = ({
                       <div className=" w-80 ">
                         <Image
                           className="w-80	h-64"
-                          src={img}
+                          src={img1}
                           width={500}
                           height={500}
                           alt={title}
@@ -106,13 +111,13 @@ const Mozayede: React.FC<propsType> = ({
                         <div className="mt-20">
 
                           <p className="text-sm text-gray-500">
-                            {desc}
+                            {about1}
                           </p>
                         </div>
                         <div className="mt-20">
                           <h2>اطلاعات بیشتر </h2>
                           <p className="text-sm text-gray-500">
-                            {desc1}
+                            { body}
                           </p>
                         </div>
 
@@ -159,7 +164,7 @@ const Mozayede: React.FC<propsType> = ({
       <div>
         <Image
           className="w-full h-40"
-          src={img}
+          src={img1}
           width={200}
           height={300}
           alt={title}
@@ -177,7 +182,7 @@ const Mozayede: React.FC<propsType> = ({
                 
                 </li>
                   </ul>
-        <p className="text-gray-500  text-center">{desc}</p>
+        <p className="text-gray-500  text-center">{body}</p>
 
        
 
@@ -187,10 +192,8 @@ const Mozayede: React.FC<propsType> = ({
           شرکت در مزایده
         </button>
 
-        <div className="font-bold flex gap-4"> ${price}
-          <del className="text-gray-500 font-normal">
-            ${parseInt(price) + 50}.00
-          </del>
+        <div className="font-bold flex gap-4"> ${date}
+       
         </div>
       </div>
     </div>

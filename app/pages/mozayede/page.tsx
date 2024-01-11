@@ -1,6 +1,6 @@
 "use client"
 import React from 'react';
-import Mozayede from './componet/Mozayede2';
+import Mozayede from './componet/list/page';
 import { useRouter } from 'next/navigation';
 
 const productsData = [
@@ -107,6 +107,12 @@ const NewProducts = () => {
   const formList=()=>{
     router.push('/pages/mozayede/form');
   }
+  const showSimpel=()=>{
+    router.push('/pages/mozayede/componet/simpel');
+  }
+  const showList=()=>{
+    router.push('/pages/mozayede/componet/list');
+  }
   return (
     <div className='bg-slate-50'> 
   
@@ -117,31 +123,28 @@ const NewProducts = () => {
    <h2 className="font-bold text-7xl text-center text-slate-600 ">مزایده ها     </h2> 
     
     
-    <div className=' place-items-start'>
-       <button  className="mt-5 w-full rounded-md bg-blue-600 p-2 text-center font-semibold text-slate-600	 "
-       onClick={formList}>
-        ثبت  مزایده
-      </button>
-       </div>
+  
    
 </div>
-      <div className="grid grid-cols-1 place-items-center sm:place-items-start sm:grid-cols-2 lg:grid-col-3 xl:grid-cols-4 gap-10 xl:gap-x-20 xl:gap-y-10 pt-6">
-        {/* {productsData.length===0 && <p> صفحه ایی پیدا نشود </p>}
-        {productsData.map((item, index) => (
-          <Mozayede
-            key={index}
-            img={item.img}
-            title={item.title}
-            desc={item.desc}
-            desc1={item.desc1}
-            rating={item.rating}
-            price={item.price}
-          />
-        ))} */}
-        <Mozayede />
+      <div className="grid grid-cols-1 place-items-center xl:grid-cols-3  pt-10">
+  
+      
+<button type="button" className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"  onClick={showSimpel}>
+  نمایش ساده 
+</button>
+<button type="button" className="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" onClick={showList}>
+لیست مزایده ها 
+  </button> 
+    <button  className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800"
+       onClick={formList}>
+        <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+        ثبت  مزایده
+    </span> 
+     </button>
+     </div>
       </div>
     </div>
-  </div> </div>
+  </div> 
   );
 };
 

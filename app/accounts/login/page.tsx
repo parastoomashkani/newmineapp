@@ -34,10 +34,10 @@ console.log(localStorage.getItem('name'));
       const accountStatus = loginResponse.data.status;
 
       if (accountStatus === 200) {
-         router.push('/accounts/register'); 
+         router.push('/pages/dashboard'); 
       } else if (accountStatus === 220) {
         router.refresh();
-          router.push('/pages/dashboard');
+         router.push('/accounts/register'); 
       }
     } catch (err) {
       setError('Invalid credentials. Please try again.');
