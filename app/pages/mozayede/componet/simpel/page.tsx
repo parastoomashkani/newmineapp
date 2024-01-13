@@ -7,35 +7,45 @@ import { Dialog, Transition } from '@headlessui/react';
 import { CiLocationOn } from "react-icons/ci";
 import dynamic from "next/dynamic";
 import HederTop from "../../../../components/HederTop";
-import Calendar from 'react-calendar';
+// import Calendar from 'react-calendar';
 import axios from "axios";
-import Loading from "@/app/Louding";
-interface propsType {
-  img: string;
-  title: string;
-  desc: string;
-  desc1: string;
-  rating: number;
-  price: string;
-}
+// import Loading from "@/app/Louding";
+
+
 const DynamicMap = dynamic(() => import('../simpel/map'), {
   ssr: false
 });
 type ValuePiece = Date | null;
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 
-const Mozayede: React.FC<propsType> = () => {
+interface Item {
+  id: number;
+  title: string;
+  body:string;
+  about1:string;
+  img:string;
+  img1:string;
+  org:string;
+  date: number;
+}
+
+
+
+const Mozayede: React.FC<Item > = () => {
   const [open, setOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
   const cancelButtonRef = useRef(null);
   const [loading, setLoading] = useState(true);
   const [value, onChange] = useState<Value>(new Date());
   const [apiData, setApiData] = useState<any>(null); 
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(process.env.BaseUrl + '/moz');
+        const response = await axios.get(process.env.BaseUrl + '/moz?');
         setApiData(response.data); 
         setLoading(false); 
+        console.log(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
         setLoading(false); 
@@ -45,10 +55,19 @@ const Mozayede: React.FC<propsType> = () => {
     fetchData();
   }, []);
  
+
+  const showProductDetails = (item:any) => {
+    setSelectedItem(item); 
+    setOpen(true);
+  };
+
   return (
+<>
+<div className="grid grid-cols-1 place-items-center sm:place-items-start sm:grid-cols-2 lg:grid-col-3 xl:grid-cols-4 gap-10 xl:gap-x-20 xl:gap-y-10 pt-6">
 
-
-    <div className="px-4 border border-gray-200 rounded-xl max-w-[400px] text-right 	">
+{apiData && apiData.map((item:Item) => (
+    <div className="px-4 border border-gray-200 rounded-xl max-w-[400px] text-right">
+     
       <Transition.Root show={open} as={Fragment}>
         <Dialog as="div" className="relative z-10 " initialFocus={cancelButtonRef} onClose={setOpen}>
           <Transition.Child
@@ -66,7 +85,7 @@ const Mozayede: React.FC<propsType> = () => {
           </Transition.Child>
 
           <div className=" fixed inset-0 z-10 w-screen overflow-y-auto flex min-h-full items-end justify-center p-8 text-center sm:items-center sm:p-0 ">
-
+          {selectedItem && (
             <div className="">
               <Transition.Child
                 as={Fragment}
@@ -83,22 +102,24 @@ const Mozayede: React.FC<propsType> = () => {
                   <div className="md:flex items-start justify-center py-20 2xl:px-3 md:px-20 px-20  ">
                     <div className="sm:flex sm:items-start">
                       <div className=" w-80 ">
-                        <Image
+                        {/* <Image
                           className="w-80	h-64"
-                          src={img1}
+                          src={item.img1}
                           width={500}
                           height={500}
-                          alt={title}
-                        />
+                          alt={item.title}
+                        /> */}
 
-                        <div className=" mt-20  w-1/4 grid grid-col bg-white text-center gap-4 p-4 rounded-lg"> <Calendar onChange={onChange} value={value} /></div>
+                        <div className=" mt-20  w-1/4 grid grid-col bg-white text-center gap-4 p-4 rounded-lg">
+                           {/* <Calendar onChange={onChange} value={value} /> */}
+                           </div>
 
 
                       </div>
 
                       <div className="mt-8 text-center sm:ml-10 sm:mt-0 ">
                         <Dialog.Title as="h3" className="text-gray-900 text-3xl title-font font-medium mb-1">
-                          {title}
+                        {selectedItem.title}
                         </Dialog.Title>
                         <div className=" border-b border-gray-200 flex items-center justify-between  ">
                           <ul>
@@ -111,17 +132,17 @@ const Mozayede: React.FC<propsType> = () => {
                         <div className="mt-20">
 
                           <p className="text-sm text-gray-500">
-                            {about1}
+                            {selectedItem.about1}
                           </p>
                         </div>
                         <div className="mt-20">
                           <h2>اطلاعات بیشتر </h2>
                           <p className="text-sm text-gray-500">
-                            { body}
+                            {selectedItem.body}
                           </p>
                         </div>
 
-                        <div id="map"  className="mt-20 justify-center">
+                        <div id="map"  className="mt-20 justify-center xl:w-80 xl:h-80 sm:w-40 sm:h-40">
 
                           <DynamicMap />
 
@@ -154,25 +175,29 @@ const Mozayede: React.FC<propsType> = () => {
                       لغو
                     </button>
                   </div>
+              
                 </Dialog.Panel>
               </Transition.Child>
-            </div>
-          </div>
+             </div>  )} 
+          </div> 
+         
         </Dialog>
       </Transition.Root>
 
       <div>
-        <Image
+        {/* <Image
           className="w-full h-40"
-          src={img1}
+          src={item.img1}
           width={200}
           height={300}
-          alt={title}
-        />
+          alt={item.title}
+        /> */}
       </div>
 
       <div className="space-y-2 ">
-        <h2 className="text-accent font-medium uppercase text-center p-2">{title}</h2>
+        <h2 className="text-accent font-medium uppercase text-center p-2">
+          {item.title}
+          </h2>
         <ul className='space-y-4   md:space-y-0 space-x-0 md:space-x-4 flex flex-col md:flex-row text-left justify-center '>
                 <li className='text-sm'>
                   <i className='iconoir-pin-alt mr-2'>  سبزوار </i>
@@ -182,22 +207,27 @@ const Mozayede: React.FC<propsType> = () => {
                 
                 </li>
                   </ul>
-        <p className="text-gray-500  text-center">{body}</p>
+        <p className="text-gray-500  text-center">
+          {item.body}
+          </p>
 
        
 
 
 
-        <button data-modal-target="default-modal" data-modal-toggle="default-modal" className="mt-5 w-full rounded-md bg-blue-600 p-2 text-center font-semibold text-white" type="button" onClick={showProductDetails}>
+        <button data-modal-target="default-modal" data-modal-toggle="default-modal" className="mt-5 w-full rounded-md bg-blue-600 p-2 text-center font-semibold text-white" type="button" onClick={()=>showProductDetails(item)}>
           شرکت در مزایده
         </button>
 
-        <div className="font-bold flex gap-4"> ${date}
+        <div className="font-bold flex gap-4">
+           {item.date}
        
         </div>
-      </div>
+      </div>    
     </div>
-
+    ))}
+    </div>
+</>
   );
 };
 

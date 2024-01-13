@@ -6,7 +6,11 @@ import "../../../../node_modules/bootstrap/dist/css/bootstrap.min.css"
 
 
 const Profile = () => {const [state, setState] = useState<Profile[]>([]);
-
+  const [photo, setPhoto] = useState(null);
+  const handleFileChange = (e: any) => {
+    const file = e.target.files[0];
+    setPhoto(file);
+  };
   async function getData() {
     const res = await fetch('https://randomuser.me/api/?results=0');
     const data = await res.json();
@@ -40,6 +44,7 @@ const Profile = () => {const [state, setState] = useState<Profile[]>([]);
                   </div>
                 </div>
               </div>
+              {/* پایین عکس  */}
               <div className="card mt-3">
                 <ul className="list-group list-group-flush">
                   <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
@@ -65,6 +70,7 @@ const Profile = () => {const [state, setState] = useState<Profile[]>([]);
                 </ul>
               </div>
             </div>
+            {/* این قسمت ادیت  */}
             <div className="col-md-8">
               <div className="card mb-3">
                 <div className="card-body">
@@ -122,8 +128,9 @@ const Profile = () => {const [state, setState] = useState<Profile[]>([]);
                   </div>
                 </div>
               </div>
-
+{/* این پایین اطلاعات  */}
               <div className="row gutters-sm">
+                {/* سمت چپی  */}
                 <div className="col-sm-6 mb-3">
                   <div className="card h-100">
                     <div className="card-body">
@@ -152,30 +159,29 @@ const Profile = () => {const [state, setState] = useState<Profile[]>([]);
                     </div>
                   </div>
                 </div>
+                {/* سمت راستی  */}
                 <div className="col-sm-6 mb-3">
                   <div className="card h-100">
                     <div className="card-body">
-                      <h6 className="d-flex align-items-center mb-3"><i className="material-icons text-info mr-2">assignment</i>Project Status</h6>
-                      <small>Web Design</small>
-                      <div className="progress mb-3" style={{height: "5px"}}>
-                        <div className="progress-bar bg-primary" role="progressbar" style={{width: "80%" }} aria-valuenow={80} aria-valuemin={0} aria-valuemax={100}></div>
-                      </div>
-                      <small>Website Markup</small>
-                      <div className="progress mb-3" style={{height:" 5px"}}>
-                        <div className="progress-bar bg-primary" role="progressbar" style={{width: "72%"}} aria-valuenow={72} aria-valuemin={0} aria-valuemax={100}></div>
-                      </div>
-                      <small>One Page</small>
-                      <div className="progress mb-3" style={{height: "5px"}}>
-                        <div className="progress-bar bg-primary" role="progressbar" style={{width:" 89%"}} aria-valuenow={89} aria-valuemin={0} aria-valuemax={100}></div>
-                      </div>
-                      <small>Mobile Template</small>
-                      <div className="progress mb-3" style={{height: "5px"}}>
-                        <div className="progress-bar bg-primary" role="progressbar" style={{width: "55%"}} aria-valuenow={55} aria-valuemin={0} aria-valuemax={100}></div>
-                      </div>
-                      <small>Backend API</small>
-                      <div className="progress mb-3" style={{height:"5px"}}>
-                        <div className="progress-bar bg-primary" role="progressbar" style={{width: "66%"}} aria-valuenow={66} aria-valuemin={0} aria-valuemax={100}></div>
-                      </div>
+                    <div className="d-flex flex-column align-items-center text-center"> {photo ? (
+              <img src={URL.createObjectURL(photo)} alt="Uploaded" className="mx-auto h-64 w-64 text-gray-300" />
+            ) : (
+              <svg className="mx-auto h-64 w-64 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path
+                  fill-rule="evenodd"
+                  d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z"
+                  clip-rule="evenodd" />
+              </svg>
+            )}
+              <div className="mt-4 flex text-sm leading-6 text-gray-600">
+                <label
+                  htmlFor="file-upload"
+                  className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
+                  <span>Upload a file</span>
+                  <input id="file-upload" name="file-upload" type="file" className="sr-only" onChange={handleFileChange} />
+                </label>
+              </div>
+            </div>
                     </div>
                   </div>
                 </div>

@@ -78,11 +78,13 @@ const page: React.FC = () => {
       setIsSidebarOpen(!isSidebarOpen);
     };
   
-  return ( <div className="flex">
+  return ( 
+  
+  <div className="flex right-0 lg:inset-y-0">
   <div
     className={`${
       isSidebarOpen ? 'ml-0' : 'ml-[-100%]'
-    } z-10 top-0 pb-3 px-6 w-46 flex flex-col justify-between h-full border-r bg-white transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%] collapsed-sidebar`}
+    } z-10 top-0 pb-3 px-6 w-46 flex flex-col justify-between h-full border-r bg-white transition right-0 lg:inset-y-0 duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%] collapsed-sidebar`}
   >  <div >
         <div className="-mx-6 px-6 py-4">
             <a href="#" title="home" >
