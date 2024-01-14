@@ -50,7 +50,7 @@ const HeaderMain = () => {
       
         </div>
         <div className="relative">
-        <Link href="/pages/dashboard">
+        <Link href="/dashboard">
         <MdOutlineDashboard />
         </Link></div>
       </div>

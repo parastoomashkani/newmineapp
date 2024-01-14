@@ -4,9 +4,17 @@ import { useEffect, useState } from 'react';
 import Engineer from './component/Engineer';
 import axios from 'axios';
 
-
+import Loading from "../../Louding"
+import { CPagination ,CPaginationItem } from '@coreui/react'
+import '../../../node_modules/@coreui/coreui/dist/css/coreui.min.css'
 const Page = () => {
-
+  const [loading, setLoading] = useState(true)
+  useEffect(() => {
+      setTimeout(() => setLoading(false), 3300)
+  }, [])
+  if (loading) {
+      return  <Loading />
+    }
   return (
     <main>
    
@@ -17,6 +25,19 @@ const Page = () => {
        
         </div>
       </div>
+      <div className='flex items-center justify-center px'>
+     <CPagination aria-label="Page navigation example">
+  <CPaginationItem aria-label="Previous" disabled>
+    <span aria-hidden="true">&laquo;</span>
+  </CPaginationItem>
+  <CPaginationItem active>1</CPaginationItem>
+  <CPaginationItem>2</CPaginationItem>
+  <CPaginationItem>3</CPaginationItem>
+  <CPaginationItem aria-label="Next">
+    <span aria-hidden="true">&raquo;</span>
+  </CPaginationItem>
+</CPagination>
+</div>
     </main>
   );
 };

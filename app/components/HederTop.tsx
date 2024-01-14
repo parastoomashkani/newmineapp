@@ -6,7 +6,8 @@ import { MdOutlinePhoneEnabled } from 'react-icons/md';
 import Logout from './Logout';
 
 const HederTop = () => {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(null);  
+
 const name =  localStorage.getItem('name');
     useEffect(() => {
       const fetchUserData = async () => {
@@ -21,7 +22,8 @@ const name =  localStorage.getItem('name');
   
       fetchUserData();
     }, []);
-
+ 
+ 
   return (
     <div className="border-b bg-cyan-600 hidden sm:block">
       <div className="container py-1">

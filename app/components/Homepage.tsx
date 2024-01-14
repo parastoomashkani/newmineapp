@@ -1,17 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 import Image from 'next/image';
-import bg1 from '../../public/images/blue-gravel-stone-texture-background.jpg'
-import bg3 from '../../public/images/nick-nice-gPm8h3DS1s4-unsplash.jpg'
-import bg4 from '../../public/images/beautiful-old-grunge-texture-concrete-rough-wall-gray-color-background-backdrop-horizontal-blue-colors.jpg'
-import bg5 from '../../public/images/avinash-kumar-rEIDzqczN7s-unsplash.jpg'
-import bg6 from '../../public/images/avinash-kumar-rEIDzqczN7s-unsplash.jpg'
-// import bg7 from './blue-gravel-stone-texture-background.jpg'
-import bg8 from '../../public/images/closeup-green-stones.jpg'
-import bg9 from '../../public/images/plain-copy-space-sand-background.jpg'
-import bg10 from '../../public/images/wrinkled-silver-textured-pattern-background.jpg'
-import bg11 from '../../public/images/turquoise-black-gemstone-textured-background.jpg'
-import bg12 from '../../public/images/watercolor-splash-background.jpg'
+
 import icon2 from '../../public/images/icon 2.png';
 import icon1 from '../../public/images/icon1.png';
 import icon3 from '../../public/images/icon 3.png';

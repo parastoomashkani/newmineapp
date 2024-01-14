@@ -8,6 +8,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css"
 import { RiLinkedinFill } from "react-icons/ri";
 import { IoIosContact } from "react-icons/io";
 import { TfiEmail } from "react-icons/tfi";
+import defaultImage from '../../../../public/images/none.png';
 
 import axios from 'axios';
 import {
@@ -24,40 +25,35 @@ import { MdMarkEmailUnread } from "react-icons/md";
 import { FaInstagram } from "react-icons/fa6";
 
 interface EngineerProps {
-    id: string;
-    picture: {
-        large: string;
-        medium: string;
-    };
-    name: {
-        first: string;
-        last: string;
-        titel: string;
-    };
-    location: {
-        city: string;
-        state: string;
-    };
-    email: string;
-    phone: string;
-    cell: string;
+    name: string;
+    image1: string;
+    image2: string;
+    image3: string;
+    image4: string;
+    body: string;
+    location: string;
 }
 
 const Engineer: React.FC = () => {
-    const [state, setState] = useState<EngineerProps[]>([]);
+    const [apiData, setApiData] = useState<any>(null);
 
-    async function getData() {
-        const res = await fetch('https://randomuser.me/api/?results=19');
-        const data = await res.json();
-        setState(data.results);
-        console.log(state);
-    }
 
-    console.log('i am:', state);
 
     useEffect(() => {
-        getData();
+      const fetchData = async () => {
+        try {
+          const response = await axios.get(process.env.BaseUrl + '/showJobs?page=');
+          setApiData(response.data.data);
+          console.log('Fetched data:', response.data.data);
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      };
+  
+      fetchData();
     }, [])
+  
+  
 
     const [fullscreenXlModal, setFullscreenXlModal] = useState<boolean>(false);
 
@@ -69,8 +65,8 @@ const Engineer: React.FC = () => {
 
     return (
         <>
-            {
-                state.map((item: EngineerProps) => (
+         
+                {apiData && apiData.map((item: any) => (
                     <div className="container" key={item.id}>
                         <div role="list" aria-label="Behind the scenes People " className="md:flex sm:flex flex-wrap md:justify-around sm:justify-around lg:justify-around ">
                             <div role="listitem" className="xl:w-80 sm:w-80 md:w-96 relative mt-16 mb-32 sm:mb-24 xl:max-w-sm lg:w-2/5 ">
@@ -95,15 +91,10 @@ const Engineer: React.FC = () => {
                                                                     <div className="col-span-4 sm:col-span-3">
                                                                         <div className="bg-white shadow rounded-lg p-6">
                                                                             <div className="flex flex-col items-center">
-                                                                                <Image
-                                                                                    src={item.picture.large}
-                                                                                    className="w-32 h-32 bg-gray-300 rounded-full mb-4 shrink-0"
-                                                                                    height={500}
-                                                                                    width={500}
-                                                                                    alt={item.name.first}
-                                                                                />
-                                                                                <h1 className="text-xl font-bold">{item.name.first} {item.name.last}</h1>
-                                                                                <p className="text-gray-600">{item.name.titel}</p>
+                                                                            
+                                                                                 <img src={item.image1 || defaultImage} alt="Contractor" className="w-32 h-32 bg-gray-300 rounded-full mb-4 shrink-0" />
+                                                                                <h1 className="text-xl font-bold">{item.name} </h1>
+                                                                                <p className="text-gray-600">{item.name}</p>
                                                                                 <div className="mt-6 flex flex-wrap gap-4 justify-center">
                                                                                     <a href="#" className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">Contact</a>
                                                                                     <a href="#" className="bg-gray-300 hover:bg-gray-400 text-gray-700 py-2 px-4 rounded">Resume</a>
@@ -113,7 +104,7 @@ const Engineer: React.FC = () => {
                                                                             <div className="flex flex-col">
                                                                                 <span className="text-gray-600 uppercase font-bold tracking-wider mb-2">Skills</span>
                                                                                 <ul>
-                                                                                    <li className="mb-2">{item.email} </li>
+                                                                                    <li className="mb-2">ایمیل  </li>
                                                                                 </ul>
                                                                             </div>
                                                                         </div>
@@ -121,7 +112,7 @@ const Engineer: React.FC = () => {
                                                                     <div className="col-span-4 sm:col-span-9">
                                                                         <div className="bg-white shadow rounded-lg p-6">
                                                                             <h2 className="text-xl font-bold mb-4">درباره من </h2>
-                                                                            <p className="text-gray-700">{item.location.city}
+                                                                            <p className="text-gray-700">{item.location}
                                                                             </p>
                                                                             <h3 className="font-semibold text-center mt-3 -mb-2">
                                                                                 راه های ارتباطی
@@ -154,14 +145,14 @@ const Engineer: React.FC = () => {
                                                                             <h2 className="text-xl font-bold mt-6 mb-4">تجربه های کاری </h2>
                                                                             <div className="mb-6">
                                                                                 <div className="flex justify-between">
-                                                                                    <span className="text-gray-600 font-bold">{item.location.state} </span>
+                                                                                    <span className="text-gray-600 font-bold">{item.location} </span>
                                                                                     <p>
-                                                                                        <span className="text-gray-600 mr-2">{item.phone}  </span>
+                                                                                        <span className="text-gray-600 mr-2">{item.body}  </span>
                                                                                         <span className="text-gray-600">2017 - 2019</span>
                                                                                     </p>
                                                                                 </div>
                                                                                 <p className="mt-2">
-                                                                                    {item.cell}
+                                                                                تماس 
                                                                                 </p>
                                                                             </div>
                                                                         </div>
@@ -187,15 +178,10 @@ const Engineer: React.FC = () => {
                                                     </MDBModalHeader>
                                                     <MDBModalBody>
                                                         <div className='flex justify-between' >
-                                                            <Image
-                                                                src={item.picture.large}
-                                                                className="w-22 h-22 bg-gray-300 rounded-full mb-4 shrink-0"
-                                                                height={500}
-                                                                width={500}
-                                                                alt={item.name.first}
-                                                            />
+                                                       
+                                                                   <img src={item.image1 || defaultImage} alt="Contractor"    className="w-22 h-22 bg-gray-300 rounded-full mb-4 shrink-0"/>
                                                             <h4 className="font-bold text-3xl text-center mb-1">
-                                                                {item.name.first} {item.name.last}
+                                                                {item.name} 
                                                             </h4>
                                                         </div>
                                                         <ul className='flex flex-col'>
@@ -204,7 +190,7 @@ const Engineer: React.FC = () => {
                                                                     <div className='w-8 h-8  p-2 rounded-md bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500' >
                                                                         <TfiEmail size={20} />
                                                                     </div>
-                                                                    <div> {item.email} </div>
+                                                                    <div> ایمیل </div>
                                                                 </div>
                                                             </i>
                                                             <br />
@@ -214,7 +200,7 @@ const Engineer: React.FC = () => {
                                                                         <FaPhone size={20} />
                                                                     </div>
                                                                     <div>
-                                                                        {item.cell}
+                                                                  تلفن
                                                                     </div>
                                                                 </div>
                                                             </li>
@@ -230,17 +216,13 @@ const Engineer: React.FC = () => {
                                             </MDBModalDialog>
                                         </MDBModal>
                                         <div className="h-32 w-32 flex  justify-between ">
-                                            <Image
-                                                src={item.picture.medium}
-                                                height={500}
-                                                width={500}
-                                                alt={item.name.first}
-                                                className="rounded-full object-cover h-full w-full shadow-md"
-                                            />
+                                      
+                                             <img src={item.image1 || defaultImage} alt= {item.name}  className="rounded-full object-cover h-full w-full shadow-md"
+/>
                                         </div>
                                     </div>
                                     <div className="px-6 mt-16">
-                                        <h1 className="font-bold text-3xl text-center mb-1">{item.name.first} {item.name.last}  </h1>
+                                        <h1 className="font-bold text-3xl text-center mb-1">{item.name}  </h1>
                                         <p className="text-gray-800 text-sm text-center"> تخصص:{""}{"age"}</p>
                                         <p className="text-center text-gray-600 text-base pt-3 font-normal">{"gender"}</p>
                                         <ul className="w-full flex  justify-between  pt-5 pb-5">
