@@ -7,7 +7,7 @@ export const SearchBar = ({ setResults }: { setResults: any }) => {
   const [input, setInput] = useState("");
 
   const fetchData = (value:any) => {
-    fetch("https://jsonplaceholder.typicode.com/users")
+    fetch(process.env.BaseUrl + '/search?')
       .then((response) => response.json())
       .then((json) => {
         const results = json.filter((user:any) => {
