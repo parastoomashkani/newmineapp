@@ -15,12 +15,110 @@ interface Node {
 const dataInArray: Node[] = [
     {
       key: "mammal",
-      label: " کانی ",
+      label: " اکتشاف",
       url: "https://www.google.com/search?q=mammal",
       nodes: [
         {
+          key: "mineral potential",
+          label: "پتانسیل مواد معدنی ",
+          url: "https://www.google.com/search?q=canidae",
+          nodes: [
+            {
+              key: " Lead",
+              label: "کانسار های تیپ سرب و روی با میزبان کبنات",
+              url: "https://www.google.com/search?q=dog",
+              nodes: []
+            },
+            {
+              key: "golden",
+              label: "  کانسار های طلای کوهزایی  ",
+              url: "https://www.google.com/search?q=dog",
+              nodes: []
+            },
+            {
+              key: "iron",
+              label: " کانسار های تیب اکسید آهن  ",
+              url: "https://www.google.com/search?q=dog",
+              nodes: []
+            },
+            {
+              key: "dog",
+              label: " کانسار های تیپ منگنز بروندمی ",
+              url: "https://www.google.com/search?q=dog",
+              nodes: []
+            },
+            {
+              key: "fox",
+              label: "آهن ",
+              url: "https://www.google.com/search?q=fox",
+              nodes: []
+            },
+            {
+              key: "dog",
+              label: "نیکل",
+              url: "https://www.google.com/search?q=dog",
+              nodes: []
+            },
+            {
+              key: "dog",
+              label: "نیکل",
+              url: "https://www.google.com/search?q=dog",
+              nodes: []
+            },
+            {
+              key: "dog",
+              label: "نیکل",
+              url: "https://www.google.com/search?q=dog",
+              nodes: []
+            },
+            {
+              key: "dog",
+              label: "نیکل",
+              url: "https://www.google.com/search?q=dog",
+              nodes: []
+            },
+            {
+              key: "dog",
+              label: "نیکل",
+              url: "https://www.google.com/search?q=dog",
+              nodes: []
+            },
+            {
+              key: "dog",
+              label: "نیکل",
+              url: "https://www.google.com/search?q=dog",
+              nodes: []
+            },
+            {
+              key: "dog",
+              label: "نیکل",
+              url: "https://www.google.com/search?q=dog",
+              nodes: []
+            },
+            {
+              key: "dog",
+              label: "نیکل",
+              url: "https://www.google.com/search?q=dog",
+              nodes: []
+            },
+            {
+              key: "dog",
+              label: "نیکل",
+              url: "https://www.google.com/search?q=dog",
+              nodes: []
+            },
+            {
+              key: "dog",
+              label: "نیکل",
+              url: "https://www.google.com/search?q=dog",
+              nodes: []
+            },
+          
+          ]
+        },
+        {
           key: "canidae",
-          label: "آهنی",
+          label: "پتانسیل مواد معدنی ",
           url: "https://www.google.com/search?q=canidae",
           nodes: [
             {
@@ -37,7 +135,87 @@ const dataInArray: Node[] = [
             },
           
           ]
-        }
+        },
+        {
+          key: "canidae",
+          label: "ناهنجاریهای ژئوشیمیایی",
+          url: "https://www.google.com/search?q=canidae",
+          nodes: [
+            {
+              key: "dog",
+              label: "نیکل",
+              url: "https://www.google.com/search?q=dog",
+              nodes: []
+            },
+            {
+              key: "fox",
+              label: "آهن ",
+              url: "https://www.google.com/search?q=fox",
+              nodes: []
+            },
+          
+          ]
+        },
+        {
+          key: "canidae",
+          label: " نگاشت کانی  ",
+          url: "https://www.google.com/search?q=canidae",
+          nodes: [
+            {
+              key: "dog",
+              label: "نیکل",
+              url: "https://www.google.com/search?q=dog",
+              nodes: []
+            },
+            {
+              key: "fox",
+              label: "آهن ",
+              url: "https://www.google.com/search?q=fox",
+              nodes: []
+            },
+          
+          ]
+        },
+        {
+          key: "canidae",
+          label: " مواد معدنی غیر فلزی  ",
+          url: "https://www.google.com/search?q=canidae",
+          nodes: [
+            {
+              key: "dog",
+              label: "نیکل",
+              url: "https://www.google.com/search?q=dog",
+              nodes: []
+            },
+            {
+              key: "fox",
+              label: "آهن ",
+              url: "https://www.google.com/search?q=fox",
+              nodes: []
+            },
+          
+          ]
+        },
+        {
+          key: "canidae",
+          label: " مقیاس ملی  ",
+          url: "https://www.google.com/search?q=canidae",
+          nodes: [
+            {
+              key: "dog",
+              label: "نیکل",
+              url: "https://www.google.com/search?q=dog",
+              nodes: []
+            },
+            {
+              key: "fox",
+              label: "آهن ",
+              url: "https://www.google.com/search?q=fox",
+              nodes: []
+            },
+          
+          ]
+        },
       ]
     },
     {
