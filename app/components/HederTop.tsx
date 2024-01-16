@@ -8,6 +8,10 @@ import Logout from './Logout';
 const HederTop = () => {
     const [user, setUser] = useState(null);
 const name =  localStorage.getItem('name');
+
+
+
+
     useEffect(() => {
       const fetchUserData = async () => {
         try {
