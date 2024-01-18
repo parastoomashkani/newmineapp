@@ -3,7 +3,8 @@ import {useState,useEffect} from 'react'
 import Contractors from './component/contractors'
 import Loading from "../../Louding"
 import { CPagination ,CPaginationItem } from '@coreui/react'
-import '../../../node_modules/@coreui/coreui/dist/css/coreui.min.css'
+import "bootstrap/dist/css/bootstrap.min.css";
+
 const page = () => {
   const [loading, setLoading] = useState(true)
   useEffect(() => {

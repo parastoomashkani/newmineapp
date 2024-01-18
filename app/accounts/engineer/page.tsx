@@ -6,7 +6,7 @@ import axios from 'axios';
 
 import Loading from "../../Louding"
 import { CPagination ,CPaginationItem } from '@coreui/react'
-import '../../../node_modules/@coreui/coreui/dist/css/coreui.min.css'
+import "bootstrap/dist/css/bootstrap.min.css";
 const Page = () => {
   const [loading, setLoading] = useState(true)
   useEffect(() => {
