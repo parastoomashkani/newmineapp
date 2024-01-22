@@ -6,7 +6,7 @@ import Loading from "../../Louding";
 
 interface pageProps{}
 
-const DynamicMap = dynamic(() => import('./components/Map'), {
+const DynamicMap = dynamic(() => import('./components/Map1'), {
     ssr: false
   });
   
