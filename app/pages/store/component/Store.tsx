@@ -45,7 +45,7 @@ function Store() {
                     بیل میکانیکی
                   </h1>
                   <hr />
-                  <p className='inline text-gray-700 font-normal leading-6 w-full text-base'>
+                  <p className='inline text-gray-700 font-normal leading-6 w-full text-base text-center '>
                     مشهد
                   </p>
                 </div>
@@ -55,7 +55,9 @@ function Store() {
                     قیمت
                   </li>
                   <li className='text-sm'>
-                    <i className='iconoir-calendar mr-1'>  <ImPriceTags /></i>
+                    <i className='iconoir-calendar mr-1 mt-0'> 
+                     <ImPriceTags />
+                     </i>
 
                   </li>
 

@@ -854,4 +854,4 @@ function Checkbox() {
   )
 }
 
-export default Checkbox
+export default Checkbox ;

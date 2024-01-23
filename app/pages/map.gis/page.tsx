@@ -1,7 +1,7 @@
 'use client';
 import { FC ,useEffect,useState } from 'react'   ;
 import dynamic from "next/dynamic";
-import Menu from './services/Menu';
+// import Menu from './services/Menu';
 import Loading from "../../Louding";
 
 interface pageProps{}
@@ -22,7 +22,7 @@ const DynamicMap = dynamic(() => import('./components/Map1'), {
     <main>
     <div id="map"
    >
-    <Menu />
+    {/* <Menu /> */}
     <DynamicMap />
 
     </div>

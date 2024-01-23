@@ -8,7 +8,8 @@ const Hero = () => {
           <p className="text-6xl capitalize font-semibold">
         مهارت 
         <br />
-            <span className="text-purple-500 pl-2 capitalize">خود را بالا </span> {" "}
+      
+            <span className="text-purple-500 pl-2 pt-8 capitalize">خود را بالا </span> {" "}
             <br /> ببرید{" "}
             <span className="text-purple-500 pl-2 capitalize">برای پشبرد</span>{" "}
             شما <br />{" "}
