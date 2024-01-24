@@ -11,9 +11,10 @@ import { geojson } from "../services/atd";
 import DrawTools from "./DrawTools";
 import proj4 from "proj4"
 import axios from 'axios';
-
+import { IoMdClose } from "react-icons/io";
 import CheckTree from 'rsuite/CheckTree';
 import "../../../../node_modules/rsuite/dist/rsuite-no-reset.min.css"
+import { GiHamburgerMenu } from "react-icons/gi";
 const data = [
   {
     value: "mammal",
@@ -892,7 +893,7 @@ const Map = () => {
   const [ii, setIi] = useState('BQMCSQ%3D%3D'); // Set your initial value
   const [bbox, setBbox] = useState('6261721.35625,2504688.5425,7514065.6275,3757032.81375');
   const [isVisible, setIsVisible] = useState(true);
-  const [mapWidth, setMapWidth] = React.useState('40%'); // Initial width for the map
+  const [mapWidth, setMapWidth] = React.useState('87%'); // Initial width for the map
 
   const toggleVisibility = () => {
     setIsVisible(!isVisible);
@@ -907,7 +908,7 @@ const Map = () => {
   useEffect(() => {
     const closeDivOnMapTouch = () => {
       if (isVisible) {
-        setIsVisible(false);
+        setIsVisible(true);
       }
     };
 
@@ -1005,7 +1006,7 @@ const Map = () => {
         className={`bg-blue-500 text-white absolute right-0 py-2 px-4 rounded ${isVisible ? 'hidden sm:block' : 'block sm:hidden'}`}
         onClick={toggleVisibility}
       >
-        Toggle
+     <GiHamburgerMenu />
       </button>
 
       {isVisible && (
@@ -1015,7 +1016,7 @@ const Map = () => {
             className={`absolute top-2 right-2 text-gray-500 sm:hidden`}
             onClick={handleClose}
           >
-            Close
+      <IoMdClose />
           </button>
         </div>
       )}

@@ -16,6 +16,6 @@ module.exports = {
     domains: ['randomuser.me'],
   },
   env: {
-BaseUrl:'https://nobati24.andromax.ir/api',
+BaseUrl:'https://zarkav.liara.run/api',
   }
 }
