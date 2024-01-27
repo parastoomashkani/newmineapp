@@ -7,26 +7,10 @@ const page = () => {
     const [fullname,setFullname]=useState("");
     const [email, setEmail]=useState("");
     const [text,setText]=useState("");
+    const [message,setMessage]=useState("");
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    
     const router = useRouter();
-
-    // const checkAuthenticationStatus = () => {
-    //     const isAuthenticated = /* Your authentication check logic */;
-    //     setIsLoggedIn(isAuthenticated);
-    //     return isAuthenticated;
-    //   };
-    
-    //   // Redirect to login page if the user is not logged in
-    //   if (!checkAuthenticationStatus()) {
-    //     router.push('/login'); // Replace '/login' with your actual login page path
-    //     return null; // Render nothing while redirecting
-    //   }
-    
-
-
-
-
-
     const handleChangeName =(e:any)=>{
         setFullname(e.target.value);
       }
@@ -38,21 +22,38 @@ const page = () => {
       }
 
 
-      const handelsubmit=( e:any)=>{
+      const handelsubmit = async (e:any ) => {
         e.preventDefault();
-      const formData = {
-fullname,
-email,
-text,
-      }
-      const jsonData = JSON.stringify(formData);
-
- console.log("Form Data (JSON):", jsonData);
-
- setText("");
- setFullname("");
- setEmail("");
-}
+      
+        const formData = {
+          fullname,
+          email,
+          text,
+        };
+      
+        try {
+          const response = await fetch('http://localhost:3001/send-email', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+          });
+      
+          if (response.ok) {
+            setMessage(' !پیام با موفقیت ارسال شد');
+          } else {
+            setMessage('.پیام  ارسال نشد. لطفا دوباره تلاش کنید');
+          }
+        } catch (error) {
+          setMessage('.خطا در ارسال پیام . لطفاً بعداً دوباره امتحان کنید');
+        }
+      
+        setText('');
+        setFullname('');
+        setEmail('');
+      };
+    
   return (
     <div>
         <section className="bg-blue-50 dark:bg-slate-800" id="contact" onSubmit={handelsubmit}>
@@ -76,6 +77,11 @@ text,
                     
                      پشتیبانی میکند 
                     </p>
+                    {message && (
+        <p className="mt-3 mb-12 text-right text-lg text-gray-600 dark:text-slate-400">
+          {message}
+        </p>
+      )}
                     <ul className="mb-6 md:mb-0">
                         <li className="flex">
                             <div className="flex h-10 w-10 items-center justify-center rounded bg-blue-900 text-gray-50">
@@ -181,7 +187,7 @@ text,
       </div>
     </div>
                         <div className="text-center">
-                            <button type="submit" className="w-full bg-blue-800 text-white px-6 py-3 font-xl rounded-md sm:mb-0">فرسنتادن پیام </button>
+                            <button type="submit" className="w-full bg-blue-800 text-white px-6 py-3 font-xl rounded-md sm:mb-0">فرستادن پیام </button>
                         </div>
                     </form>
                 </div>

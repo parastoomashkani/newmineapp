@@ -184,7 +184,7 @@ const Homepage = () => {
               <div className=" text-7xl text-center p-8 sm:pb-0 t text-slate-200 flex justify-center" >
                 <Link href="/pages/store
                 ">
-                  فروشگاه 
+                 آگهی ها 
                 </Link>
                 <Image
                   src={icon12}

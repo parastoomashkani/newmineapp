@@ -16,7 +16,7 @@ interface Node {
 const dataInArray: Node[] = [
     {
       key: "mammal",
-      label: " کانی ",
+      label: " اکتشاف",
       url: "https://www.google.com/search?q=mammal",
       nodes: [
         {
