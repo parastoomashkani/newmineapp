@@ -18,27 +18,28 @@ const Page = () => {
       params: {
         api_key: '77227738c32d90d07a9765478c99927b',
         base: 'USD',
-        currencies: 'EUR,XAU,XAG',
+        // currencies: 'EUR,XAU,XAG',
       },
     })
     .then(response => {
       console.log('Metal Prices API Response:', response.data);
 
       // Extract relevant data from the API response
-      const metalPrices = response.data;
+      const metalPrices = response.data.rates;
 
-      // Format the data for the DataGrid
-      const formattedData = metalPrices.map(price => ({
-        lastUpdate: new Date(price.lastUpdate),  // Assuming lastUpdate is a date string
-        symbol: price.symbol,
-        price: price.price,
-        change: price.change,
-        dayOpen: price.dayOpen,
-        dayMin: price.dayMin,
-        dayMax: price.dayMax,
+    
+      const formattedData = Object.keys(metalPrices).map((symbol, index) => ({
+        id: index + 1,
+        lastUpdate: new Date(),
+        symbol: symbol,
+        price: metalPrices[symbol],
+        change: 0, 
+        dayOpen: 0, 
+        dayMin: 0,
+        dayMax: 0, 
       }));
 
-      // Set the formatted data to the state
+      
       setDataSource(formattedData);
 
       setLoading(false);

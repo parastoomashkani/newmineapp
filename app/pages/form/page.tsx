@@ -3,7 +3,8 @@
 
 import React, { useState } from 'react';
 import dynamic from "next/dynamic";
-
+import axios from 'axios';
+import { getSession } from 'next-auth/react';
 const DynamicMap = dynamic(() => import('./component/map/map'), {
   ssr: false
 });
@@ -54,43 +55,65 @@ const handleFileChange = (e:any) => {
   setPhoto(file);
 };
 
- const handelsubmit=( e:any)=>{
-e.preventDefault();
+const handleSubmit = async (e:any) => {
+  e.preventDefault();
 
+  // Check if the user is authenticated
+  const session = await getSession();
 
-const formData = {
-  title,
-  note,
-  firstName,
-  familyName,
-  email,
-  address,
-  city,
-  state,
-  photo,
+  if (!session) {
+    // Redirect to the login page if not authenticated
+    window.location.href = "../../accounts/login";
+    return;
+  }
 
- }
+ 
+  const formData = new FormData();
+  formData.append('title', title);
+  formData.append('note', note);
+  formData.append('firstName', firstName);
+  formData.append('familyName', familyName);
+  formData.append('email', email);
+  formData.append('address', address);
+  formData.append('city', city);
+  formData.append('state', state);
+  if (photo) {
+    formData.append('photo', photo);
+  }
 
- const jsonData = JSON.stringify(formData);
+  try {
+    const response = await axios.post(process.env.BaseUrl +"/post_ad", formData, {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: localStorage.getItem('token'),
+      },
+ 
+    });
 
- console.log("Form Data (JSON):", jsonData);
+    console.log('Form data sent successfully:', response.data);
 
- setTitle("");
- setNote("");
- setFirstName("");
- setFamilyName("");
- setEmail("");
- setAddress("");
- setCity("");
- setState("");
- setPhoto(null);
+  
+    setTitle("");
+    setNote("");
+    setFirstName("");
+    setFamilyName("");
+    setEmail("");
+    setAddress("");
+    setCity("");
+    setState("");
+    setPhoto(null);
+  } catch (error) {
+    console.error('Error sending form data:', error);
 
-}
+  }
+};
+
   return (
     <div className='bg-slate-200'>
     <div className='container mx-auto px-4 bg-white  w-full m-8  '>
     {/* action={addItem}to form */}
-<form  className="relative border border-gray-100 space-y-3 max-w-screen-md mx-auto rounded-md bg-slate-300	 p-6 shadow-xl lg:p-10" onSubmit={handelsubmit} >
+<form  className="relative border border-gray-100 space-y-3 max-w-screen-md mx-auto rounded-md bg-slate-300	 p-6 shadow-xl lg:p-10" onSubmit={handleSubmit} >
   <div className="space-y-12  ">
     <div className="border-b border-gray-900/10 pb-12 ">
       <h2 className=" font-semibold leading-7 text-gray-900  text-center text-6xl">   ثبت {""}<span className='text-indigo-500'>
@@ -324,6 +347,8 @@ const formData = {
   </form>
     </div></div>
   )
-}
+  
+};
+
 
 export default Form

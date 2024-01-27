@@ -35,9 +35,10 @@ interface ApplyModalProps {
       const response = await axios.post(process.env.BaseUrl +'/', formData, {
         headers: {
             'Content-Type': 'application/json',
-            Accept: 'application/json',
-            Authorization: localStorage.getItem('token'),
+            // Accept: 'application/json',
+            // Authorization: localStorage.getItem('token'),
         },
+        
       });
   
       if (response.status === 200) {

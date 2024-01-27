@@ -14,6 +14,7 @@ const nextConfig = {
 module.exports = {
   images: {
     domains: ['randomuser.me'],
+    domains: ['fa.wikipedia.org'],
   },
   env: {
 BaseUrl:'https://zarkav.liara.run/api',

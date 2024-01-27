@@ -12,7 +12,7 @@ const name =  localStorage.getItem('name');
     useEffect(() => {
       const fetchUserData = async () => {
         try {
-          const response = await fetch(process.env.BaseUrl +'/users'); // Replace with your actual user API endpoint
+          const response = await fetch(process.env.BaseUrl +'/'); // Replace with your actual user API endpoint
           const userData = await response.json();
           setUser(userData);
         } catch (error) {
