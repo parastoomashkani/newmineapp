@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@aspnet/signalr": "^1.0.27",
+    "@coreui/react": "^4.11.1",
+    "@etchteam/next-pagination": "^3.5.5",
     "@fortawesome/fontawesome-free": "^6.5.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
@@ -57,6 +60,7 @@
     "react-leaflet-draw": "^0.20.4",
     "react-leaflet-fullscreen": "^4.1.1",
     "react-leaflet-heatmap-layer-v3": "^3.0.3-beta-1",
+    "react-paginate": "^8.2.0",
     "react-pure-loaders": "^3.0.1",
     "react-sidebar-ui": "^1.3.3",
     "react-simple-tree-menu": "^1.1.18",
