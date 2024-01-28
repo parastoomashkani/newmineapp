@@ -7,6 +7,7 @@ import { IoOpenOutline } from 'react-icons/io5';
 import { FaRegUser } from 'react-icons/fa';
 import Image from 'next/image';
 import ImageD from "../../../../public/images/none.png"
+import { useRouter } from 'next/navigation';
 interface TreeDataItem {
   id: number;
   img: string;
@@ -19,13 +20,14 @@ function Store() {
 const [treeData, setTreeData] = useState<TreeDataItem[] | null>(null);
 const [loading, setLoading] = useState(true);
 const [isModalOpen, setIsModalOpen] = useState(false);
+const router = useRouter();
 
 useEffect(() => {
   const fetchData = async () => {
     try {
       const response = await axios.get(process.env.BaseUrl + '/ads?');
       setTreeData(response.data.data);
-      console.log(response.data.data);
+      console.log(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
     } finally {
@@ -36,13 +38,20 @@ useEffect(() => {
   fetchData();
 }, []);
 
-const openModal = () => {
+const openModal = (id:number) => {
   setIsModalOpen(true);
 };
 
 const closeModal = () => {
   setIsModalOpen(false);
 };
+
+const openModalDetails = (item: TreeDataItem) => {
+  // Open a new page with details when the button is clicked
+  router.push(`/pages/store/ad-details/${item.id}`);
+};
+
+
 
 if (loading) {
   return <Loading />;
@@ -60,7 +69,7 @@ function truncateText(text:any, numWords:any) {
             key={item.id} 
             className="relative bg-white rounded-xl shadow-xl hover:scale-105 duration-500 transform transition cursor-pointer"
           >
-            <div className="top-0 left-0 mt-3 px-2 rounded-lg absolute z-30 bg-green-500 text-gray-100 text-xs md:text-sm font-medium md:block">
+            <div className="top-0 left-0 mt-3 px-2 rounded-lg absolute z-30 bg-green-500 text-gray-100 text-xs md:text-sm font-medium md:block"     onClick={() => openModalDetails(item)}>
               <IoOpenOutline size={25} />
             </div>
             <div className="top-0 left-0 md:h-5 mt-5 text-gray-100 rounded-lg px-2 absolute z-20 bg-green-500">
@@ -99,6 +108,10 @@ function truncateText(text:any, numWords:any) {
                   isOpen={isModalOpen}
                   onRequestClose={closeModal}
                 />
+
+
+
+              
               </div>
             </div>
           </div>

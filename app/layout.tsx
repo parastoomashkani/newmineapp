@@ -6,6 +6,7 @@ import HederTop from './components/HederTop'
 import HeaderMain from './components/HeaderMain'
 import Footer from './components/Footer'
 import { getServerSession } from 'next-auth';
+import MobNavbar from './components/MobNavbar'
 // import Sidebar from './components/Sidebar'
 // import Menu from './components/Menu'
 
@@ -36,7 +37,7 @@ export default async function RootLayout({
     {children} 
 
      <Footer />
-   
+   <MobNavbar />
      </body>
      
    

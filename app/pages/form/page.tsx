@@ -12,14 +12,14 @@ const DynamicMap = dynamic(() => import('./component/map/map'), {
 const Form = () => {
 
 const [title,setTitle]=useState("");
-const [note,setNote]=useState("");
+const [txt,setTxt]=useState("");
 const [firstName,setFirstName]=useState("");
 const [familyName,setFamilyName]=useState("");
 const [email,setEmail]=useState("");
 const [address,setAddress]=useState("");
 const [city,setCity]=useState("");
 const [state,setState]=useState("");
-const [photo, setPhoto] = useState(null);
+const [img, setImg] = useState(null);
 
 
 
@@ -29,7 +29,7 @@ const handleChange = (e:any) => {
 
 }
  const handleChangeNote=(e:any)=>{
-    setNote(e.target.value);
+    setTxt(e.target.value);
 }
 const handleChangeFirstName =(e:any)=>{
   setFirstName(e.target.value);
@@ -51,40 +51,41 @@ const handleChangeState=(e:any)=>{
 }
 
 const handleFileChange = (e:any) => {
-  const file = e.target.files[0];
-  setPhoto(file);
+setImg(e.target.files[0]);
+  console.log(img);
 };
 
 const handleSubmit = async (e:any) => {
   e.preventDefault();
 
   // Check if the user is authenticated
-  const session = await getSession();
+  // const session = await getSession();
 
-  if (!session) {
-    // Redirect to the login page if not authenticated
-    window.location.href = "../../accounts/login";
-    return;
-  }
-
+  // if (!session) {
+  //   // Redirect to the login page if not authenticated
+  //   window.location.href = "../../accounts/login";
+  //   return;
+  // }
+  
  
   const formData = new FormData();
+  const files = formData.getAll('img') as File[];
+  
   formData.append('title', title);
-  formData.append('note', note);
+  formData.append('txt', txt);
   formData.append('firstName', firstName);
   formData.append('familyName', familyName);
   formData.append('email', email);
   formData.append('address', address);
   formData.append('city', city);
   formData.append('state', state);
-  if (photo) {
-    formData.append('photo', photo);
-  }
+  formData.append('img', img);
+  
 
   try {
     const response = await axios.post(process.env.BaseUrl +"/post_ad", formData, {
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'multipart/form-data',
         Accept: 'application/json',
         Authorization: localStorage.getItem('token'),
       },
@@ -95,14 +96,14 @@ const handleSubmit = async (e:any) => {
 
   
     setTitle("");
-    setNote("");
+    setTxt("");
     setFirstName("");
     setFamilyName("");
     setEmail("");
     setAddress("");
     setCity("");
     setState("");
-    setPhoto(null);
+    setImg(null);
   } catch (error) {
     console.error('Error sending form data:', error);
 
@@ -113,7 +114,7 @@ const handleSubmit = async (e:any) => {
     <div className='bg-slate-200'>
     <div className='container mx-auto px-4 bg-white  w-full m-8  '>
     {/* action={addItem}to form */}
-<form  className="relative border border-gray-100 space-y-3 max-w-screen-md mx-auto rounded-md bg-slate-300	 p-6 shadow-xl lg:p-10" onSubmit={handleSubmit} >
+<form  className="relative border border-gray-100 space-y-3 max-w-screen-md mx-auto rounded-md bg-slate-300	 p-6 shadow-xl lg:p-10" onSubmit={handleSubmit}  >
   <div className="space-y-12  ">
     <div className="border-b border-gray-900/10 pb-12 ">
       <h2 className=" font-semibold leading-7 text-gray-900  text-center text-6xl">   ثبت {""}<span className='text-indigo-500'>
@@ -132,8 +133,8 @@ const handleSubmit = async (e:any) => {
        
    
           <div className="mt-2">
-            <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-200 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-              <input type="text" value={title} onChange={handleChange} name="username" id="titel" autoComplete="titel" className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="  معدن طلا "/>
+            <div className="flex pr-8 rounded-md shadow-sm ring-1 ring-inset ring-gray-200 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+              <input type="text" value={title} onChange={handleChange} name="username" id="titel" autoComplete="titel" className="block flex-1 pl-8 border-0 bg-transparent text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="  معدن طلا "/>
             </div>
           </div>
         </div>
@@ -143,7 +144,7 @@ const handleSubmit = async (e:any) => {
             توضیحات 
           </label>
           <div className="mt-2">
-            <textarea id="about" name="about"  value={note} onChange={handleChangeNote} className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
+            <textarea id="txt" name="txt"  value={txt} onChange={handleChangeNote} className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
           </div>
        
         </div>
@@ -154,8 +155,8 @@ const handleSubmit = async (e:any) => {
       </label>
       <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
         <div className="text-center">
-          {photo ? (
-            <img src={URL.createObjectURL(photo)} alt="Uploaded" className="mx-auto h-20 w-20 text-gray-300" />
+          {img ? (
+            <img src={URL.createObjectURL(img)} alt="Uploaded" className="mx-auto h-20 w-20 text-gray-300" />
           ) : (
             <svg className="mx-auto h-20 w-20 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path

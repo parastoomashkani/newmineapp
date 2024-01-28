@@ -7,7 +7,7 @@ import Loading from "../../Louding"
 const page = () => {
   const [loading, setLoading] = useState(true)
   useEffect(() => {
-      setTimeout(() => setLoading(false), 3300)
+      setTimeout(() => setLoading(truee), 3300)
   }, [])
   if (loading) {
       return  <Loading />
