@@ -7,14 +7,14 @@ import Loading from "../../Louding"
 const page = () => {
   const [loading, setLoading] = useState(true)
   useEffect(() => {
-      setTimeout(() => setLoading(truee), 3300)
+      setTimeout(() => setLoading(false), 3300)
   }, [])
   if (loading) {
       return  <Loading />
     }
   return (
     <div>
-       <h1 className="font-bold text-7xl text-center text-slate-600 p-8 .border-b-2 " >  آگهی ها  </h1>
+       <h1 className="font-bold text-7xl text-center text-slate-600  .border-b-2 " >  آگهی ها  </h1>
 < hr />
         <Store />
         <div className='flex items-center justify-center px'>

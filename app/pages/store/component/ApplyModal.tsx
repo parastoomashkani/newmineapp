@@ -1,17 +1,23 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { useDropzone } from 'react-dropzone';
-import "bootstrap/dist/css/bootstrap.min.css";
+import "../../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { IoMdClose } from "react-icons/io";
 import { MdOutlineCloudUpload } from "react-icons/md";
 import axios from 'axios';
 import Swal from 'sweetalert2'
+
+
 interface ApplyModalProps {
-    isOpen: boolean;
-    onRequestClose: () => void;
-  }
-  const ApplyModal: React.FC<ApplyModalProps> = ({ isOpen, onRequestClose }) => {
-  const [file, setFile] = useState(null);
+  isOpen: boolean;
+  onRequestClose: () => void;
+  selectedAd: TreeDataItem | null;
+}
+
+
+
+
+const ApplyModal: React.FC<ApplyModalProps> = ({ isOpen, onRequestClose, selectedAd }) => {  const [file, setFile] = useState(null);
   const [about, setAbout] = useState('');
 
   const onDrop = (acceptedFiles:any) => {
@@ -68,11 +74,18 @@ interface ApplyModalProps {
   };
   
   return (
-    <Modal show={isOpen} onHide={onRequestClose}>
-      <Modal.Header closeButton>
-        <Modal.Title>Apply</Modal.Title>
+    <Modal show={isOpen} onHide={onRequestClose}   >
+       <Modal.Header closeButton>
+        <Modal.Title>Apply for {selectedAd?.title}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
+  <h2>
+  {selectedAd?.title}
+  </h2>
+  <hr />
+  <p>
+  {selectedAd?.txt}
+  </p>
         <Form>
           <Form.Group controlId="formFile" className="mb-3">
             <Form.Label>رزمه خود را قرار بدید (PDF):</Form.Label>
