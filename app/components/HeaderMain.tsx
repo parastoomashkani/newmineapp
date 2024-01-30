@@ -1,5 +1,5 @@
 'use client'
-import React, { useState,useEffect } from 'react';
+// import React, { useState,useEffect } from 'react';
 import { BsSearch } from "react-icons/bs";
 import { BiUser } from "react-icons/bi"
 import { FaHome } from "react-icons/fa";
@@ -8,65 +8,64 @@ import Image from 'next/image';
 import Logo from "../../public/images/logoNew (1).png"
 import HeadedrImg from '../../public/images/Website-Frontpage-Header-02.jpg'
 import { MdOutlineDashboard } from "react-icons/md";
-import debounce from 'lodash.debounce';
+import React, { useCallback, useState,useEffect } from 'react';
+import List, { ListTypes } from 'devextreme-react/list';
+import '../../node_modules/devextreme/dist/css/dx.carmine.compact.css';
 
+function ItemTemplate(data:any) {
+  const handleItemClick = async () => {
+     
+    try {
+      const response = await fetch(`${process.env.BaseUrl}/ad?id=${data.id}`);
+      const additionalData = await response.json();
+   
+      console.log("Additional data:", additionalData);
+    } catch (error) {
+      console.error('Error fetching additional data:', error);
+    }
+  };
 
-
-
+  return  <div onClick={handleItemClick } >{data.Name} {data.title}</div> ;
+}
 
 const HeaderMain = () => {
 
-  const [searchQuery, setSearchQuery] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
-  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
-  const [selectedResult, setSelectedResult] = useState(null);
 
-  const fetchSearchResults = async () => {
+  const [products, setProducts] = useState([]);
+  const [searchMode, setSearchMode] = useState('contains');
+  const [searchResultsVisible, setSearchResultsVisible] = useState(false);
+
+  const onSearchModeChange = useCallback((args:any) => {
+    setSearchMode(args.value);
+  }, [setSearchMode]);
+
+  const fetchData = async (searchText:any) => {
     try {
-      const response = await fetch(process.env.BaseUrl + `/search?q=${searchQuery}`);
+      const response = await fetch(`${process.env.BaseUrl}/search?text=${searchText}`);
       const data = await response.json();
-      setSearchResults(data || []);
+      setProducts(data);
+      setSearchResultsVisible(true);
     } catch (error) {
-      console.error('Error fetching search results:', error);
+      console.error('Error fetching data:', error);
     }
   };
 
-  const debouncedFetchSearchResults = debounce(fetchSearchResults, 300);
-
-  const handleInputChange = (event:any) => {
-    setSearchQuery(event.target.value);
-    debouncedFetchSearchResults();
-    setIsDropdownVisible(true);
-  };
-
-  const handleEnterKey = (event:any) => {
-    if (event.key === 'Enter') {
-      setIsDropdownVisible(false);
+  const handleInputChange = (value:any ) => {
+    if (value.length > 0) {
+      fetchData(value);
+    } else {
+      setSearchResultsVisible(false);
     }
   };
 
-  const handleOutsideClick = (event:any) => {
-    if (event.target.closest('.search-container') === null) {
-      setIsDropdownVisible(false);
-    }
+  const handleInputBlur = () => {
+    setSearchResultsVisible(false);
   };
 
-  const handleResultClick = (result:any) => {
-    setSelectedResult(result);
-    setIsDropdownVisible(false);
-    // Do any other action on result click
-  };
-
-  useEffect(() => {
-    document.addEventListener('click', handleOutsideClick);
-    return () => {
-      document.removeEventListener('click', handleOutsideClick);
-    };
-  }, []);
 
   return (
 
-    <div className=" HeaderMain border-b border-gray-200 py-4 bg-cyan-500	text-slate-50		" style={{ backgroundImage: `url(${HeadedrImg.src})`, backgroundSize: 'cover' }}>
+    <div className=" HeaderMain border-b border-gray-200 py-4 bg-cyan-500	text-slate-50	z-20	" style={{ backgroundImage: `url(${HeadedrImg.src})`, backgroundSize: 'cover' }}>
 
       <div className="container sm:flex justify-between items-center">
         <div className="hidden lg:flex gap-4  text-[30px]  font-bold text-4xl text-center pb-4 sm:pb-0 text-blackish">
@@ -78,32 +77,33 @@ const HeaderMain = () => {
           />
         </div>
 
-        <div className="w-full justify-start sm:justify-end sm:w-[20%]  bg-white text-black md:w-[70%] relative">
-          <input
-            className="peer h-full w-full bg-sky-100 border-b  border-blue-gray-200 bg-transparent pt-4 pb-1.5 text-black font-sans text-sm font-normal text-blue-gray-700 outline
-           outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-amber-600	 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-            type="text"
-            placeholder="Enter any product name..."
-            value={searchQuery}
-            onChange={handleInputChange}
-            onKeyDown={handleEnterKey}
+   
+  <React.Fragment>
+  <div className="w-full justify-start sm:justify-end sm:w-[20%] rounded-r-lg bg-white text-black md:w-[70%] relative">
+      <div className="search-bar">  
+        <input
+          className="text-black peer h-full w-full bg-sky-100 border-b rounded-br-lg border-blue-gray-200 bg-transparent pt-4 pb-1.5  font-sans text-sm font-normal text-blue-gray-700 outline
+          outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-amber-600	 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-5 "
+          placeholder="Type to search..."
+          onChange={(e) => handleInputChange(e.target.value)}
+          onBlur={handleInputBlur}
+        />  
+   
+      </div>
+      {searchResultsVisible && (
+        <div className="search-results absolute bg-white z-30  ">
+          <List
+            dataSource={products}
+            height={200}
+            itemRender={ItemTemplate}
+            searchExpr="Name, title"
+            // searchEnabled={true}
+            // searchMode={searchMode}
           />
-       {isDropdownVisible && searchResults.length > 0 && (
-            <div className="absolute top-full left-0 w-full bg-white border border-blue-gray-200 shadow-md">
-              {searchResults.map((result) => (
-                <div
-                  key={result.id}
-                  className={`result-item ${selectedResult === result ? 'selected' : ''}`}
-                  onClick={() => handleResultClick(result)}
-                >
-                  {result.name}{result.title}
-                </div>
-              ))}
-            </div>
-          )}
-
         </div>
-
+      )}
+      </div>
+    </React.Fragment>
 
         <div className="hidden lg:flex gap-4  text-gray-500 text-[30px]">
           <Link href="/accounts/login" >
