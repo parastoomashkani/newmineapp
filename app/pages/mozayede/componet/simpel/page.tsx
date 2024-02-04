@@ -37,28 +37,38 @@ const Mozayede: React.FC<Item > = () => {
   const cancelButtonRef = useRef(null);
   const [loading, setLoading] = useState(true);
   const [value, onChange] = useState<Value>(new Date());
-  const [apiData, setApiData] = useState<any>(null); 
+  const [apiData, setApiData] = useState<any>(null);
+  const [geoJsonData, setGeoJsonData] = useState<any>(null); 
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(process.env.BaseUrl + '/moz?');
-        setApiData(response.data); 
-        setLoading(false); 
+        setApiData(response.data);
+        setLoading(false);
         console.log(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
-        setLoading(false); 
+        setLoading(false);
       }
     };
-  
+
     fetchData();
   }, []);
- 
 
-  const showProductDetails = (item:any) => {
-    setSelectedItem(item); 
+  const fetchGeoJsonData = async (itemId: number) => {
+    try {
+      const response = await axios.get(process.env.BaseUrl + `/geojson/${itemId}`);
+      setGeoJsonData(response.data);
+    } catch (error) {
+      console.error('Error fetching GeoJSON data:', error);
+    }
+  };
+
+  const showProductDetails = (item: any) => {
+    setSelectedItem(item);
     setOpen(true);
+    fetchGeoJsonData(item.id); // Fetch G
   };
   function truncateText(text:any, numWords:any) {
     const words = text.split(/\s+/);
@@ -147,11 +157,9 @@ const Mozayede: React.FC<Item > = () => {
                           </p>
                         </div>
 
-                        <div id="map"  className="mt-20 justify-center xl:w-80 xl:h-80 sm:w-40 sm:h-40">
-
-                          <DynamicMap />
-
-                        </div>
+                        <div id="map" className="mt-20 justify-center xl:w-80 xl:h-80 sm:w-40 sm:h-40">
+        <DynamicMap geoJsonData={geoJsonData} />
+      </div>
                         <div className=" justify-center">
                           <Link href="/pages/map.gis">
                             <button className="  w-64 justify-self-center rounded-md bg-blue-600 p-2 text-center font-semibold text-white" type="button" >

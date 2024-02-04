@@ -34,7 +34,7 @@ const Login = () => {
       const accountStatus = loginResponse.data.status;
 
       if (accountStatus === 200) {
-        router.push('/pages/dashboard');
+        router.push('/dashboard');
       } else if (accountStatus === 220) {
         router.refresh();
         router.push('/accounts/register');
