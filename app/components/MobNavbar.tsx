@@ -3,7 +3,10 @@ import {RxHamburgerMenu } from 'react-icons/rx';
 import {BsChatSquareText } from 'react-icons/bs';
 import {CiSaveDown2 } from 'react-icons/ci';
 import {AiOutlineHome } from 'react-icons/ai';
+import Link from 'next/link';
 // import {useState} from 'react'
+import { MdOutlineDashboard } from "react-icons/md";
+import { BiUser } from "react-icons/bi"
 
 const MobNavbar = () => {
 
@@ -14,14 +17,18 @@ const MobNavbar = () => {
     <div className='flex justify-between text-[28px] py-2'>
     <AiOutlineHome />
     <div className='relative'>
-    <BsChatSquareText size={24} />
+    <Link href="/dashboard">
+        <MdOutlineDashboard />
+        </Link>
     <div className='bg-red-600 rounded-full absolute top-0 right-0 w-[15px] h-[15px] text-[12px] text-white grid place-items-center translate-x-1 -translate-y-1'>0</div>
     </div>
     <div className='relative'>
-    <CiSaveDown2  size={26}/>
+    <Link href="/accounts/login" >
+        <BiUser />
+</Link>
+        
     <div    className='bg-red-600 rounded-full absolute top-0 right-0 w-[15px] h-[15px] text-[12px] text-white grid place-items-center translate-x-1 -translate-y-1'>0</div>
     </div>
-    <RxHamburgerMenu  />
     </div>
    </div> 
   )

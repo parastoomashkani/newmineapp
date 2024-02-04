@@ -60,6 +60,11 @@ const Mozayede: React.FC<Item > = () => {
     setSelectedItem(item); 
     setOpen(true);
   };
+  function truncateText(text:any, numWords:any) {
+    const words = text.split(/\s+/);
+    const truncatedText = words.slice(0, numWords).join(' ') + (words.length > numWords ? '...' : '');
+    return truncatedText;
+  }
 
   return (
 <>
@@ -208,7 +213,7 @@ const Mozayede: React.FC<Item > = () => {
                 </li>
                   </ul>
         <p className="text-gray-500  text-center">
-          {item.body}
+          {truncateText(item.body, 20)}
           </p>
 
        

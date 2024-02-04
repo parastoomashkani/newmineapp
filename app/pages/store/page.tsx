@@ -14,7 +14,7 @@ const page = () => {
     }
   return (
     <div>
-       <h1 className="font-bold text-7xl text-center text-slate-600 p-8 .border-b-2 " >  آگهی ها  </h1>
+       <h1 className="font-bold text-7xl text-center text-slate-600  .border-b-2 " >  آگهی ها  </h1>
 < hr />
         <Store />
         <div className='flex items-center justify-center px'>
