@@ -11,6 +11,7 @@ import HederTop from "../../../../components/HederTop";
 import axios from "axios";
 // import Loading from "@/app/Louding";
 
+import defaultImage from '../../../../../public/images/none.png';
 
 const DynamicMap = dynamic(() => import('../simpel/map'), {
   ssr: false
@@ -81,7 +82,7 @@ const Mozayede: React.FC<Item > = () => {
 <div className="grid grid-cols-1 place-items-center sm:place-items-start sm:grid-cols-2 lg:grid-col-3 xl:grid-cols-4 gap-10 xl:gap-x-20 xl:gap-y-10 pt-6">
 
 {apiData && apiData.map((item:Item) => (
-    <div className="px-4 border border-gray-200 rounded-xl max-w-[400px] text-right">
+    <div className="px-4 border border-gray-200 rounded-xl max-w-[300px] text-right">
      
       <Transition.Root show={open} as={Fragment}>
         <Dialog as="div" className="relative z-10 " initialFocus={cancelButtonRef} onClose={setOpen}>
@@ -116,20 +117,17 @@ const Mozayede: React.FC<Item > = () => {
 
                   <div className="md:flex items-start justify-center py-20 2xl:px-3 md:px-20 px-20  ">
                     <div className="sm:flex sm:items-start">
-                      <div className=" w-80 ">
-                        {/* <Image
+                      <div className=" w-80 sm: ">
+                        <Image
                           className="w-80	h-64"
-                          src={item.img1}
+                         // src={item.img1 || defaultImage}
+                        src={defaultImage}
                           width={500}
                           height={500}
                           alt={item.title}
-                        /> */}
+                        />
 
-                        <div className=" mt-20  w-1/4 grid grid-col bg-white text-center gap-4 p-4 rounded-lg">
-                           {/* <Calendar onChange={onChange} value={value} /> */}
-                           </div>
-
-
+          
                       </div>
 
                       <div className="mt-8 text-center sm:ml-10 sm:mt-0 ">
@@ -144,7 +142,7 @@ const Mozayede: React.FC<Item > = () => {
                           </ul>
                         </div>
 
-                        <div className="mt-20">
+                        <div className="mt-20 w-full">
 
                           <p className="text-sm text-gray-500">
                             {selectedItem.about1}
@@ -157,10 +155,11 @@ const Mozayede: React.FC<Item > = () => {
                           </p>
                         </div>
 
-                        <div id="map" className="mt-20 justify-center xl:w-80 xl:h-80 sm:w-40 sm:h-40">
+            
+                        <div className=" justify-center">
+                                      <div id="map" className="mt-20 justify-center xl:w-full xl:h-80 sm:w-80 sm:h-40">
         <DynamicMap geoJsonData={geoJsonData} />
       </div>
-                        <div className=" justify-center">
                           <Link href="/pages/map.gis">
                             <button className="  w-64 justify-self-center rounded-md bg-blue-600 p-2 text-center font-semibold text-white" type="button" >
                               دیدن نقشه
@@ -198,13 +197,14 @@ const Mozayede: React.FC<Item > = () => {
       </Transition.Root>
 
       <div>
-        {/* <Image
+        <Image
           className="w-full h-40"
-          src={item.img1}
+          // src={item.img1 || defaultImage}
+          src={defaultImage}
           width={200}
           height={300}
           alt={item.title}
-        /> */}
+        />
       </div>
 
       <div className="space-y-2 ">

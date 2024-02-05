@@ -14,7 +14,7 @@ return(
 style={
   {
     height:" 20rem",
-    width:"83.333333%"
+    width:"100%"
   }
   
 }

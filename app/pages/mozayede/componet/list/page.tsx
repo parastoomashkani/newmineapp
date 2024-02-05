@@ -31,6 +31,7 @@ const Mozayede = () => {
         return  <Loading />
       }
     return(
+      <div className='p-8'>
   <TreeList
     id="employees"
     dataSource={treeData}
@@ -50,6 +51,7 @@ const Mozayede = () => {
     <Column dataField="body" caption="توضیحات "/>
     {/* <Column dataField="Hire_Date" dataType="date" /> */}
   </TreeList>
+  </div>
     )
 }
 

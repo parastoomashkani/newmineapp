@@ -65,8 +65,8 @@ function truncateText(text:any, numWords:any) {
   return truncatedText;
 }
   return (
-    <div className="bg-gray-200 w-full h-full py-5 flex justify-center items-center">
-      <div className="grid grid-cols-1 gap-2 place-items-center p-8 sm:place-items-start sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+    <div className="bg-gray-200 w-full h-full py-8 flex justify-center items-center">
+      <div className="grid grid-cols-1 gap-2 place-items-center p-8 sm:place-items-start sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 xl:w-full">
       {Array.isArray(treeData) && treeData.map((item) => (
           <div
             key={item.id} 
@@ -81,13 +81,14 @@ function truncateText(text:any, numWords:any) {
             <div className="top-0 left-0 h-2 md:h-3 mt-6 pl-5 rounded-3xl absolute z-0 bg-green-600"></div>
             <div className="w-52 pb-2">
               <div className="relative">
-                {/* <Image
-                  src={item.img || ImageD} 
+                <Image
+                  // src={item.img || ImageD} 
+                  src={ ImageD}
                   height={300}
                   width={300}
                   className="max-h-60 object-cover rounded-t-xl"
                   alt={item.title} 
-                /> */}
+                />
                 <div className="bottom-0 right-0 mb-2 mr-2 px-2 rounded-lg absolute bg-yellow-500 text-gray-100 text-xs font-medium">
               جدید 
                 </div>

@@ -13,10 +13,11 @@ const page = () => {
       return  <Loading />
     }
   return (
-    <div>
+    <div >
        <h1 className="font-bold text-7xl text-center text-slate-600  .border-b-2 " >  آگهی ها  </h1>
 < hr />
-        <Store />
+<div className='w-full'>
+        <Store /> </div>
         <div className='flex items-center justify-center px'>
      <CPagination aria-label="Page navigation example">
   <CPaginationItem aria-label="Previous" disabled>

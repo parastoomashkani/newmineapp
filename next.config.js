@@ -14,6 +14,7 @@ const nextConfig = {
 module.exports = {
   images: {
     domains: ['randomuser.me'],
+    domains: ['https://zarkav.liara.run/api'],
     remotePatterns: [
       {
         protocol: 'https',

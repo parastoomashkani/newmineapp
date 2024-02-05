@@ -278,10 +278,7 @@ const Form = () => {
                 </div>
 
                 <div className="sm:col-span-2 sm:col-start-1">
-                  {/* <label htmlFor="city"     className="block text-sm font-medium leading-6 text-gray-900">
-            استان 
-          
-          </label> */}
+              
                   <div className="mt-2"> <label htmlFor="state">Select State:</label>
                     <select id="state" value={selectedState} onChange={handleStateChange}>
                       <option value="">Select a state</option>
