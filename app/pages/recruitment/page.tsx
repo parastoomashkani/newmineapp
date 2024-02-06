@@ -117,9 +117,9 @@ const page = () => {
                                 <h3 className="mb-2 text-lg font-medium leading-6 text-gray-900 dark:text-white">راه ها تماس 
                                 </h3>
                                 <p className="text-gray-600 dark:text-slate-400">
-                                    موبایل :09***6565
+                                  شماره :44265642_051
                                 </p>
-                                <p className="text-gray-600 dark:text-slate-400">ایمیل : tailnext@gmail.com</p>
+                                <p className="text-gray-600 dark:text-slate-400">ایمیل : ahmad.shamsaei@outlook.com</p>
                             </div>
                         </li>
                         <li className="flex">

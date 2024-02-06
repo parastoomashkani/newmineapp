@@ -14,6 +14,7 @@ const searchEditorOptions = { placeholder: 'Search city or state' };
 
 const page = () => {
   return (
+    <div className='p-4'>
     <TreeList
     id="employees"
     dataSource={employees}
@@ -46,6 +47,7 @@ const page = () => {
     <Column dataField="Mobile_Phone" />
     <Column dataField="Hire_Date" dataType="date"  caption="تاریخ"/>
   </TreeList>
+  </div>
   )
 }
 

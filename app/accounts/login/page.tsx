@@ -20,9 +20,7 @@ const Login = () => {
       const loginResponse = await axios.post(process.env.BaseUrl + '/login', {
         mobile,
         password,
-      }
-
-      );
+      } );
 
       const token = loginResponse.data.token;
       const username = loginResponse.data.username;

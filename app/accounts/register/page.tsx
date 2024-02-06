@@ -17,7 +17,7 @@ const Register = () => {
 
   const handleRegister = async () => {
     try {
-      const response = await axios.post(process.env.BaseUrl + '/register', {
+      const response = await axios.post(process.env.BaseUrl + '/login', {
         name,
         mobile,
         password,
@@ -25,7 +25,7 @@ const Register = () => {
       const token = response.data.token;
       localStorage.setItem('token', 'Bearer ' + token);
       setIsRegistered(true);
-      setShowCodeForm(true); // Show the code form after registration
+      setShowCodeForm(true); 
     } catch (err) {
       setError('.ثبت نام انجام نشد لطفا دوباره تلاش کنید');
       console.error('Registration failed:', err);
@@ -39,7 +39,7 @@ const Register = () => {
   const handleSubmit = async () => {
     try {
       const response = await axios.post(
-        process.env.BaseUrl + '/registerVerify',
+        process.env.BaseUrl + '/login',
         {
           code,
         },
@@ -89,6 +89,7 @@ const Register = () => {
                 placeholder="Enter your code"
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               />
+              <br />
               <button
                 onClick={handleSubmit}
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
@@ -130,6 +131,7 @@ const Register = () => {
               {error && (
                 <p style={{ color: 'red' }}>{error}</p>
               )}
+              <br />
               <button
                 onClick={handleRegister}
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"

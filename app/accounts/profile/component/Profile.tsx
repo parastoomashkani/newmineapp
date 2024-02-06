@@ -5,27 +5,41 @@ import Image from 'next/image';
 import "../../../../node_modules/bootstrap/dist/css/bootstrap.min.css"
 
 
-const Profile = () => {const [state, setState] = useState<Profile[]>([]);
+const Profile = () => { 
+  const [state, setState] = useState([]);
   const [photo, setPhoto] = useState(null);
-  const handleFileChange = (e: any) => {
+  const [authorizationStatus, setAuthorizationStatus] = useState(0); // 0: Initial, 200: Authorized, others: Unauthorized
+
+  const handleFileChange = (e) => {
     const file = e.target.files[0];
     setPhoto(file);
   };
-  async function getData() {
-    const res = await fetch('https://randomuser.me/api/?results=0');
-    const data = await res.json();
-    setState(data.results);
-    console.log(state);
-  }
 
-  console.log('i am:', state);
+  async function getData() {
+    try {
+      const res = await fetch(process.env.BaseUrl + '/login');
+      if (res.status === 200) {
+        setAuthorizationStatus(200);
+        const data = await res.json();
+        setState(data.results);
+      } else {
+        // Handle unauthorized status or other statuses
+        setAuthorizationStatus(res.status);
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      // Handle error
+    }
+  }
 
   useEffect(() => {
     getData();
   }, []);
+
   return (
 <div className="container">
-{state.map((item) => (
+{authorizationStatus === 200 ? (
+state.map((item) => (
     <div className="main-body">
           <div className="row gutters-sm">
             <div className="col-md-4 mb-3">
@@ -189,7 +203,13 @@ const Profile = () => {const [state, setState] = useState<Profile[]>([]);
             </div>
           </div>
         </div>
-           ))}
+         ))
+         ) : (
+          <div>
+          <h2 className='text-center'>دسترسی غیرمجاز</h2>
+          <p className='text-center '>لطفاً وارد شوید یا اعتبار مجوز خود را بررسی کنید </p>
+        </div>
+           )}
     </div>
     
   )
