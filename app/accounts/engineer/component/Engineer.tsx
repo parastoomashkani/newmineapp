@@ -52,8 +52,6 @@ const Engineer: React.FC = () => {
   
       fetchData();
     }, [])
-  
-  
 
     const [fullscreenXlModal, setFullscreenXlModal] = useState<boolean>(false);
 

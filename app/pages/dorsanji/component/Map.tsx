@@ -7,7 +7,9 @@ import "../../../../node_modules/rsuite/dist/rsuite-no-reset.min.css"
 import { GiHamburgerMenu } from "react-icons/gi";
 import "leaflet-defaulticon-compatibility";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
+import HeatmapLayer from "react-leaflet-heatmap-layer-v3/lib/HeatmapLayer";
 import { IoMdClose } from "react-icons/io";
+import {geojson} from  "../component/atd"
 const data = [
   {
     value: "mammal",
@@ -709,7 +711,15 @@ const Map = () => {
               width: "100%"
             }
           }
-          center={[31.983292, 54.262546]} zoom={7} scrollWheelZoom={false}>
+          center={[31.983292, 54.262546]} zoom={7} scrollWheelZoom={true}>
+            <HeatmapLayer
+          fitBoundsOnLoad
+          fitBoundsOnUpdate
+          points={geojson.features}
+          longitudeExtractor={m => m.geometry.coordinates[0]}
+          latitudeExtractor={m => m.geometry.coordinates[1]}
+          intensityExtractor={m => parseFloat(m.geometry.coordinates[1])}
+        />
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -777,7 +787,7 @@ const Map = () => {
               <div className="relative top-[423px]" >
               <button className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
 <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-Cyan to blue
+ بررسی 
 </span>
 </button>
 </div>

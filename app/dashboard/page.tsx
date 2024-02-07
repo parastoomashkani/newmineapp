@@ -61,7 +61,7 @@ const page: React.FC = () => {
            localStorage.removeItem('token');
           localStorage.removeItem('name');
           
-          alert('شماخارج شدید');
+          alert('.شماخارج شدید');
           router.refresh();
           router.push('/accounts/login');
         }
