@@ -65,7 +65,7 @@ export const geojson = {
       "coordinates":  [ 46.641442 ,37.242088,    ]
    },
    "properties": {
-   "rating":3,
+   "rating":3 ,
    "restaurant_name":"Amul Ice Cream Parlour"
    }
  },

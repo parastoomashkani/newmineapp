@@ -10,6 +10,7 @@ import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility
 import HeatmapLayer from "react-leaflet-heatmap-layer-v3/lib/HeatmapLayer";
 import { IoMdClose } from "react-icons/io";
 import {geojson} from  "../component/atd"
+import axios from 'axios';
 const data = [
   {
     value: "mammal",
@@ -675,16 +676,36 @@ const Map = () => {
   const [inputs, setInputs] = useState(Array.from({ length: inputCount }, (_, index) => index + 1));
   const [isVisible, setIsVisible] = useState(true);
   const [mapWidth, setMapWidth] = React.useState('87%');
+  const [inputValues, setInputValues] = useState([]); 
+const [selectedData, setSelectedData] = useState(null);
   const handleAddInput = () => {
     const newInputCount = inputCount + 1;
     setInputCount(newInputCount);
     setInputs(Array.from({ length: newInputCount }, (_, index) => index + 1));
   };
+  const handleTreeSelection = (selected ) => {
+    setSelectedData(selected);
+  };
   const toggleVisibility = () => {
     setIsVisible(!isVisible);
     setMapWidth(isVisible ? '90%' : '40%');
   };
-
+  const handleInputChange = (index, value) => {
+    const newInputValues = [...inputValues];
+    newInputValues[index] = value;
+    setInputValues(newInputValues);
+  }; 
+  const sendDataToApi = async () => {
+    try {
+      const response = await axios.post('your-api-endpoint', {
+        inputValues,
+        selectedData,
+      });
+      console.log('API Response:', response.data);
+    } catch (error) {
+      console.error('Error sending data to API:', error);
+    }
+  };
   const handleClose = () => {
     setIsVisible(false);
     setMapWidth('90%');
@@ -739,6 +760,8 @@ const Map = () => {
           {inputs.map((index) => (
             <div key={index} className="relative w-full min-w-[200px] h-10">
               <input
+                 value={inputValues[index]}
+                 onChange={(e) => handleInputChange(index, e.target.value)}
                 className="peer w-full h-full bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 border-t-transparent focus:border-t-transparent text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-blue-500"
                 placeholder=" "
                 type="text"
@@ -774,7 +797,7 @@ const Map = () => {
       >
      <GiHamburgerMenu />
       </button> */}
-          <CheckTree data={data} defaultExpandAll className="text-right absolute right-0 h-full" />
+          <CheckTree data={data}   onChange={handleTreeSelection}  defaultExpandAll className="text-right absolute right-0 h-full" />
           {/* <button
             className={`absolute top-2 right-2 text-gray-500 sm:hidden`}
             onClick={handleClose}
@@ -785,7 +808,7 @@ const Map = () => {
       )}
               </div>
               <div className="relative top-[423px]" >
-              <button className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
+              <button onClick={sendDataToApi} className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
 <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
  بررسی 
 </span>
