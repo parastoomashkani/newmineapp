@@ -65,7 +65,7 @@ const page = () => {
     setMobile('');
 
     try {
-      const response = await axios.post(process.env.BaseUrl + '/editeUserData', {
+      const response = await axios.post(process.env.BaseUrl + '/registerJob', {
 
       },
         {
@@ -113,7 +113,7 @@ const page = () => {
       try {
         const response = await fetch(process.env.BaseUrl + '/showStates');
         const data = await response.json();
-        console.log('API response:', data); // Log the response to the console
+        console.log('API response:', data); 
         setStates(data);
       } catch (error) {
         console.error('Error fetching states:', error);

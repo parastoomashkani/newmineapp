@@ -15,7 +15,6 @@ import { IoMdClose } from "react-icons/io";
 import CheckTree from 'rsuite/CheckTree';
 import "../../../../node_modules/rsuite/dist/rsuite-no-reset.min.css"
 import { GiHamburgerMenu } from "react-icons/gi";
-import { Item } from '@syncfusion/ej2-react-navigations';
 const data = [
   {
     value: "mammal",
@@ -915,7 +914,7 @@ const Map = () => {
           </Marker>
 
           <LayersControl position="topright">
-            <LayersControl.BaseLayer checked name="OpenStreetMap">
+            <LayersControl.BaseLayer checked name="زمین شناسی ایران ">
               <TileLayer
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

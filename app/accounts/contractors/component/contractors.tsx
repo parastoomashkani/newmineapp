@@ -36,6 +36,7 @@ const Contractors: React.FC = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(process.env.BaseUrl + '/showJobs?page=');
+        console.log("dd",response.data.data)
         setApiData(response.data.data);
         console.log('Fetched data:', response.data.data);
       } catch (error) {
@@ -63,7 +64,7 @@ const Contractors: React.FC = () => {
             <div className='w-full md:w-3/5 space-y-4 flex flex-col justify-center items-center p-4'>
               <div className='flex flex-col justify-center'>
                 <h1 className='text-center md:text-left text-2xl font-bold text-gray-900'>
-                  {item.name} 
+                  {item.user} 
                 </h1>
               </div>
               <br />
@@ -75,7 +76,8 @@ const Contractors: React.FC = () => {
                 </li>
                 <li className='text-sm'>
                   <i className='iconoir-calendar mr-2'>
-                   متخصص حفاری 
+                  {item.name} 
+
                   </i>
                 </li>                 
               </ul>
@@ -99,7 +101,7 @@ const Contractors: React.FC = () => {
                                                        
                                                                    <img src={item.image1 || defaultImage} alt="Contractor"    className="w-22 h-22 bg-gray-300 rounded-full mb-4 shrink-0"/>
                                                             <h4 className="font-bold text-3xl text-center mb-1">
-                                                                {item.name} 
+                                                                {item.user} 
                                                             </h4>
                                                         </div>
                                                         <ul className='flex flex-col'>
@@ -109,6 +111,7 @@ const Contractors: React.FC = () => {
                                                                         <TfiEmail size={20} />
                                                                     </div>
                                                                     <div> ایمیل </div>
+                                                                  
                                                                 </div>
                                                             </i>
                                                             <br />
@@ -117,6 +120,7 @@ const Contractors: React.FC = () => {
                                                                     <div className='w-8 h-8  p-2 rounded-md bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500' >
                                                                         <FaPhone size={20} />
                                                                     </div>
+                                                                    <div>{item.tel}</div>
                                                                     <div>
                                                                   تلفن
                                                                     </div>

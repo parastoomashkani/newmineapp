@@ -8,37 +8,28 @@ import "../../../../node_modules/bootstrap/dist/css/bootstrap.min.css"
 const Profile = () => { 
   const [state, setState] = useState([]);
   const [photo, setPhoto] = useState(null);
-  const [authorizationStatus, setAuthorizationStatus] = useState(0); // 0: Initial, 200: Authorized, others: Unauthorized
-
-  const handleFileChange = (e) => {
+  const handleFileChange = (e:any) => {
     const file = e.target.files[0];
     setPhoto(file);
   };
-
   async function getData() {
-    try {
-      const res = await fetch(process.env.BaseUrl + '/login');
-      if (res.status === 200) {
-        setAuthorizationStatus(200);
-        const data = await res.json();
-        setState(data.results);
-      } else {
-        // Handle unauthorized status or other statuses
-        setAuthorizationStatus(res.status);
-      }
-    } catch (error) {
-      console.error('Error fetching data:', error);
-      // Handle error
-    }
+    const res = await fetch(process.env.BaseUrl + '/login');
+    const data = await res.json();
+    console.log ("fdsfsf",data);
+    setState(data.results);
+    console.log(state);
   }
+
+  console.log('i am:', state);
 
   useEffect(() => {
     getData();
   }, []);
+  
 
   return (
 <div className="container">
-{authorizationStatus === 200 ? (
+{
 state.map((item) => (
     <div className="main-body">
           <div className="row gutters-sm">
@@ -46,7 +37,7 @@ state.map((item) => (
               <div className="card">
                 <div className="card-body">
                   <div className="d-flex flex-column align-items-center text-center">
-                  <Image src={item.picture.large} height={500} width={500} alt={item.name.first} />
+                  {/* <Image src={item.picture.large} height={500} width={500} alt={item.name.first} /> */}
 
                     <div className="mt-3">
                       <h4>   {item.name.first} {item.name.last}</h4>
@@ -203,13 +194,8 @@ state.map((item) => (
             </div>
           </div>
         </div>
-         ))
-         ) : (
-          <div>
-          <h2 className='text-center'>دسترسی غیرمجاز</h2>
-          <p className='text-center '>لطفاً وارد شوید یا اعتبار مجوز خود را بررسی کنید </p>
-        </div>
-           )}
+         ))}
+         
     </div>
     
   )

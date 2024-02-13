@@ -27,7 +27,7 @@ export const geojson = {
    "type": "Feature",
    "geometry": {
       "type": "Point",
-      "coordinates":  [ 57.706913, 35.204719 ]
+      "coordinates":  [ 57.706913, 35.204719 ,57.706930]
    },
    "properties": {
    "rating":2.6,
