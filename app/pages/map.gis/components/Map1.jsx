@@ -748,7 +748,6 @@ const Map = () => {
   const [bbox, setBbox] = useState('6261721.35625,2504688.5425,7514065.6275,3757032.81375');
   const [isVisible, setIsVisible] = useState(true);
   const [mapWidth, setMapWidth] = React.useState('87%'); // Initial width for the map
-
   const toggleVisibility = () => {
     setIsVisible(!isVisible);
     setMapWidth(isVisible ? '90%' : '40%');
@@ -863,7 +862,33 @@ const Map = () => {
  });
 
   };
+  const [geologicUnitData, setGeologicUnitData] = useState(null);
+ 
+  useEffect(() => {
+    if (map) {
+      map.on("click", async function (ev) {
+        const { lat, lng } = ev.latlng;
+        
+        console.log({ lat, lng });
 
+        try {
+          const response = await axios.get(
+            `https://macrostrat.org/api/v2/geologic_units/map?lat=${lng}&lng=${lat}`
+          );
+          setGeologicUnitData(response.data.success.data[0,1]);
+          L.marker([lat, lng]).addTo(map);
+
+          map.setView([lat, lng]);
+  
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
+      });
+    }
+  }, [map]);
+  useEffect(() => {
+    console.log(geologicUnitData); // Log the updated value
+  }, [geologicUnitData]);
 
   return (
 
@@ -884,6 +909,35 @@ const Map = () => {
         onChange={handleCheckboxChange}
 
       />
+      <div className='w-auto pl-14 top-[400px]'> 
+      {geologicUnitData && (
+  <div >
+    <p className='text-black'>
+      Name:<span>
+      {geologicUnitData.name}{geologicUnitData.lith}</span>
+      </p>
+      <p className='text-black'>
+      Age:<span>
+      {geologicUnitData.b_age}</span>
+      </p>
+      <p className='text-black'>
+      Lithology:<span>
+      {geologicUnitData.lith}
+      </span>
+      </p>
+      <h4>Lines </h4>
+      <p className='text-black'>
+      Type:<span>
+      {geologicUnitData.b_int_name}</span>
+      </p>
+      <p className='text-black'>
+      Description:<span>
+      {geologicUnitData.descrip}</span>
+      </p>
+  </div>
+)}
+    </div>
+  
           <button
             className={`absolute top-2 right-2 text-gray-500 sm:hidden`}
             onClick={handleClose}
@@ -902,6 +956,7 @@ const Map = () => {
           zoom={7}
           scrollWheelZoom={true}
           ref={setMap}
+   
         >
           <TileLayer
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
