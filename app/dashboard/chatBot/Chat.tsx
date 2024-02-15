@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Chat, Message as ChatMessage } from 'react-chat-module';
 import '../../../node_modules/react-chat-module/dist/index.css';
 import axios from 'axios';
-;
+
 export interface Message {
   createdAt: Date;
   type: MessageType;
@@ -24,11 +24,8 @@ export interface MessageType {
   text?: | 'image';
 }
 
-export interface FileMessage {
-  // Define the structure for FileMessage if needed
-}
-
 function Chats(): JSX.Element {
+  const [mounted, setMounted] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       createdAt: new Date(Date.now()),
@@ -40,6 +37,16 @@ function Chats(): JSX.Element {
       name: 'پشتیبانی ',
     },
   ]);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (mounted) {
+      setTimeout(() => handleSend({ createdAt: new Date(), type: 'text', text: 'Hi there!' }), 1000);
+    }
+  }, [mounted]);
 
   // append user typed message and admin response to messages array
   const handleSend = async (message: Message): Promise<void> => {
@@ -53,11 +60,10 @@ function Chats(): JSX.Element {
       read: true,
       name: 'User',
     };
-  
+
     try {
       // Send the user message to the server
-      const userResponse = await axios.post(
-        `${process.env.BaseUrl}/chat/messages`,
+      const userResponse = await axios.post(`${process.env.BaseUrl}/chat/messages`,
         { message: userMessage },
         {
           headers: {
@@ -67,30 +73,18 @@ function Chats(): JSX.Element {
           },
         }
       );
+  console.log("dss",userResponse);
   
-      if (userResponse.status === 200) {
         const userResponseMessage: ChatMessage = userResponse.data;
-  
-        const adminResponseData = await axios.get(`${process.env.BaseUrl}/chat/messages`);
-  
-        if (adminResponseData.status === 200) {
+
+        const adminResponseData = await axios.get(`${process.env.BaseUrl}/chat`);
           const adminResponse: ChatMessage = adminResponseData.data;
           setMessages([...messages, userResponseMessage, adminResponse]);
-        } else {
-          console.error('Failed to receive admin response from API');
-        }
-      } else {
-        console.error('Failed to send user message to API');
-      }
+  
     } catch (error) {
       console.error('Error sending/receiving messages:', error);
     }
   };
-
-  useEffect(() => {
-   
-    setTimeout(() => handleSend({ createdAt: new Date(), type: 'text', text: 'Hi there!' }), 1000);
-  }, []);
 
   return (
     <div className="chat-message">

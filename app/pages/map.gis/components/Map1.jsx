@@ -788,14 +788,12 @@ const Map = () => {
         const bboxString = `${minPoint.x},${minPoint.y},${maxPoint.x},${maxPoint.y}`;
         setBbox(bboxString);
 
-        const url = `http://webgis.ngdir.ir/admin/index.php/Guest/Tree/getLayer?ll=${ii}&LAYERS=l&TRANSPARENT=true&ALPHA=true&FORMAT=agg_png&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&STYLES=&SRS=EPSG%3A3857&BBOX=${bboxString}&WIDTH=512&HEIGHT=512`;
+        const url = ``;
 
         console.log('Updated URL:', url);
         const fetchData = async () => {
 
           try {
-
-
             const response = await axios.get(url);
             console.log(response);
             // setApiData(.data.data);
@@ -863,15 +861,17 @@ const Map = () => {
 
   };
   const [geologicUnitData, setGeologicUnitData] = useState(null);
- 
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
     if (map) {
       map.on("click", async function (ev) {
         const { lat, lng } = ev.latlng;
         
         console.log({ lat, lng });
-
+        const zoom = map.getZoom();
         try {
+          setIsLoading(true);
           const response = await axios.get(
             `https://macrostrat.org/api/v2/geologic_units/map?lat=${lng}&lng=${lat}`
           );
@@ -882,6 +882,8 @@ const Map = () => {
   
         } catch (error) {
           console.error("Error fetching data:", error);
+        } finally {
+          setIsLoading(false); 
         }
       });
     }
@@ -893,6 +895,7 @@ const Map = () => {
   return (
 
     <div className="relative">
+      
       <button
         className={`bg-blue-500 text-white absolute right-0 py-2 px-4 rounded ${isVisible ? 'hidden sm:block' : 'block sm:hidden'}`}
         onClick={toggleVisibility}
@@ -910,8 +913,16 @@ const Map = () => {
 
       />
       <div className='w-auto pl-14 top-[400px]'> 
+     
       {geologicUnitData && (
   <div >
+     {isLoading && (
+      <div className="absolute top-0 left-0 w-full h-full bg-opacity-75 bg-gray-900 flex justify-center items-center">
+        <div className="text-white"> 
+        درحال  دریافت 
+         </div>
+      </div>
+    )}
     <p className='text-black'>
       Name:<span>
       {geologicUnitData.name}{geologicUnitData.lith}</span>

@@ -4934,7 +4934,7 @@ class-variance-authority@^0.7.0:
   dependencies:
     clsx "2.0.0"
 
-classnames@^2.2.5, classnames@^2.2.6, classnames@^2.3.1, classnames@^2.3.2:
+classnames@^2.2.3, classnames@^2.2.5, classnames@^2.2.6, classnames@^2.3.1, classnames@^2.3.2:
   version "2.3.2"
   resolved "https://registry.npmjs.org/classnames/-/classnames-2.3.2.tgz"
   integrity sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==
@@ -7527,6 +7527,11 @@ loader-utils@^2.0.0:
     emojis-list "^3.0.0"
     json5 "^2.1.2"
 
+loaders.css@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.npmjs.org/loaders.css/-/loaders.css-0.1.2.tgz"
+  integrity sha512-Rhowlq24ey1VOeor+3wYOt9+MjaxBOJm1u4KlQgNC3+0xJ0LS4wq4iG57D/BPzvuD/7HHDGQOWJ+81oR2EI9bQ==
+
 locate-path@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/locate-path/-/locate-path-2.0.0.tgz"
@@ -8685,6 +8690,14 @@ process-nextick-args@~2.0.0:
   resolved "https://registry.npmjs.org/process-nextick-args/-/process-nextick-args-2.0.1.tgz"
   integrity sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==
 
+progressbar.js@^1.1.0:
+  version "1.1.1"
+  resolved "https://registry.npmjs.org/progressbar.js/-/progressbar.js-1.1.1.tgz"
+  integrity sha512-FBsw3BKsUbb+hNeYfiP3xzvAAQrPi4DnGDw66bCmfuRCDLcslxyxv2GyYUdBSKFGSIBa73CUP5WMcl6F8AAXlw==
+  dependencies:
+    lodash.merge "^4.6.2"
+    shifty "^2.8.3"
+
 proj4@^2.10.0:
   version "2.10.0"
   resolved "https://registry.npmjs.org/proj4/-/proj4-2.10.0.tgz"
@@ -8794,6 +8807,17 @@ react-calendar@^4.6.1:
     prop-types "^15.6.0"
     tiny-warning "^1.0.0"
 
+react-chat-elements@^12.0.13:
+  version "12.0.13"
+  resolved "https://registry.npmjs.org/react-chat-elements/-/react-chat-elements-12.0.13.tgz"
+  integrity sha512-Vu5x8kW4LPu8onKfz5vsuDwZsDhoQmTBHJdqKAhVsi42PCQ8KOfzHiDp0fPUJlinJZ/MTJTm69UAchpys4iSTQ==
+  dependencies:
+    classnames "^2.2.5"
+    progressbar.js "^1.1.0"
+    react-icons "^4.3.1"
+    react-spinkit "^3.0.0"
+    timeago.js "^4.0.2"
+
 react-chat-module@^1.1.1:
   version "1.1.1"
   resolved "https://registry.npmjs.org/react-chat-module/-/react-chat-module-1.1.1.tgz"
@@ -8863,7 +8887,7 @@ react-hooks-global-state@^2.1.0:
   dependencies:
     zustand "4.0.0"
 
-react-icons@^4.12.0, react-icons@^4.2.0, react-icons@^4.8.0:
+react-icons@^4.12.0, react-icons@^4.2.0, react-icons@^4.3.1, react-icons@^4.8.0:
   version "4.12.0"
   resolved "https://registry.npmjs.org/react-icons/-/react-icons-4.12.0.tgz"
   integrity sha512-IBaDuHiShdZqmfc/TwHu6+d6k2ltNCf3AszxNmjJc1KUfXdEeRJOKyNvLmAHaarhzGmTSVygNdyu8/opXv2gaw==
@@ -9043,6 +9067,16 @@ react-simple-tree-menu@^1.1.18:
     fast-memoize "^2.5.1"
     is-empty "^1.2.0"
     tiny-debounce "^0.1.1"
+
+react-spinkit@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npmjs.org/react-spinkit/-/react-spinkit-3.0.0.tgz"
+  integrity sha512-RrfGRPjqxHQiy7quPqhjPynTu0zobgQaZu1QYBMpJJ6pCSRRRK16EZMaxdE6fLVYFRJWpX/eGATWLMoVFFT5uQ==
+  dependencies:
+    classnames "^2.2.3"
+    loaders.css "^0.1.2"
+    object-assign "^4.1.0"
+    prop-types "^15.5.8"
 
 react-style-singleton@^2.2.1:
   version "2.2.1"
@@ -9577,6 +9611,13 @@ shebang-regex@^3.0.0:
   resolved "https://registry.npmjs.org/shebang-regex/-/shebang-regex-3.0.0.tgz"
   integrity sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==
 
+shifty@^2.8.3:
+  version "2.20.4"
+  resolved "https://registry.npmjs.org/shifty/-/shifty-2.20.4.tgz"
+  integrity sha512-4Y0qRkg8ME5XN8yGNAwmFOmsIURGFKT9UQfNL6DDJQErYtN5HsjyoBuJn41ZQfTkuu2rIbRMn9qazjKsDpO2TA==
+  optionalDependencies:
+    fsevents "^2.3.2"
+
 side-channel@^1.0.4:
   version "1.0.4"
   resolved "https://registry.npmjs.org/side-channel/-/side-channel-1.0.4.tgz"
@@ -9997,6 +10038,11 @@ through2@^2.0.1:
   dependencies:
     readable-stream "~2.3.6"
     xtend "~4.0.1"
+
+timeago.js@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.npmjs.org/timeago.js/-/timeago.js-4.0.2.tgz"
+  integrity sha512-a7wPxPdVlQL7lqvitHGGRsofhdwtkoSXPGATFuSOA2i1ZNQEPLrGnj68vOp2sOJTCFAQVXPeNMX/GctBaO9L2w==
 
 tiny-debounce@^0.1.1:
   version "0.1.1"
